@@ -1,21 +1,75 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
+# aeros-website
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
+Scope: this repo. Workspace context (brand, design-system rules, package-manager defaults) lives in @../AGENTS.md and @../memory/.
+Last updated: 2026-04-30
 
-# Package manager: pnpm
+## Purpose
 
-This repo uses **pnpm**, not npm. Always use `pnpm install` / `pnpm dev` / `pnpm build` — never `npm install`. The `pnpm-lock.yaml` is the source of truth.
+The Aeros marketing site at `aeros-x.com`. Next.js 16 + React 19, consuming `@aeros/react` and `@aeros/tokens` from the `vendor/aeros-design-system` submodule via pnpm `workspace:*`.
 
-The `vendor/aeros-design-system` submodule is wired into `pnpm-workspace.yaml`, so `@aeros/react` and `@aeros/tokens` resolve via `workspace:*`. Do not change them to `file:` paths or to fixed versions.
+## Stack
 
-# Design system
+Next.js 16 · React 19 · TypeScript · Tailwind v4 · framer-motion · lucide-react · pnpm.
 
-UI components and tokens come from `@aeros/react` (in the submodule). Always prefer DS alias classes (`bg-bg-surface`, `text-fg-primary`, `border-border-default`, `text-fg-muted`, etc.) over raw Tailwind colors or hex values. Reach for `@aeros/react` components (`Button`, `Card`, `Input`, …) before reinventing.
+Remote: github.com/aeros-main/aeros-website
 
-The wordmark "Aeros" must always use the `aeros-logo` class — it pulls in Nunito Sans (Expanded, wdth axis 125).
+## Important: This is NOT the Next.js you know
 
-# Brand palette
+Next 16 has breaking changes — APIs, conventions, and file structure may differ from training-data Next.js. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 
-Black and white first. The single accent is Royal Blue `#2347D9`, used **only** in the `blue` variants of `Badge`, `Tag`, and `Alert`. Don't add blue anywhere else without explicit approval.
+## Architecture
+
+```
+app/             # Next.js app router
+components/      # local components (lift to @aeros/react if reusable)
+vendor/aeros-design-system   # submodule — see @../memory/design-system.md
+public/          # static assets
+```
+
+The `predev` / `prebuild` hooks run `pnpm ds:build` — tokens build before React, then the site builds against the latest DS output. Don't try to build the site without building tokens first.
+
+## Runbook
+
+```
+pnpm install                 # also pulls submodule deps via workspace
+pnpm ds:build                # tokens + react (auto-runs before dev/build)
+pnpm dev                     # next dev
+pnpm build                   # next build
+pnpm start                   # next start
+pnpm lint                    # eslint
+```
+
+Submodule maintenance:
+
+```
+git submodule update --remote vendor/aeros-design-system
+pnpm install
+pnpm ds:build
+```
+
+## Conventions specific to this repo
+
+- pnpm only (workspace default). Never `npm install`.
+- `@aeros/react` / `@aeros/tokens` deps stay `workspace:*` — never `file:` or fixed versions (they resolve from the submodule).
+- DS alias classes (`bg-bg-surface`, `text-fg-primary`, …) over raw Tailwind colors / hex.
+- Wordmark "Aeros" → `aeros-logo` class. Royal Blue `#2347D9` only in `Badge` / `Tag` / `Alert` blue variants.
+- Heavy DS-rule details: @../memory/design-system.md and @../memory/brand.md.
+
+## Data / external deps
+
+No backend (this is the marketing site). Forms / contact submissions, when added, would go through `aeros-backend`.
+
+## Do NOT
+
+- **Do NOT switch from pnpm to npm or yarn.**
+- **Do NOT change `@aeros/react` / `@aeros/tokens` deps to `file:` paths or fixed versions.**
+- **Do NOT introduce raw hex colors or Royal Blue outside the approved DS variants.**
+- **Do NOT bypass `pnpm ds:build`** — the site builds against tokens that don't exist until that runs.
+
+## Playbooks
+
+Repo-specific procedures live in `memory/playbooks/` (none yet). Workspace-wide procedures: @../memory/playbooks/.
+
+## Open ADRs
+
+(none yet)
