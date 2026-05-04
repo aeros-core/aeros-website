@@ -3,8 +3,8 @@
 import { useState } from 'react'
 
 const links = [
-  { label: 'Marketplace', href: '#marketplace' },
-  { label: 'Pricing', href: '#pricing' },
+  { label: 'Marketplace', href: '/#marketplace' },
+  { label: 'Pricing', href: '/#pricing' },
 ]
 
 export default function Navbar() {
