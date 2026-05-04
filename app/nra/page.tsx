@@ -128,7 +128,7 @@ export default function NraShowPage() {
       {/* Why come find us */}
       <section className="py-32 px-6 bg-bg-subtle border-t border-border-default border-b border-border-default">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-4">
-          <div className="bg-bg-subtle p-10 md:p-14 rounded-3xl border border-border-default">
+          <div className="bg-white p-10 md:p-14 rounded-3xl border border-border-default">
             <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-4">
               The kitchen reality
             </div>
@@ -194,7 +194,7 @@ export default function NraShowPage() {
             {boothHighlights.map((item) => (
               <div
                 key={item.label}
-                className="bg-bg-subtle p-10 rounded-3xl border border-border-default flex flex-col"
+                className="bg-white p-10 rounded-3xl border border-border-default flex flex-col"
               >
                 <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-4">
                   {item.label}
