@@ -6,7 +6,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-grid opacity-60 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
 
       <div className="relative max-w-4xl mx-auto text-center">
-        <div className="aeros-logo text-fg-primary text-5xl sm:text-6xl md:text-7xl mb-10">
+        <div className="aeros-logo text-fg-primary text-2xl sm:text-3xl md:text-4xl mb-6">
           Aeros
         </div>
 
