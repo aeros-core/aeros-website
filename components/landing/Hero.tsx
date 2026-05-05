@@ -6,6 +6,10 @@ export default function Hero() {
       <div className="absolute inset-0 bg-grid opacity-60 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
 
       <div className="relative max-w-4xl mx-auto text-center">
+        <div className="aeros-logo text-fg-primary text-5xl sm:text-6xl md:text-7xl mb-10">
+          aeros
+        </div>
+
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border-default mb-10">
           <span className="w-1 h-1 rounded-full bg-royal-600" />
           <span className="text-xs text-fg-muted font-mono uppercase tracking-wider">

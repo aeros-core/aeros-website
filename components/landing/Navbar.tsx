@@ -14,7 +14,7 @@ export default function Navbar() {
     <header className="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur border-b border-border-default">
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="/" className="aeros-logo text-lg text-fg-primary">
-          Aeros<span className="text-royal-600">.</span>
+          aeros
         </a>
 
         <div className="hidden md:flex items-center gap-8">
