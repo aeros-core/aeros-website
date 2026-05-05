@@ -7,7 +7,7 @@ export default function Hero() {
 
       <div className="relative max-w-4xl mx-auto text-center">
         <div className="aeros-logo text-fg-primary text-5xl sm:text-6xl md:text-7xl mb-10">
-          aeros
+          Aeros
         </div>
 
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border-default mb-10">
