@@ -4,7 +4,6 @@ import { useState } from 'react'
 
 const links = [
   { label: 'Marketplace', href: '/#marketplace' },
-  { label: 'Pricing', href: '/#pricing' },
 ]
 
 export default function Navbar() {
@@ -30,7 +29,10 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <a href="#" className="text-sm text-fg-muted hover:text-fg-primary transition-colors">
+          <a
+            href="https://app.aeros-x.com"
+            className="text-sm text-fg-muted hover:text-fg-primary transition-colors"
+          >
             Sign in
           </a>
           <a
@@ -64,7 +66,7 @@ export default function Navbar() {
                 {l.label}
               </a>
             ))}
-            <a href="#" className="block py-2 text-sm text-fg-muted">Sign in</a>
+            <a href="https://app.aeros-x.com" className="block py-2 text-sm text-fg-muted">Sign in</a>
             <a
               href="#"
               className="block mt-2 text-center text-sm font-medium px-4 py-2.5 rounded-full bg-ink-900 text-white"
