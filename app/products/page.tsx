@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Navbar from '@/components/landing/Navbar'
 import Footer from '@/components/landing/Footer'
 import CategoryCard from '@/components/products/CategoryCard'
@@ -6,9 +7,9 @@ import {
   APP_MARKETPLACE_URL,
   CATEGORY_GROUPS,
   type CategoryGroup,
-  getAerosSelectCategories,
   getCategoriesByGroup,
 } from '@/lib/categories'
+import { aerosSelectProducts } from '@/lib/aeros-select'
 
 export const metadata: Metadata = {
   title: 'Products & Categories — Aeros',
@@ -25,8 +26,6 @@ export const metadata: Metadata = {
 const groupOrder: CategoryGroup[] = ['paper-disposables', 'cleaning-hygiene']
 
 export default function ProductsPage() {
-  const aerosSelect = getAerosSelectCategories()
-
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
@@ -59,6 +58,13 @@ export default function ProductsPage() {
             >
               Browse the marketplace
             </a>
+            <Link
+              href="/products/aeros-select"
+              className="px-7 py-3.5 rounded-full border border-royal-600 text-royal-700 text-sm font-medium hover:bg-royal-50 transition-colors inline-flex items-center gap-2"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-royal-600" />
+              Aeros Select
+            </Link>
             <a
               href="mailto:hello@aeros.io?subject=Marketplace%20catalog"
               className="px-7 py-3.5 rounded-full border border-border-default text-fg-primary text-sm font-medium hover:bg-bg-subtle transition-colors"
@@ -124,23 +130,52 @@ export default function ProductsPage() {
       {/* Aeros Select */}
       <section className="py-32 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="max-w-2xl mb-16">
-            <div className="text-[10px] font-mono uppercase tracking-widest text-royal-600 mb-4">
-              / aeros select
+          <div className="mb-16 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+            <div className="max-w-2xl">
+              <div className="text-[10px] font-mono uppercase tracking-widest text-royal-600 mb-4">
+                / aeros select
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-fg-primary leading-tight">
+                Hand-picked by Aeros.
+              </h2>
+              <p className="mt-5 text-fg-muted text-lg">
+                Premium equipment and packaging sourced, vetted, and stocked by
+                us. Browse the lineup or jump straight into a product.
+              </p>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-fg-primary leading-tight">
-              Verified vendors only.
-            </h2>
-            <p className="mt-5 text-fg-muted text-lg">
-              Aeros Select is the same catalog, narrowed to suppliers we have
-              vetted on quality, lead time, and consistency. Look for the tag
-              wherever it appears.
-            </p>
+            <Link
+              href="/products/aeros-select"
+              className="self-start sm:self-end px-5 py-2.5 rounded-full bg-ink-900 text-white text-sm font-medium hover:bg-ink-800 transition-colors inline-flex items-center gap-2 whitespace-nowrap"
+            >
+              See the full lineup <span aria-hidden>→</span>
+            </Link>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {aerosSelect.map((category) => (
-              <CategoryCard key={category.slug} category={category} />
+          <div className="grid sm:grid-cols-2 gap-4">
+            {aerosSelectProducts.map((product) => (
+              <Link
+                key={product.slug}
+                href={`/products/aeros-select/${product.slug}`}
+                className="group bg-white p-8 rounded-3xl border border-border-default flex flex-col h-full hover:bg-bg-subtle transition-colors"
+              >
+                <div className="flex items-start justify-between gap-3 mb-6">
+                  <div className="text-xs font-mono text-fg-muted/60">
+                    / {product.name.toLowerCase()}
+                  </div>
+                  <span className="inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-semibold whitespace-nowrap bg-royal-50 text-royal-800">
+                    Aeros Select
+                  </span>
+                </div>
+                <h3 className="text-2xl font-bold text-fg-primary mb-2">
+                  {product.name}
+                </h3>
+                <p className="text-fg-muted text-sm mb-8 flex-1">
+                  {product.tagline}
+                </p>
+                <span className="text-sm text-fg-primary font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                  See full details <span aria-hidden>→</span>
+                </span>
+              </Link>
             ))}
           </div>
         </div>

@@ -11,11 +11,6 @@ export default function CategoryCard({ category }: { category: Category }) {
         <div className="text-xs font-mono text-fg-muted/60">
           / {category.name.toLowerCase()}
         </div>
-        {category.aerosSelect && (
-          <span className="inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-semibold whitespace-nowrap bg-royal-50 text-royal-800">
-            Aeros Select
-          </span>
-        )}
       </div>
       <h3 className="text-2xl font-bold text-fg-primary mb-2">
         {category.name}

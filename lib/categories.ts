@@ -80,13 +80,12 @@ export type Category = {
   name: string
   blurb: string
   available: boolean
-  aerosSelect: boolean
   detail?: CategoryDetail
 }
 
 const paperCupsDetail: CategoryDetail = {
   hero: {
-    eyebrow: 'Paper & disposables · Aeros Select',
+    eyebrow: 'Paper & disposables',
     title: 'Paper cups.',
     subtitle:
       'Everything you need to spec, source, and order paper cups — types, sizing, coatings, and custom printing — in one place.',
@@ -264,7 +263,6 @@ export const categories: Category[] = [
     name: 'Paper cups',
     blurb: 'Single-wall, double-wall, ripple, cold, and compostable.',
     available: true,
-    aerosSelect: true,
     detail: paperCupsDetail,
   },
   {
@@ -273,7 +271,6 @@ export const categories: Category[] = [
     name: 'Lids',
     blurb: 'Sip, slot, and dome lids in PP and PLA.',
     available: false,
-    aerosSelect: false,
   },
   {
     slug: 'paper-bowls',
@@ -281,7 +278,6 @@ export const categories: Category[] = [
     name: 'Paper bowls',
     blurb: 'Soup, salad, and noodle bowls with matching lids.',
     available: false,
-    aerosSelect: true,
   },
   {
     slug: 'takeout-containers',
@@ -289,7 +285,6 @@ export const categories: Category[] = [
     name: 'Takeout containers',
     blurb: 'Bagasse, kraft, and aluminium — vented and leakproof.',
     available: false,
-    aerosSelect: false,
   },
   {
     slug: 'napkins',
@@ -297,7 +292,6 @@ export const categories: Category[] = [
     name: 'Napkins',
     blurb: 'Dispenser, beverage, and dinner napkins by ply.',
     available: false,
-    aerosSelect: false,
   },
   {
     slug: 'paper-straws',
@@ -305,7 +299,6 @@ export const categories: Category[] = [
     name: 'Paper straws',
     blurb: 'Standard, jumbo, and bendable — wrapped or unwrapped.',
     available: false,
-    aerosSelect: false,
   },
   {
     slug: 'paper-plates',
@@ -313,7 +306,6 @@ export const categories: Category[] = [
     name: 'Paper plates',
     blurb: 'Compartment, round, and rectangle plates by gsm.',
     available: false,
-    aerosSelect: false,
   },
   {
     slug: 'sanitizers',
@@ -321,7 +313,6 @@ export const categories: Category[] = [
     name: 'Sanitizers',
     blurb: 'Hand, surface, and food-contact sanitizers.',
     available: false,
-    aerosSelect: true,
   },
   {
     slug: 'gloves',
@@ -329,7 +320,6 @@ export const categories: Category[] = [
     name: 'Gloves',
     blurb: 'Nitrile, vinyl, and latex disposable gloves by size.',
     available: false,
-    aerosSelect: false,
   },
   {
     slug: 'trash-bags',
@@ -337,7 +327,6 @@ export const categories: Category[] = [
     name: 'Trash bags',
     blurb: 'Liner, contractor, and compostable bags by gauge.',
     available: false,
-    aerosSelect: false,
   },
   {
     slug: 'surface-wipes',
@@ -345,7 +334,6 @@ export const categories: Category[] = [
     name: 'Surface wipes',
     blurb: 'Quat, alcohol, and food-contact wipes in tubs and refills.',
     available: false,
-    aerosSelect: false,
   },
   {
     slug: 'detergents',
@@ -353,7 +341,6 @@ export const categories: Category[] = [
     name: 'Detergents',
     blurb: 'Dish, laundry, and floor detergents for high-volume use.',
     available: false,
-    aerosSelect: false,
   },
 ]
 
@@ -365,6 +352,3 @@ export function getCategoriesByGroup(group: CategoryGroup): Category[] {
   return categories.filter((c) => c.group === group)
 }
 
-export function getAerosSelectCategories(): Category[] {
-  return categories.filter((c) => c.aerosSelect)
-}
