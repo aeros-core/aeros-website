@@ -2,6 +2,7 @@ const columns = [
   {
     title: 'Product',
     links: [
+      { label: 'Products', href: '/products' },
       { label: 'Marketplace', href: '/#marketplace' },
     ],
   },
