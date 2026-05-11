@@ -91,14 +91,6 @@ export default async function CategoryDetailPage({
 
           <div className="mt-12 inline-flex items-center gap-2 text-[11px] font-mono text-fg-muted/60 uppercase tracking-widest">
             <span>{groupMeta.label}</span>
-            {category.aerosSelect && (
-              <>
-                <span aria-hidden>·</span>
-                <span className="inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-semibold whitespace-nowrap bg-royal-50 text-royal-800">
-                  Aeros Select
-                </span>
-              </>
-            )}
           </div>
         </div>
       </section>
