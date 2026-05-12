@@ -766,10 +766,175 @@ const tubSealer: AerosSelectProduct = {
   orderCtaLabel: 'Order an AeroSeal Tub Sealer',
 }
 
+const foils: AerosSelectProduct = {
+  slug: 'foils',
+  name: 'AeroSeal Foils',
+  tagline:
+    'Precut aluminium foil lids — precisely shaped and sized for every cup and tub. Airtight, leak-proof, drop-and-seal.',
+  hero: {
+    eyebrow: 'AeroSeal · Foils',
+    title: 'AeroSeal Foils.',
+    subtitle:
+      'Precut aluminium foil lids, cut from large rolls and sized to your container. Airtight seal for food and beverage containers — keeps the contents fresh and stops leaks in the delivery bag.',
+  },
+  highlights: [
+    { label: 'Format', value: 'Precut — tear-drop or circular' },
+    { label: 'Diameter range', value: '70.5 mm – 155 mm' },
+    { label: 'Material', value: 'Food-grade aluminium foil' },
+    { label: 'Printed MOQ', value: '30,000 pcs per design' },
+  ],
+  sections: [
+    {
+      kind: 'customers',
+      heading: 'On every cup at India\'s largest chains.',
+      intro:
+        'AeroSeal Foils are the foil lids on cups and tubs at India\'s biggest QSR and coffee operators.',
+      items: [
+        { name: 'Starbucks', note: 'India' },
+        { name: 'McDonald\'s', note: 'India' },
+        { name: 'KFC', note: 'India' },
+        { name: 'Dunkin\'', note: 'India' },
+      ],
+    },
+    {
+      kind: 'stats',
+      items: [
+        { value: '7,281', label: 'Machines built' },
+        { value: '56.92 M', label: 'Cups & tubs sealed' },
+        { value: '15+', label: 'Countries' },
+      ],
+    },
+    {
+      kind: 'features',
+      heading: 'Why precut, why aluminium.',
+      items: [
+        {
+          name: 'Drop and seal — no in-machine cutter',
+          body: 'Foils ship precut to size for each container. Place the disc, pull the handle, the cup is sealed. No cutter blade to maintain, no offcut waste, no jammed-cutter downtime in the middle of a lunch rush.',
+        },
+        {
+          name: 'Airtight, leak-proof, freezer-safe',
+          body: 'Aluminium is a barrier against moisture, oxygen, and light — the contents stay fresh on the shelf and stable in transit. Holds its seal from the freezer through the delivery bag.',
+        },
+        {
+          name: 'Fast, low-temperature seal',
+          body: 'Aluminium\'s heat conduction lets the seal form in 1 – 5 seconds at a lower head temperature than plastic film — less energy per cup, longer heater life.',
+        },
+        {
+          name: 'Print-ready surface',
+          body: 'The branding pops off aluminium with the right offset print — tweak the design per size, get a clean tear-open peel on top of every cup. Printed runs from 30,000 pieces per design.',
+        },
+        {
+          name: 'Pinhole venting for hot beverages',
+          body: 'For drinks sealed above 85 °C we add a 0.9 – 1 mm pinhole vent — the lid stays leak-proof in transit, but built-up steam has somewhere to escape. Specify on the order if you need it.',
+        },
+      ],
+    },
+    {
+      kind: 'specs',
+      heading: 'Tear-drop foils.',
+      intro:
+        'The tear-drop shape has a peel tab — operators can lift the foil off the cup cleanly without a knife or a straw poke.',
+      items: [
+        { label: 'Ø 70.5 mm', value: '40 – 200 ml containers — sauce cups, condiments, dipping pots' },
+        { label: 'Ø 80.5 mm', value: '40 – 200 ml containers — small juice and condiment cups' },
+        { label: 'Ø 85 mm', value: '200 – 300 ml containers — non-standard cups and small tubs' },
+        { label: 'Ø 95.5 mm', value: '250 – 650 ml cups — beverage and ice-cream cups' },
+        { label: 'Ø 115 mm', value: '300 – 1,500 ml tubs — gravy, soup, rice, ice-cream tubs' },
+        { label: 'Ø 125 mm', value: '300 – 1,500 ml tubs' },
+      ],
+    },
+    {
+      kind: 'specs',
+      heading: 'Circular foils.',
+      intro:
+        'The straight circular cut sits flat to the rim — the right call when the lid is going under a press-fit dome or a snap lid downstream.',
+      items: [
+        { label: 'Ø 99.4 mm', value: '250 – 650 ml beverage cups' },
+        { label: 'Ø 115 mm', value: '300 – 1,500 ml food tubs' },
+        { label: 'Ø 125 mm', value: '300 – 1,500 ml food tubs' },
+        { label: 'Ø 130 mm', value: '300 – 1,500 ml food tubs' },
+        { label: 'Ø 155 mm', value: 'Larger family-size tubs' },
+      ],
+    },
+    {
+      kind: 'use-cases',
+      heading: 'Built for these counters.',
+      items: [
+        {
+          name: 'Coffee & cold-brew chains',
+          body: 'Iced lattes, cold brew, and tea cups sealed cleanly for grab-and-go and aggregator delivery — paired with the AeroSeal Cup Sealer.',
+        },
+        {
+          name: 'QSR & cloud kitchens',
+          body: 'Cold-drink cups, dessert pots, dip cups, and main-course tubs sealed at the prep station — survive the bag, the bike, and the drive-thru window without leaks.',
+        },
+        {
+          name: 'Bubble tea & boba',
+          body: '95.5 mm tear-drop fits 92 / 98 mm PET U-shape cups perfectly — the tab keeps fingers off the lip when the customer tears in.',
+        },
+        {
+          name: 'Ice-cream & dessert tubs',
+          body: '115 / 125 / 130 mm circular and tear-drop foils for 500 ml and 1 L ice-cream tubs — freezer-safe and tamper-evident.',
+        },
+        {
+          name: 'Soup, gravy & ramen delivery',
+          body: 'Bigger tear-drop or circular diameters handle the wider mouths of broth and gravy tubs. Pinhole vent recommended for hot fills.',
+        },
+        {
+          name: 'Dairy & dessert pots',
+          body: 'Yoghurt, mousse, parfait, and pudding cups sealed at the production line for shelf and retail-counter sale. Food-safety declarations available on request.',
+        },
+      ],
+    },
+    {
+      kind: 'faq',
+      heading: 'FAQ.',
+      items: [
+        {
+          q: 'What is the MOQ for printed foils?',
+          a: '30,000 pieces per design. Plain stocked foils are available in single-case quantities — order on the Aeros app and we ship from the closest metro warehouse.',
+        },
+        {
+          q: 'What is the difference between tear-drop and circular?',
+          a: 'Tear-drop has a peel tab — best for customer-facing cups where the end consumer opens the lid. Circular is a clean disc — best on production lines and under press-fit dome or snap lids.',
+        },
+        {
+          q: 'Which size fits my cup?',
+          a: 'Match the lid diameter to a few mm above your cup\'s rim diameter. For our 92 mm and 98 mm U-shape PET cups, the 95.5 mm tear-drop or 99.4 mm circular foil is the right call.',
+        },
+        {
+          q: 'Can I get a custom size?',
+          a: 'Yes, provided the order volume justifies a new cutting die — talk to us with your container drawing and target volume and we will scope it.',
+        },
+        {
+          q: 'Do they work for hot beverages?',
+          a: 'Yes, with a 0.9 – 1 mm pinhole vent. Above ~85 °C the steam needs somewhere to escape or the seal pops — specify "hot fill" on your order and we add the vent.',
+        },
+        {
+          q: 'What machines do these run on?',
+          a: 'The AeroSeal Cup Sealer (cups 2 oz – 20 oz) and AeroSeal Tub Sealer (8 oz – 1 L). The foil format works the same way on both — drop the disc, seal, done.',
+        },
+        {
+          q: 'Are food-safety declarations available?',
+          a: 'Yes — written declarations of food-contact compliance are available on request for plain and printed foils.',
+        },
+        {
+          q: 'How are they shipped?',
+          a: 'Plain stocked foils ship from the nearest metro warehouse. Printed runs ship 3 – 4 weeks after artwork approval. For high-volume orders we offer LCL and 20 ft FCL freight.',
+        },
+      ],
+    },
+  ],
+  orderUrl: APP_MARKETPLACE_URL,
+  orderCtaLabel: 'Order AeroSeal Foils',
+}
+
 export const aerosSelectProducts: AerosSelectProduct[] = [
   sealerMachines,
   cupSealer,
   tubSealer,
+  foils,
   uShapePetCups,
 ]
 
