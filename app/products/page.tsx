@@ -59,18 +59,18 @@ export default function ProductsPage() {
               Browse the marketplace
             </a>
             <Link
-              href="/products/aeros-select"
+              href="/aeroseal"
               className="px-7 py-3.5 rounded-full border border-royal-600 text-royal-700 text-sm font-medium hover:bg-royal-50 transition-colors inline-flex items-center gap-2"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-royal-600" />
-              Aeros Select
+              AeroSeal
             </Link>
-            <a
-              href="mailto:hello@aeros.io?subject=Marketplace%20catalog"
+            <Link
+              href="/products/aeros-select"
               className="px-7 py-3.5 rounded-full border border-border-default text-fg-primary text-sm font-medium hover:bg-bg-subtle transition-colors"
             >
-              Talk to sales
-            </a>
+              Aeros Select
+            </Link>
           </div>
         </div>
       </section>

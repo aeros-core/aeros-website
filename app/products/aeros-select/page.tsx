@@ -71,8 +71,8 @@ export default function AerosSelectIndexPage() {
               In the lineup.
             </h2>
             <p className="mt-5 text-fg-muted text-lg">
-              Two flagship lines so far. Pick a product to see the full spec
-              sheet, then order on the Aeros app.
+              The curated lineup — sourced, vetted, and stocked by us. Pick a
+              product to see the full spec sheet, then order on the Aeros app.
             </p>
           </div>
 
