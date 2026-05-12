@@ -4,7 +4,7 @@ import Navbar from '@/components/landing/Navbar'
 import Footer from '@/components/landing/Footer'
 import {
   AEROS_SELECT_TAGLINE,
-  aerosSelectProducts,
+  aerosSelectTopLevelProducts,
 } from '@/lib/aeros-select'
 import { APP_MARKETPLACE_URL } from '@/lib/categories'
 
@@ -76,8 +76,8 @@ export default function AerosSelectIndexPage() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {aerosSelectProducts.map((product) => (
+          <div className="grid sm:grid-cols-2 gap-4">
+            {aerosSelectTopLevelProducts.map((product) => (
               <Link
                 key={product.slug}
                 href={`/products/aeros-select/${product.slug}`}
