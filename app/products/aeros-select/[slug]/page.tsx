@@ -91,6 +91,19 @@ export default async function AerosSelectDetailPage({
               Stocked & shipped by Aeros
             </span>
           </div>
+
+          {hero.image && (
+            <div className="mt-20 mx-auto max-w-4xl">
+              <div className="rounded-3xl border border-border-default bg-bg-subtle overflow-hidden aspect-[16/10] sm:aspect-[16/9]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={hero.image.src}
+                  alt={hero.image.alt}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -350,14 +363,26 @@ function UseCasesContent({
         {section.items.map((item) => (
           <div
             key={item.name}
-            className="bg-white p-8 rounded-3xl border border-border-default"
+            className="bg-white rounded-3xl border border-border-default overflow-hidden flex flex-col"
           >
-            <h3 className="text-lg font-bold text-fg-primary mb-3">
-              {item.name}
-            </h3>
-            <p className="text-fg-muted text-[15px] leading-relaxed">
-              {item.body}
-            </p>
+            {item.image && (
+              <div className="aspect-[16/10] bg-bg-subtle overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
+            <div className="p-8 flex-1">
+              <h3 className="text-lg font-bold text-fg-primary mb-3">
+                {item.name}
+              </h3>
+              <p className="text-fg-muted text-[15px] leading-relaxed">
+                {item.body}
+              </p>
+            </div>
           </div>
         ))}
       </div>
