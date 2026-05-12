@@ -172,6 +172,10 @@ function SectionRenderer({
         )}
         {section.kind === 'variants' && <VariantsContent section={section} />}
         {section.kind === 'faq' && <FaqContent section={section} />}
+        {section.kind === 'customers' && (
+          <CustomersContent section={section} />
+        )}
+        {section.kind === 'stats' && <StatsContent section={section} />}
       </div>
     </section>
   )
@@ -211,7 +215,7 @@ function VariantsContent({
         heading={section.heading}
         intro={section.intro}
       />
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid sm:grid-cols-2 gap-4">
         {section.items.map((item) => (
           <div
             key={item.name}
@@ -330,6 +334,72 @@ function UseCasesContent({
             <p className="text-fg-muted text-[15px] leading-relaxed">
               {item.body}
             </p>
+          </div>
+        ))}
+      </div>
+    </>
+  )
+}
+
+function StatsContent({
+  section,
+}: {
+  section: Extract<AerosSelectSection, { kind: 'stats' }>
+}) {
+  return (
+    <>
+      {(section.heading || section.intro) && (
+        <SectionHeader
+          eyebrow="/ by the numbers"
+          heading={section.heading ?? 'By the numbers.'}
+          intro={section.intro}
+        />
+      )}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {section.items.map((item) => (
+          <div
+            key={item.label}
+            className="bg-white p-10 rounded-3xl border border-border-default flex flex-col items-start"
+          >
+            <div className="text-fg-primary font-extrabold tracking-tight leading-none text-[clamp(3rem,7vw,5rem)]">
+              {item.value}
+            </div>
+            <div className="mt-6 text-[11px] font-mono uppercase tracking-widest text-fg-muted/70">
+              {item.label}
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
+  )
+}
+
+function CustomersContent({
+  section,
+}: {
+  section: Extract<AerosSelectSection, { kind: 'customers' }>
+}) {
+  return (
+    <>
+      <SectionHeader
+        eyebrow="/ trusted by"
+        heading={section.heading}
+        intro={section.intro}
+      />
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {section.items.map((item) => (
+          <div
+            key={item.name}
+            className="bg-white p-8 rounded-3xl border border-border-default flex flex-col items-center justify-center text-center min-h-[140px]"
+          >
+            <div className="text-fg-primary text-xl md:text-2xl font-bold tracking-tight leading-none">
+              {item.name}
+            </div>
+            {item.note && (
+              <div className="mt-3 text-[10px] font-mono uppercase tracking-widest text-fg-muted/60">
+                {item.note}
+              </div>
+            )}
           </div>
         ))}
       </div>
