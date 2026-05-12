@@ -59,6 +59,14 @@ type ComparisonSection = {
   rows: Array<{ label: string; values: string[] }>
 }
 
+type VideoSection = {
+  kind: 'video'
+  heading: string
+  intro?: string
+  src: string
+  poster?: string
+}
+
 export type AerosSelectSection =
   | SpecsSection
   | FeaturesSection
@@ -68,6 +76,7 @@ export type AerosSelectSection =
   | CustomersSection
   | StatsSection
   | ComparisonSection
+  | VideoSection
 
 export type AerosSelectProduct = {
   slug: string
@@ -289,6 +298,13 @@ const uShapePetCups: AerosSelectProduct = {
           body: 'Tear-foil sipper top with no straw slot — drink straight from the lid. Matched 1:1 to the U-shape cup so there are no mismatched sleeves to manage.',
         },
       ],
+    },
+    {
+      kind: 'video',
+      heading: 'See the U-shape in hand.',
+      intro:
+        'Curved U-base, rolled 92 mm rim, paired with the matching sipper lid.',
+      src: 'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/u-shape-pet-cups-OWGdKnNqoB871krWJvqBUvzrAbaTAG.mp4',
     },
     {
       kind: 'specs',
