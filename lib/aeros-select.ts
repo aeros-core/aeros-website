@@ -28,7 +28,7 @@ type VariantsSection = {
   kind: 'variants'
   heading: string
   intro?: string
-  items: Array<{ name: string; body: string; tags?: string[] }>
+  items: Array<{ name: string; body: string; tags?: string[]; href?: string }>
 }
 
 type FaqSection = {
@@ -78,6 +78,10 @@ export type AerosSelectProduct = {
   sections: AerosSelectSection[]
   orderUrl: string
   orderCtaLabel: string
+  /** When set, this product is a sub-product of another. It still gets its
+   * own detail page but is hidden from the top-level Aeros Select listing —
+   * the parent product surfaces it via a variants section. */
+  parentSlug?: string
 }
 
 const sealerMachines: AerosSelectProduct = {
@@ -128,21 +132,25 @@ const sealerMachines: AerosSelectProduct = {
           name: 'AeroSeal Cup Sealer — V3',
           tags: ['Manual', '60 ml – 600 ml cups', 'From $799'],
           body: 'The entry machine. Hot-seals paper and PET cups from 2 oz (60 ml) up to 20 oz (600 ml). Ships with the standard four-die set — 80, 90, 92, 98 mm. Intro $699 for the first 15 days, ends at the NRA show.',
+          href: '/products/aeros-select/cup-sealer',
         },
         {
           name: 'AeroSeal Tub Sealer',
           tags: ['Manual', 'Up to 1 L tubs', 'Beverage cups to 8 oz'],
           body: 'Same look and feel as the cup sealer, with a wider sealing range — yoghurt and dessert tubs up to 1 L, plus beverage cups up to 8 oz (250 ml). Built for dairy lines, dessert counters, and meal-prep kitchens.',
+          href: '/products/aeros-select/tub-sealer',
         },
         {
           name: 'AeroSeal V5 — One for everything',
           tags: ['Flagship', 'Cups + tubs', 'One machine, one workflow'],
           body: 'The flagship. One machine to seal the entire container portfolio — cups, tubs, dessert pots, meal boxes — through a single workflow at the counter. Built for cloud kitchens and delivery operations that need a single SOP across SKUs.',
+          href: '/products/aeros-select/v5',
         },
         {
           name: 'AeroSeal Foils',
           tags: ['Consumable', 'Precut', 'Printed MOQ 30 k'],
           body: 'Precisely shaped and sized aluminium foil lids, cut from large rolls. Airtight, leak-proof, drop-and-seal — no in-machine cutter required. Plain foils stocked in single-case quantities; printed runs from 30,000 pieces per design.',
+          href: '/products/aeros-select/foils',
         },
       ],
     },
@@ -607,6 +615,7 @@ const cupSealer: AerosSelectProduct = {
   ],
   orderUrl: APP_MARKETPLACE_URL,
   orderCtaLabel: 'Order an AeroSeal Cup Sealer',
+  parentSlug: 'sealer-machines',
 }
 
 const tubSealer: AerosSelectProduct = {
@@ -764,6 +773,7 @@ const tubSealer: AerosSelectProduct = {
   ],
   orderUrl: APP_MARKETPLACE_URL,
   orderCtaLabel: 'Order an AeroSeal Tub Sealer',
+  parentSlug: 'sealer-machines',
 }
 
 const v5: AerosSelectProduct = {
@@ -969,6 +979,7 @@ const v5: AerosSelectProduct = {
   ],
   orderUrl: APP_MARKETPLACE_URL,
   orderCtaLabel: 'Order an AeroSeal V5',
+  parentSlug: 'sealer-machines',
 }
 
 export const aerosSelectProducts: AerosSelectProduct[] = [
@@ -978,6 +989,12 @@ export const aerosSelectProducts: AerosSelectProduct[] = [
   v5,
   uShapePetCups,
 ]
+
+/** Products shown at the top of /products/aeros-select. Hides sub-products
+ * like Cup Sealer / Tub Sealer / V5 that live under the AeroSeal umbrella. */
+export const aerosSelectTopLevelProducts = aerosSelectProducts.filter(
+  (p) => !p.parentSlug,
+)
 
 export function getAerosSelectProductBySlug(
   slug: string
