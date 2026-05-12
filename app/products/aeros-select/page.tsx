@@ -71,12 +71,12 @@ export default function AerosSelectIndexPage() {
               In the lineup.
             </h2>
             <p className="mt-5 text-fg-muted text-lg">
-              Two flagship lines so far. Pick a product to see the full spec
-              sheet, then order on the Aeros app.
+              Hand-picked equipment and packaging. Pick a product to see the
+              full spec sheet, then order on the Aeros app.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {aerosSelectProducts.map((product) => (
               <Link
                 key={product.slug}

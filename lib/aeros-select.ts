@@ -51,6 +51,14 @@ type StatsSection = {
   items: Array<{ value: string; label: string }>
 }
 
+type ComparisonSection = {
+  kind: 'comparison'
+  heading: string
+  intro?: string
+  columns: string[]
+  rows: Array<{ label: string; values: string[] }>
+}
+
 export type AerosSelectSection =
   | SpecsSection
   | FeaturesSection
@@ -59,6 +67,7 @@ export type AerosSelectSection =
   | FaqSection
   | CustomersSection
   | StatsSection
+  | ComparisonSection
 
 export type AerosSelectProduct = {
   slug: string
@@ -379,8 +388,230 @@ const uShapePetCups: AerosSelectProduct = {
   orderCtaLabel: 'Order U-Shape PET cups',
 }
 
+const cupSealer: AerosSelectProduct = {
+  slug: 'cup-sealer',
+  name: 'AeroSeal Cup Sealer',
+  tagline:
+    'Manual cup sealing machine for paper and PET cups, 2 oz to 20 oz. Four versions — V1 through V4 — from entry to CE-certified premium.',
+  hero: {
+    eyebrow: 'AeroSeal · Cup Sealer',
+    title: 'AeroSeal Cup Sealer.',
+    subtitle:
+      'A manual countertop hot-seal machine for beverage and sauce cups — 2 oz (60 ml) up to 20 oz (600 ml). Digital temperature controller, digital timer, in-built buzzer, anti-skid base. Four versions across the lineup.',
+  },
+  highlights: [
+    { label: 'Cup range', value: '2 oz – 20 oz (60 – 600 ml)' },
+    { label: 'Seal time', value: '1 – 5 seconds' },
+    { label: 'Build', value: 'Stainless Steel 304' },
+    { label: 'Versions', value: 'V1 · V2 · V3 · V4' },
+  ],
+  sections: [
+    {
+      kind: 'customers',
+      heading: 'Trusted by India\'s largest chains.',
+      intro:
+        'The AeroSeal Cup Sealer is the cup-sealing machine in daily service across India\'s biggest QSR and coffee operators.',
+      items: [
+        { name: 'Starbucks', note: 'India' },
+        { name: 'McDonald\'s', note: 'India' },
+        { name: 'KFC', note: 'India' },
+        { name: 'Dunkin\'', note: 'India' },
+      ],
+    },
+    {
+      kind: 'stats',
+      items: [
+        { value: '7,281', label: 'Machines built' },
+        { value: '56.92 M', label: 'Cups & tubs sealed' },
+        { value: '15+', label: 'Countries' },
+      ],
+    },
+    {
+      kind: 'variants',
+      heading: 'Four versions. Pick by what your counter needs.',
+      intro:
+        'Every version is a manual countertop machine for cups 2 oz – 20 oz. Step up the line for digital control, a heater cover, and CE certification.',
+      items: [
+        {
+          name: 'V1 — Entry',
+          tags: ['Manual', 'No timer', 'Energy controller'],
+          body: 'The entry point. Pull-handle hot-seal with an energy (analog) controller. Nylon-bush base. No timer, no heater cover. The right choice for counters that just need a clean seal and nothing more.',
+        },
+        {
+          name: 'V2 — Analog Timer',
+          tags: ['Manual', 'Analog timer', 'External buzzer'],
+          body: 'Adds an analog timer and an external end-of-cycle buzzer to the V1 base. Operators stop guessing seal time — the buzzer tells them when the seal is done.',
+        },
+        {
+          name: 'V3 — Digital Control',
+          tags: ['Manual', 'Digital PID', 'Polycarbonate cover', 'From $799'],
+          body: 'Digital PID temperature controller with ±1 °C accuracy, analog timer, external buzzer, and a polycarbonate heater cover for safety. The most-ordered version. Intro $699 — first 15 days, ends at the NRA show.',
+        },
+        {
+          name: 'V4 — Premium · CE',
+          tags: ['Manual', 'Digital timer', 'CE certified'],
+          body: 'Digital timer with internal buzzer, digital PID controller, anti-skid rubber base, polycarbonate heater cover, CE certification. The export-ready version for operators that need a paper trail with the machine.',
+        },
+      ],
+    },
+    {
+      kind: 'comparison',
+      heading: 'V1 → V4 at a glance.',
+      intro:
+        'The same chassis and seal head across all four. What changes is the controller, the timer, the safety cover, and the certification.',
+      columns: ['V1', 'V2', 'V3', 'V4'],
+      rows: [
+        {
+          label: 'Operation',
+          values: ['Manual', 'Manual', 'Manual', 'Manual'],
+        },
+        {
+          label: 'Timer',
+          values: ['—', 'Analog', 'Analog', 'Digital'],
+        },
+        {
+          label: 'Buzzer',
+          values: ['—', 'External', 'External', 'Internal'],
+        },
+        {
+          label: 'Temperature controller',
+          values: ['Energy (analog)', 'Energy (analog)', 'Digital PID', 'Digital PID'],
+        },
+        {
+          label: 'Heater cover',
+          values: ['—', '—', 'Polycarbonate', 'Polycarbonate'],
+        },
+        {
+          label: 'Base',
+          values: ['Nylon bushes', 'Nylon bushes', 'Nylon bushes', 'Anti-skid rubber'],
+        },
+        {
+          label: 'Certification',
+          values: ['—', '—', '—', 'CE'],
+        },
+        {
+          label: 'Pricing',
+          values: ['Quote', 'Quote', '$799 (intro $699)', 'Quote'],
+        },
+      ],
+    },
+    {
+      kind: 'specs',
+      heading: 'Specifications.',
+      intro:
+        'Shared specs across V1 – V4. Certification and accessories differ by version (see the table above).',
+      items: [
+        { label: 'Operation', value: 'Manual, countertop, single-motion pull-handle' },
+        { label: 'Cup range', value: '2 oz – 20 oz (60 – 600 ml) · cup heights 90 – 200 mm' },
+        { label: 'Cup top diameters', value: '80, 90, 92, 98 mm — four-die set (80 / 90 typically paper, 92 / 98 typically PET)' },
+        { label: 'Sealing temperature', value: '0 – 250 °C' },
+        { label: 'Sealing time', value: '1 – 5 s' },
+        { label: 'Rated voltage', value: 'AC 230 V, 50 Hz' },
+        { label: 'Maximum current', value: '0.83 A' },
+        { label: 'Rated power', value: '190 W' },
+        { label: 'Dimensions', value: '28.5 (L) × 28 (W) × 61 (H) cm' },
+        { label: 'Weight', value: '10.5 – 13 kg' },
+        { label: 'Material', value: 'Stainless Steel 304 housing, food-grade contact parts' },
+        { label: 'Foil format', value: 'AeroSeal precut foil discs — no in-machine cutter required' },
+        { label: 'Lead time — standard', value: '15 days door-to-door via DHL air' },
+        { label: 'Lead time — custom', value: '30 days build + 15 days DHL air' },
+        { label: 'Bulk freight', value: 'LCL and 20 ft FCL available for higher-load orders' },
+      ],
+    },
+    {
+      kind: 'features',
+      heading: 'Top-of-the-line, every version.',
+      items: [
+        {
+          name: 'Four-die set — 80 / 90 / 92 / 98 mm',
+          body: 'Swap dies for the cup you are running. 80 mm and 90 mm cover most paper cups; 92 mm and 98 mm cover PET cold cups including our U-Shape range.',
+        },
+        {
+          name: 'Precut AeroSeal foils',
+          body: 'Foils ship precut to size — drop, seal, done. No in-machine cutter to maintain, no offcut waste, no jammed-cutter downtime.',
+        },
+        {
+          name: 'Stainless Steel 304 housing',
+          body: 'Food-grade stainless across the body and the contact parts — easy to wipe down, no rust on the wet counter, built to live in service.',
+        },
+        {
+          name: 'No production counter',
+          body: 'AeroSeal Cup Sealer is a clean manual machine — controller, timer, buzzer, seal head. No digital seal counter, no extra electronics to fail.',
+        },
+      ],
+    },
+    {
+      kind: 'use-cases',
+      heading: 'Used at the counter in.',
+      items: [
+        {
+          name: 'Coffee chains & specialty cafés',
+          body: 'Cold brew, iced lattes, and Frappé-style drinks sealed clean for grab-and-go and aggregator delivery.',
+        },
+        {
+          name: 'Cloud kitchens, QSRs & casual dining',
+          body: 'Cold-drink cups sealed before bagging — survive the drive-thru window and the delivery bag without leaks.',
+        },
+        {
+          name: 'Ice-cream parlours',
+          body: 'Single-serve sundae and dessert cups sealed for retail-counter display and takeaway.',
+        },
+        {
+          name: 'Bubble tea & boba bars',
+          body: '92 mm and 98 mm dies handle PET U-Shape cold cups with tapioca pearls and popping boba — no splashing at shaker handoff.',
+        },
+        {
+          name: 'Juice centres',
+          body: 'Cold-pressed juice and smoothie cups sealed for retail-shelf and same-day delivery.',
+        },
+      ],
+    },
+    {
+      kind: 'faq',
+      heading: 'FAQ.',
+      items: [
+        {
+          q: 'Which version should I order?',
+          a: 'V3 is the most-ordered version — digital PID control, analog timer, polycarbonate cover. Step up to V4 if you need CE certification or an internal-buzzer digital timer. V1 / V2 are for operators that want the seal and nothing else.',
+        },
+        {
+          q: 'What cup sizes will it seal?',
+          a: 'Any cup from 2 oz (60 ml) up to 20 oz (600 ml), with a top diameter of 80, 90, 92, or 98 mm. The standard four-die set ships in the box.',
+        },
+        {
+          q: 'How does the machine work?',
+          a: 'Place a precut AeroSeal foil disc on the cup, slide the cup under the seal head, pull the handle. The heated head fuses the foil to the rim in 1 – 5 seconds. The buzzer (V2+) signals the end of cycle.',
+        },
+        {
+          q: 'What is the price?',
+          a: 'AeroSeal V3 is $799, with an introductory $699 for the first 15 days, ending at the NRA show. V1 / V2 / V4 are quoted on request — talk to us.',
+        },
+        {
+          q: 'What is the MOQ for printed foils?',
+          a: '30,000 pieces per design for custom-printed AeroSeal foils. Plain foils are stocked and available in single-case quantities.',
+        },
+        {
+          q: 'How is it shipped?',
+          a: 'Standard V1 – V4 ship door-to-door in 15 days via DHL air. For multi-machine rollouts we offer LCL and 20 ft FCL freight at lower per-unit cost.',
+        },
+        {
+          q: 'Is installation included?',
+          a: 'Every AeroSeal Cup Sealer is plug-and-play. Unbox, plug into single-phase 230 V mains, set the temperature, and run.',
+        },
+        {
+          q: 'How durable is it?',
+          a: 'Stainless Steel 304 housing, food-grade contact parts, and a single moving lever. With routine cleaning it lives at the counter for years — many of our deployments at QSR chains have been in service for the better part of a decade.',
+        },
+      ],
+    },
+  ],
+  orderUrl: APP_MARKETPLACE_URL,
+  orderCtaLabel: 'Order an AeroSeal Cup Sealer',
+}
+
 export const aerosSelectProducts: AerosSelectProduct[] = [
   sealerMachines,
+  cupSealer,
   uShapePetCups,
 ]
 

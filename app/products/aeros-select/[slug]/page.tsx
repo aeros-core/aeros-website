@@ -176,6 +176,9 @@ function SectionRenderer({
           <CustomersContent section={section} />
         )}
         {section.kind === 'stats' && <StatsContent section={section} />}
+        {section.kind === 'comparison' && (
+          <ComparisonContent section={section} />
+        )}
       </div>
     </section>
   )
@@ -336,6 +339,64 @@ function UseCasesContent({
             </p>
           </div>
         ))}
+      </div>
+    </>
+  )
+}
+
+function ComparisonContent({
+  section,
+}: {
+  section: Extract<AerosSelectSection, { kind: 'comparison' }>
+}) {
+  return (
+    <>
+      <SectionHeader
+        eyebrow="/ versions compared"
+        heading={section.heading}
+        intro={section.intro}
+      />
+      <div className="bg-white rounded-3xl border border-border-default overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left">
+            <thead>
+              <tr className="border-b border-border-default">
+                <th className="px-6 sm:px-8 py-5 text-[11px] font-mono uppercase tracking-widest text-fg-muted/60 font-medium w-1/3">
+                  Feature
+                </th>
+                {section.columns.map((col) => (
+                  <th
+                    key={col}
+                    className="px-6 sm:px-8 py-5 text-fg-primary text-base font-bold tracking-tight"
+                  >
+                    {col}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border-default">
+              {section.rows.map((row) => (
+                <tr key={row.label}>
+                  <td className="px-6 sm:px-8 py-4 text-[11px] font-mono uppercase tracking-widest text-fg-muted/60 align-top">
+                    {row.label}
+                  </td>
+                  {row.values.map((value, i) => (
+                    <td
+                      key={`${row.label}-${i}`}
+                      className="px-6 sm:px-8 py-4 text-fg-primary text-[15px] leading-relaxed"
+                    >
+                      {value === '—' || value === '' ? (
+                        <span className="text-fg-muted/40">—</span>
+                      ) : (
+                        value
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   )
