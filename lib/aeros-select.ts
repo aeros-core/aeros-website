@@ -21,7 +21,7 @@ type UseCasesSection = {
   kind: 'use-cases'
   heading: string
   intro?: string
-  items: Array<{ name: string; body: string }>
+  items: Array<{ name: string; body: string; image?: string }>
 }
 
 type VariantsSection = {
@@ -82,7 +82,12 @@ export type AerosSelectProduct = {
   slug: string
   name: string
   tagline: string
-  hero: { eyebrow: string; title: string; subtitle: string }
+  hero: {
+    eyebrow: string
+    title: string
+    subtitle: string
+    image?: { src: string; alt: string }
+  }
   highlights: Array<{ label: string; value: string }>
   sections: AerosSelectSection[]
   orderUrl: string
@@ -967,6 +972,10 @@ const v5: AerosSelectProduct = {
     title: 'One machine to seal them all.',
     subtitle:
       'For the café that wants to serve salad. For the pasta bar that wants to serve dessert. For the biryani house that wants to serve thick shakes. Open the menu up without worrying about leaks and spills in delivery.',
+    image: {
+      src: '/products/v5/hero.webp',
+      alt: 'AeroSeal V5 manual cup and tub sealing machine',
+    },
   },
   highlights: [
     { label: 'Diameter range', value: '65 mm – 165 mm' },
@@ -1088,14 +1097,17 @@ const v5: AerosSelectProduct = {
         {
           name: 'Biryani, rice, dal & gravy',
           body: 'XL and L lids cover the family-size tubs that anchor any biryani or rice-bowl menu — sealed at the prep station, leak-proof through delivery.',
+          image: '/products/v5/biryani.webp',
         },
         {
           name: 'Ramen, noodles & pasta',
           body: 'Hot fills above 85 °C with the pinhole-vented foil — the V5\'s 500 W heater seals fast without warping the tub rim on its way to the customer.',
+          image: '/products/v5/ramen.webp',
         },
         {
           name: 'Soups, broths & curries',
           body: 'Single-machine workflow for hot mains and sides — the same SOP across the cloud kitchen, regardless of which kitchen station the order came from.',
+          image: '/products/v5/soup.webp',
         },
         {
           name: 'Salads, poke bowls & meal prep',
@@ -1108,6 +1120,7 @@ const v5: AerosSelectProduct = {
         {
           name: 'Sauces, chutneys & condiments',
           body: 'S lids (65 – 72 mm) seal the sauce pots and chutney cups that ride along with main orders — fewer dipping-sauce spills on aggregator deliveries.',
+          image: '/products/v5/gravy.webp',
         },
         {
           name: 'Desserts & ice cream',
