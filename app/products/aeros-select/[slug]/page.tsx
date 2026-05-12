@@ -219,31 +219,51 @@ function VariantsContent({
         intro={section.intro}
       />
       <div className="grid sm:grid-cols-2 gap-4">
-        {section.items.map((item) => (
-          <div
-            key={item.name}
-            className="bg-white p-8 rounded-3xl border border-border-default flex flex-col h-full"
-          >
-            <h3 className="text-xl font-bold text-fg-primary mb-4">
-              {item.name}
-            </h3>
-            {item.tags && item.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2 mb-5">
-                {item.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold leading-none whitespace-nowrap bg-ink-50 text-ink-600"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            )}
-            <p className="text-fg-muted text-sm leading-relaxed flex-1">
-              {item.body}
-            </p>
-          </div>
-        ))}
+        {section.items.map((item) => {
+          const content = (
+            <>
+              <h3 className="text-xl font-bold text-fg-primary mb-4">
+                {item.name}
+              </h3>
+              {item.tags && item.tags.length > 0 && (
+                <div className="flex flex-wrap gap-2 mb-5">
+                  {item.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold leading-none whitespace-nowrap bg-ink-50 text-ink-600"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              )}
+              <p className="text-fg-muted text-sm leading-relaxed flex-1">
+                {item.body}
+              </p>
+              {item.href && (
+                <span className="mt-6 text-sm text-fg-primary font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                  See full details <span aria-hidden>→</span>
+                </span>
+              )}
+            </>
+          )
+          return item.href ? (
+            <Link
+              key={item.name}
+              href={item.href}
+              className="group bg-white p-8 rounded-3xl border border-border-default flex flex-col h-full hover:bg-bg-subtle transition-colors"
+            >
+              {content}
+            </Link>
+          ) : (
+            <div
+              key={item.name}
+              className="bg-white p-8 rounded-3xl border border-border-default flex flex-col h-full"
+            >
+              {content}
+            </div>
+          )
+        })}
       </div>
     </>
   )

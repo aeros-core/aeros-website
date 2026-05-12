@@ -28,7 +28,7 @@ type VariantsSection = {
   kind: 'variants'
   heading: string
   intro?: string
-  items: Array<{ name: string; body: string; tags?: string[] }>
+  items: Array<{ name: string; body: string; tags?: string[]; href?: string }>
 }
 
 type FaqSection = {
@@ -78,6 +78,10 @@ export type AerosSelectProduct = {
   sections: AerosSelectSection[]
   orderUrl: string
   orderCtaLabel: string
+  /** When set, this product is a sub-product of another. It still gets its
+   * own detail page but is hidden from the top-level Aeros Select listing —
+   * the parent product surfaces it via a variants section. */
+  parentSlug?: string
 }
 
 const sealerMachines: AerosSelectProduct = {
@@ -128,21 +132,25 @@ const sealerMachines: AerosSelectProduct = {
           name: 'AeroSeal Cup Sealer — V3',
           tags: ['Manual', '60 ml – 600 ml cups', 'From $799'],
           body: 'The entry machine. Hot-seals paper and PET cups from 2 oz (60 ml) up to 20 oz (600 ml). Ships with the standard four-die set — 80, 90, 92, 98 mm. Intro $699 for the first 15 days, ends at the NRA show.',
+          href: '/products/aeros-select/cup-sealer',
         },
         {
           name: 'AeroSeal Tub Sealer',
           tags: ['Manual', 'Up to 1 L tubs', 'Beverage cups to 8 oz'],
           body: 'Same look and feel as the cup sealer, with a wider sealing range — yoghurt and dessert tubs up to 1 L, plus beverage cups up to 8 oz (250 ml). Built for dairy lines, dessert counters, and meal-prep kitchens.',
+          href: '/products/aeros-select/tub-sealer',
         },
         {
           name: 'AeroSeal V5 — One for everything',
           tags: ['Flagship', 'Cups + tubs', 'One machine, one workflow'],
           body: 'The flagship. One machine to seal the entire container portfolio — cups, tubs, dessert pots, meal boxes — through a single workflow at the counter. Built for cloud kitchens and delivery operations that need a single SOP across SKUs.',
+          href: '/products/aeros-select/v5',
         },
         {
           name: 'AeroSeal Foils',
           tags: ['Consumable', 'Precut', 'Printed MOQ 30 k'],
           body: 'Precisely shaped and sized aluminium foil lids, cut from large rolls. Airtight, leak-proof, drop-and-seal — no in-machine cutter required. Plain foils stocked in single-case quantities; printed runs from 30,000 pieces per design.',
+          href: '/products/aeros-select/foils',
         },
       ],
     },
@@ -607,6 +615,7 @@ const cupSealer: AerosSelectProduct = {
   ],
   orderUrl: APP_MARKETPLACE_URL,
   orderCtaLabel: 'Order an AeroSeal Cup Sealer',
+  parentSlug: 'sealer-machines',
 }
 
 const tubSealer: AerosSelectProduct = {
@@ -764,6 +773,7 @@ const tubSealer: AerosSelectProduct = {
   ],
   orderUrl: APP_MARKETPLACE_URL,
   orderCtaLabel: 'Order an AeroSeal Tub Sealer',
+  parentSlug: 'sealer-machines',
 }
 
 const foils: AerosSelectProduct = {
@@ -928,15 +938,229 @@ const foils: AerosSelectProduct = {
   ],
   orderUrl: APP_MARKETPLACE_URL,
   orderCtaLabel: 'Order AeroSeal Foils',
+  parentSlug: 'sealer-machines',
+}
+
+const v5: AerosSelectProduct = {
+  slug: 'v5',
+  name: 'AeroSeal V5',
+  tagline:
+    'One machine to seal them all. 65 – 165 mm diameter range, up to four lid sizes, hot and cold — the flagship for cloud kitchens and multi-format menus.',
+  hero: {
+    eyebrow: 'AeroSeal · V5 Flagship',
+    title: 'One machine to seal them all.',
+    subtitle:
+      'For the café that wants to serve salad. For the pasta bar that wants to serve dessert. For the biryani house that wants to serve thick shakes. Open the menu up without worrying about leaks and spills in delivery.',
+  },
+  highlights: [
+    { label: 'Diameter range', value: '65 mm – 165 mm' },
+    { label: 'Lid formats', value: 'Up to 4 different sizes' },
+    { label: 'Temperature', value: 'Seals piping hot + cold' },
+    { label: 'Throughput', value: '8 – 10 cups / minute' },
+  ],
+  sections: [
+    {
+      kind: 'customers',
+      heading: 'Trusted by India\'s largest chains.',
+      intro:
+        'The AeroSeal V5 sits at the heart of multi-format kitchens — one machine across the whole menu, from sauce pots to family-size tubs.',
+      items: [
+        { name: 'Starbucks', note: 'India' },
+        { name: 'McDonald\'s', note: 'India' },
+        { name: 'KFC', note: 'India' },
+        { name: 'Dunkin\'', note: 'India' },
+      ],
+    },
+    {
+      kind: 'stats',
+      items: [
+        { value: '7,281', label: 'Machines built' },
+        { value: '56.92 M', label: 'Cups & tubs sealed' },
+        { value: '15+', label: 'Countries' },
+      ],
+    },
+    {
+      kind: 'features',
+      heading: 'Why V5 is the flagship.',
+      intro:
+        'The Cup Sealer is built for cups, the Tub Sealer is built for tubs. The V5 is built for everything — one chassis, one SOP, every container on your menu.',
+      items: [
+        {
+          name: '65 – 165 mm in one machine',
+          body: 'A 100 mm range span on a single chassis. From a 65 mm sauce pot to a 165 mm family biryani tub, the V5 takes the whole menu without swapping machines.',
+        },
+        {
+          name: 'Up to four lid sizes in rotation',
+          body: 'Set up the V5 with up to four different lid formats — S, M, L, XL — and switch between them at the counter without retooling the head.',
+        },
+        {
+          name: 'Hot fills, cold drinks, same head',
+          body: 'Seals piping-hot ramen and gravy AND ice-cold thick shakes through the same head — adjust temperature on the digital PID, the rest is the same motion.',
+        },
+        {
+          name: 'Material-agnostic',
+          body: 'Works on coated paper, PP, PET, and bagasse containers — the V5 doesn\'t care what the container is made of, as long as it\'s in the diameter range.',
+        },
+        {
+          name: 'SUS-304 contact, powder-coated frame',
+          body: 'Stainless steel on every food-contact surface, powder-coated mild-steel frame for the bigger chassis. Built for the rough side of a cloud-kitchen line.',
+        },
+      ],
+    },
+    {
+      kind: 'comparison',
+      heading: 'The S → XL container matrix.',
+      intro:
+        'Four size classes cover the menu. Pick the lids your operation needs — the V5 takes up to four formats at once.',
+      columns: ['S', 'M', 'L', 'XL'],
+      rows: [
+        {
+          label: 'Diameter',
+          values: ['65 – 72 mm', '80 – 98.5 mm', '107 – 127 mm', '140 – 165 mm'],
+        },
+        {
+          label: 'Capacity',
+          values: ['60 – 120 ml', '200 – 600 ml', '250 – 1,000 ml', '500 – 1,000 ml'],
+        },
+        {
+          label: 'Temperature',
+          values: ['Cold + ambient', 'Hot + cold', 'Hot fills', 'Hot fills'],
+        },
+        {
+          label: 'Typical applications',
+          values: [
+            'Sauces, chutneys, raita, ice-cream cups',
+            'Hot and cold beverages',
+            'Rice, dal, gravy, noodles, ramen, pasta',
+            'Family-size rice, gravy, biryani, salad bowls',
+          ],
+        },
+      ],
+    },
+    {
+      kind: 'specs',
+      heading: 'Specifications.',
+      intro:
+        'A heavier-duty chassis than the Cup Sealer and Tub Sealer — sized for the wider diameter range and the higher thermal load on hot fills.',
+      items: [
+        { label: 'Model', value: 'AeroSeal V5' },
+        { label: 'Operation', value: 'Manual, countertop, single-motion seal head' },
+        { label: 'Diameter range', value: '65 mm – 165 mm — up to 4 lid formats per machine' },
+        { label: 'Capacity range', value: '60 ml – 1,000 ml across S / M / L / XL containers' },
+        { label: 'Compatible materials', value: 'Coated paper, PP, PET, bagasse' },
+        { label: 'Sealing temperature', value: '0 – 250 °C, digital PID controller — handles hot fills above 85 °C with pinhole-vented foils' },
+        { label: 'Throughput', value: '8 – 10 cups / minute' },
+        { label: 'Rated voltage', value: 'AC 230 V, 50 Hz' },
+        { label: 'Maximum current', value: '2.2 A' },
+        { label: 'Rated power', value: '500 W' },
+        { label: 'Dimensions', value: '38 (L) × 25.5 (W) × 53.5 (H) cm' },
+        { label: 'Weight', value: '20.5 kg (excluding add-ons)' },
+        { label: 'Food-contact material', value: 'SUS-304 stainless steel' },
+        { label: 'Frame material', value: 'Powder-coated mild steel' },
+        { label: 'Foil format', value: 'AeroSeal precut foil lids — no in-machine cutter required' },
+        { label: 'Lead time — standard', value: '15 days door-to-door via DHL air' },
+        { label: 'Lead time — custom', value: '30 days build + 15 days DHL air' },
+        { label: 'Bulk freight', value: 'LCL and 20 ft FCL available for higher-load orders' },
+      ],
+    },
+    {
+      kind: 'use-cases',
+      heading: 'Seal the whole menu on one machine.',
+      intro:
+        'Designed for kitchens that have stopped being one thing. If your menu spans hot mains and cold desserts, salads and shakes, the V5 is the machine.',
+      items: [
+        {
+          name: 'Biryani, rice, dal & gravy',
+          body: 'XL and L lids cover the family-size tubs that anchor any biryani or rice-bowl menu — sealed at the prep station, leak-proof through delivery.',
+        },
+        {
+          name: 'Ramen, noodles & pasta',
+          body: 'Hot fills above 85 °C with the pinhole-vented foil — the V5\'s 500 W heater seals fast without warping the tub rim on its way to the customer.',
+        },
+        {
+          name: 'Soups, broths & curries',
+          body: 'Single-machine workflow for hot mains and sides — the same SOP across the cloud kitchen, regardless of which kitchen station the order came from.',
+        },
+        {
+          name: 'Salads, poke bowls & meal prep',
+          body: 'L and XL container range fits salad bowls and poke containers. Cold seal preserves greens and dressings on the way to the customer.',
+        },
+        {
+          name: 'Thick shakes, smoothies & cold brew',
+          body: 'M lids cover beverage cups; 92 / 98 mm fits our U-Shape PET cold cups for boba, smoothies, and shakes — sealed by the same V5 that handles your biryani.',
+        },
+        {
+          name: 'Sauces, chutneys & condiments',
+          body: 'S lids (65 – 72 mm) seal the sauce pots and chutney cups that ride along with main orders — fewer dipping-sauce spills on aggregator deliveries.',
+        },
+        {
+          name: 'Desserts & ice cream',
+          body: 'Single-serve dessert pots and 500 ml ice-cream tubs sealed for grab-and-go and retail-counter sale. Freezer-safe aluminium foil holds through the cold chain.',
+        },
+      ],
+    },
+    {
+      kind: 'faq',
+      heading: 'FAQ.',
+      items: [
+        {
+          q: 'How is V5 different from the Cup Sealer and Tub Sealer?',
+          a: 'The Cup Sealer is sized for cups (60 – 600 ml, 80 – 98 mm). The Tub Sealer extends that to 1 L tubs (250 ml – 1 L). The V5 covers everything in one machine — 60 ml sauce pots to 1 L family tubs, 65 mm to 165 mm diameters, up to 4 lid formats running on the same head.',
+        },
+        {
+          q: 'Why "one machine to seal them all"?',
+          a: 'A typical cloud kitchen runs separate sealers for cups, tubs, and dessert pots. The V5 collapses that to one machine and one SOP — same handle, same controller, same operator training. Fewer machines on the floor, fewer breakdowns, one spare-parts bin.',
+        },
+        {
+          q: 'What containers does it work with?',
+          a: 'Any container from 65 mm to 165 mm in top diameter, capacities 60 ml – 1,000 ml. Works on coated paper, PP, PET, and bagasse. Send us your container drawings if you want us to confirm fit before ordering.',
+        },
+        {
+          q: 'Can I seal hot food without warping the tub?',
+          a: 'Yes — the V5 uses a digital PID controller to hold the seal head at the right temperature for the container material. For fills above 85 °C we ship pinhole-vented foil lids so trapped steam has somewhere to escape.',
+        },
+        {
+          q: 'What is the throughput?',
+          a: '8 – 10 cups per minute on a steady manual rhythm. The bottleneck on the V5 is the operator, not the machine — the head reheats in time for the next cup.',
+        },
+        {
+          q: 'Is it still a manual machine?',
+          a: 'Yes — every AeroSeal is manual countertop, including V5. The flagship label is about range and versatility, not automation.',
+        },
+        {
+          q: 'How much floor space does it need?',
+          a: 'Counter footprint is 38 × 25.5 cm, height 53.5 cm. Slightly taller than the Cup Sealer chassis because the head and heater are sized up for hot fills.',
+        },
+        {
+          q: 'What is the MOQ for printed foil lids?',
+          a: '30,000 pieces per design per size. The V5 takes up to four lid formats at once, so you can print all four with the same artwork or vary the design per size.',
+        },
+        {
+          q: 'How is it shipped?',
+          a: 'Standard V5 ships door-to-door in 15 days via DHL air. For multi-machine rollouts we offer LCL and 20 ft FCL freight at lower per-unit cost.',
+        },
+      ],
+    },
+  ],
+  orderUrl: APP_MARKETPLACE_URL,
+  orderCtaLabel: 'Order an AeroSeal V5',
+  parentSlug: 'sealer-machines',
 }
 
 export const aerosSelectProducts: AerosSelectProduct[] = [
   sealerMachines,
   cupSealer,
   tubSealer,
+  v5,
   foils,
   uShapePetCups,
 ]
+
+/** Products shown at the top of /products/aeros-select. Hides sub-products
+ * like Cup Sealer / Tub Sealer / V5 / Foils that live under the AeroSeal umbrella. */
+export const aerosSelectTopLevelProducts = aerosSelectProducts.filter(
+  (p) => !p.parentSlug,
+)
 
 export function getAerosSelectProductBySlug(
   slug: string
