@@ -609,9 +609,167 @@ const cupSealer: AerosSelectProduct = {
   orderCtaLabel: 'Order an AeroSeal Cup Sealer',
 }
 
+const tubSealer: AerosSelectProduct = {
+  slug: 'tub-sealer',
+  name: 'AeroSeal Tub Sealer',
+  tagline:
+    'Manual tub sealing machine for the wider range — 8 oz beverage cups up to 1 L tubs. Leak-proof seals for delivery, dairy, and dessert counters.',
+  hero: {
+    eyebrow: 'AeroSeal · Tub Sealer',
+    title: 'AeroSeal Tub Sealer.',
+    subtitle:
+      'Leak-proof sealing for successful food deliveries. Same look and feel as the cup sealer, with a wider sealing range — 8 oz (250 ml) beverage cups all the way up to 1 L tubs.',
+  },
+  highlights: [
+    { label: 'Container range', value: '8 oz – 1 L (250 ml – 1,000 ml)' },
+    { label: 'Seal time', value: '1 – 5 seconds' },
+    { label: 'Build', value: 'Stainless Steel 304' },
+    { label: 'Operation', value: 'Manual countertop' },
+  ],
+  sections: [
+    {
+      kind: 'customers',
+      heading: 'Trusted by India\'s largest chains.',
+      intro:
+        'AeroSeal is the cup and tub sealing system in daily service across some of India\'s biggest QSR and coffee operators.',
+      items: [
+        { name: 'Starbucks', note: 'India' },
+        { name: 'McDonald\'s', note: 'India' },
+        { name: 'KFC', note: 'India' },
+        { name: 'Dunkin\'', note: 'India' },
+      ],
+    },
+    {
+      kind: 'stats',
+      items: [
+        { value: '7,281', label: 'Machines built' },
+        { value: '56.92 M', label: 'Cups & tubs sealed' },
+        { value: '15+', label: 'Countries' },
+      ],
+    },
+    {
+      kind: 'use-cases',
+      heading: 'Built for these containers.',
+      intro:
+        'Anything inside the 250 ml – 1 L sealing range — from a 250 ml chutney pot to a 1 L family-size ice-cream tub.',
+      items: [
+        {
+          name: 'Soups & ramen',
+          body: 'Hot soup, ramen, and broth tubs sealed tight for cloud-kitchen delivery — no spill in the bag, no soaked paper bowls at the customer\'s door.',
+        },
+        {
+          name: 'Gravies, sauces & relish',
+          body: 'Curries, gravies, and dipping sauces sealed at the prep station — saves the staple separate-container dance and stops sauce migration in transit.',
+        },
+        {
+          name: 'Ice-cream tubs',
+          body: '500 ml and 1 L ice-cream tubs sealed for retail-counter sale and home delivery. The seal acts as a tamper-evident closure and a freezer-safe lid in one.',
+        },
+        {
+          name: 'Salads, poke bowls & meal prep',
+          body: 'Single-serve salad bowls and poke containers sealed clean — dressings stay on top of the leaves, not in the bag.',
+        },
+        {
+          name: 'Dairy & dessert pots',
+          body: 'Yoghurt, mousse, parfait, and dessert pots sealed at the counter or the production line — airtight, leak-proof, ready for the chiller.',
+        },
+        {
+          name: 'Beverage cups to 8 oz',
+          body: 'The lower end of the range — 250 ml espresso-shot cups and 8 oz cold cups also work, useful for kitchens running a mixed cup-and-tub portfolio on one machine.',
+        },
+      ],
+    },
+    {
+      kind: 'specs',
+      heading: 'Specifications.',
+      intro:
+        'A heavier-duty cousin of the Cup Sealer — same chassis dimensions, more rated power for the larger seal head and wider container range.',
+      items: [
+        { label: 'Operation', value: 'Manual, countertop, single-motion pull-handle' },
+        { label: 'Container range', value: '8 oz (250 ml) – 1 L · cup and tub formats' },
+        { label: 'Sealing temperature', value: '0 – 250 °C, digital PID controller' },
+        { label: 'Sealing time', value: '1 – 5 s, digital timer' },
+        { label: 'Rated voltage', value: 'AC 230 V, 50 Hz' },
+        { label: 'Maximum current', value: '1.3 A' },
+        { label: 'Rated power', value: '300 W' },
+        { label: 'Dimensions', value: '28.5 (L) × 28 (W) × 61 (H) cm' },
+        { label: 'Weight', value: '12 – 14.5 kg (varies with rings and add-ons)' },
+        { label: 'Material', value: 'Stainless Steel 304 housing, food-grade contact parts' },
+        { label: 'Foil format', value: 'AeroSeal precut foil lids — no in-machine cutter required' },
+        { label: 'Lead time — standard', value: '15 days door-to-door via DHL air' },
+        { label: 'Lead time — custom', value: '30 days build + 15 days DHL air' },
+        { label: 'Bulk freight', value: 'LCL and 20 ft FCL available for higher-load orders' },
+      ],
+    },
+    {
+      kind: 'features',
+      heading: 'Why this machine, this range.',
+      items: [
+        {
+          name: 'Wider seal range than the Cup Sealer',
+          body: 'Same chassis, a larger seal head and a 300 W heating circuit — sized for the bigger thermal mass of a 1 L tub without losing seal time on a 250 ml cup.',
+        },
+        {
+          name: 'Precut foil lids',
+          body: 'Aluminium foil lids ship precisely shaped and sized for each container format. Airtight, leak-proof, drop-and-seal — no in-machine cutter to maintain.',
+        },
+        {
+          name: 'Stainless Steel 304 build',
+          body: 'Food-grade stainless on the housing and every contact part — easy wipe-down on the wet kitchen line, no rust, built to live in service.',
+        },
+        {
+          name: 'Familiar to operators',
+          body: 'If your team runs the AeroSeal Cup Sealer, the Tub Sealer is the same SOP — same handle motion, same controller, same timer. No retraining.',
+        },
+      ],
+    },
+    {
+      kind: 'faq',
+      heading: 'FAQ.',
+      items: [
+        {
+          q: 'What is the difference between the Cup Sealer and the Tub Sealer?',
+          a: 'The Cup Sealer covers 2 oz – 20 oz cups (60 – 600 ml). The Tub Sealer extends the upper end of the range — 8 oz cups up to 1 L tubs — with a larger seal head and a 300 W heater. If you only run cups, the Cup Sealer is enough; if you run tubs (or both), this is the machine.',
+        },
+        {
+          q: 'What containers does it seal?',
+          a: 'Anything in the 250 ml – 1 L range — soup tubs, ice-cream tubs, salad bowls, gravy and chutney pots, dessert containers, and 8 oz beverage cups. Talk to us with your container dimensions and we will confirm fit.',
+        },
+        {
+          q: 'How does the machine work?',
+          a: 'Place a precut foil lid on the container, slide it under the seal head, pull the handle. The heated head fuses the foil to the rim in 1 – 5 seconds. The timer and PID controller keep the seal consistent across the shift.',
+        },
+        {
+          q: 'What is the MOQ for printed foil lids?',
+          a: '30,000 pieces per design for custom-printed lids. Plain stocked lids are available in single-case quantities.',
+        },
+        {
+          q: 'Can I run both cups and tubs on the same machine?',
+          a: 'Yes — the lower end of the range covers 8 oz cups, so kitchens running a mixed cup-and-tub portfolio can standardize on one Tub Sealer. For cup-only operations, the Cup Sealer is the cheaper choice.',
+        },
+        {
+          q: 'How is it shipped?',
+          a: 'Standard machine ships door-to-door in 15 days via DHL air. For multi-machine rollouts we offer LCL and 20 ft FCL freight at lower per-unit cost.',
+        },
+        {
+          q: 'Is installation included?',
+          a: 'Every AeroSeal Tub Sealer is plug-and-play. Unbox, plug into single-phase 230 V mains, set the temperature, and run.',
+        },
+        {
+          q: 'Custom container sizes?',
+          a: 'We build to spec around a non-standard container. 30 days to manufacture, 15 days for DHL air delivery. Send us the container drawing to start.',
+        },
+      ],
+    },
+  ],
+  orderUrl: APP_MARKETPLACE_URL,
+  orderCtaLabel: 'Order an AeroSeal Tub Sealer',
+}
+
 export const aerosSelectProducts: AerosSelectProduct[] = [
   sealerMachines,
   cupSealer,
+  tubSealer,
   uShapePetCups,
 ]
 
