@@ -973,8 +973,8 @@ const v5: AerosSelectProduct = {
     subtitle:
       'For the café that wants to serve salad. For the pasta bar that wants to serve dessert. For the biryani house that wants to serve thick shakes. Open the menu up without worrying about leaks and spills in delivery.',
     image: {
-      src: '/products/v5/hero.webp',
-      alt: 'AeroSeal V5 manual cup and tub sealing machine',
+      src: '/products/v5/hero.png',
+      alt: 'AeroSeal V5 sealing the full portfolio — soups, ramen, rice, biryani, gravy, and sauce containers',
     },
   },
   highlights: [
