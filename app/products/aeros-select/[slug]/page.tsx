@@ -179,6 +179,7 @@ function SectionRenderer({
         {section.kind === 'comparison' && (
           <ComparisonContent section={section} />
         )}
+        {section.kind === 'video' && <VideoContent section={section} />}
       </div>
     </section>
   )
@@ -483,6 +484,34 @@ function CustomersContent({
             )}
           </div>
         ))}
+      </div>
+    </>
+  )
+}
+
+function VideoContent({
+  section,
+}: {
+  section: Extract<AerosSelectSection, { kind: 'video' }>
+}) {
+  return (
+    <>
+      <SectionHeader
+        eyebrow="/ in motion"
+        heading={section.heading}
+        intro={section.intro}
+      />
+      <div className="bg-white rounded-3xl border border-border-default overflow-hidden">
+        <video
+          src={section.src}
+          poster={section.poster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="w-full h-auto block"
+        />
       </div>
     </>
   )
