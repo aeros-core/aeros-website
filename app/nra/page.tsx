@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Navbar from '@/components/landing/Navbar'
 import Footer from '@/components/landing/Footer'
 
-const BOOTH = 'Booth #TBD'
+const BOOTH = 'Booth #12937'
 const BOOKING_URL =
   'mailto:hello@aeros.io?subject=NRA%20Show%20%E2%80%94%20Meeting%20Request'
 const SHOW_URL = 'https://www.nationalrestaurantshow.com/'
