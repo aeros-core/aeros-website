@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Navbar from '@/components/landing/Navbar'
 import Footer from '@/components/landing/Footer'
 
-const BOOTH = 'Booth #TBD'
+const BOOTH = 'Booth #12937'
 const BOOKING_URL =
   'mailto:hello@aeros.io?subject=NRA%20Show%20%E2%80%94%20Meeting%20Request'
 const SHOW_URL = 'https://www.nationalrestaurantshow.com/'
@@ -19,11 +20,26 @@ export const metadata: Metadata = {
   },
 }
 
-const boothHighlights = [
+type BoothHighlight = {
+  label: string
+  title: string
+  body: string
+  href?: string
+  cta?: string
+}
+
+const boothHighlights: BoothHighlight[] = [
   {
     label: 'Live demo',
     title: 'Walk the marketplace.',
     body: 'See a real sourcing flow end-to-end with the team — from RFQ to delivery in one platform.',
+  },
+  {
+    label: 'Aeros Select',
+    title: 'Touch the lineup.',
+    body: 'Hand-picked equipment and packaging on the table. Sourced, vetted, and stocked by Aeros.',
+    href: '/products/aeros-select',
+    cta: 'See the lineup',
   },
   {
     label: 'Show pricing',
@@ -190,23 +206,44 @@ export default function NraShowPage() {
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-4">
-            {boothHighlights.map((item) => (
-              <div
-                key={item.label}
-                className="bg-white p-10 rounded-3xl border border-border-default flex flex-col"
-              >
-                <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-4">
-                  {item.label}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {boothHighlights.map((item) => {
+              const cardBody = (
+                <>
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-4">
+                    {item.label}
+                  </div>
+                  <h3 className="text-xl font-bold text-fg-primary leading-tight mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-fg-muted leading-relaxed flex-1">
+                    {item.body}
+                  </p>
+                  {item.cta && (
+                    <span className="mt-6 text-sm text-fg-primary font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                      {item.cta} <span aria-hidden>→</span>
+                    </span>
+                  )}
+                </>
+              )
+
+              return item.href ? (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="group bg-white p-10 rounded-3xl border border-border-default flex flex-col hover:bg-bg-subtle transition-colors"
+                >
+                  {cardBody}
+                </Link>
+              ) : (
+                <div
+                  key={item.label}
+                  className="bg-white p-10 rounded-3xl border border-border-default flex flex-col"
+                >
+                  {cardBody}
                 </div>
-                <h3 className="text-xl font-bold text-fg-primary leading-tight mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-fg-muted leading-relaxed">
-                  {item.body}
-                </p>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
