@@ -193,6 +193,9 @@ function SectionRenderer({
           <ComparisonContent section={section} />
         )}
         {section.kind === 'video' && <VideoContent section={section} />}
+        {section.kind === 'format-showcase' && (
+          <FormatShowcaseContent section={section} />
+        )}
       </div>
     </section>
   )
@@ -225,6 +228,10 @@ function VariantsContent({
 }: {
   section: Extract<AerosSelectSection, { kind: 'variants' }>
 }) {
+  // When any variant carries images, switch to the expanded per-row layout
+  // (image gallery left, content + specs right). Otherwise keep the compact
+  // 2-up card grid used by parent products.
+  const expanded = section.items.some((i) => i.images && i.images.length > 0)
   return (
     <>
       <SectionHeader
@@ -232,54 +239,153 @@ function VariantsContent({
         heading={section.heading}
         intro={section.intro}
       />
-      <div className="grid sm:grid-cols-2 gap-4">
-        {section.items.map((item) => {
-          const content = (
-            <>
-              <h3 className="text-xl font-bold text-fg-primary mb-4">
-                {item.name}
-              </h3>
-              {item.tags && item.tags.length > 0 && (
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {item.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold leading-none whitespace-nowrap bg-ink-50 text-ink-600"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              )}
-              <p className="text-fg-muted text-sm leading-relaxed flex-1">
-                {item.body}
-              </p>
-              {item.href && (
-                <span className="mt-6 text-sm text-fg-primary font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                  See full details <span aria-hidden>→</span>
-                </span>
-              )}
-            </>
-          )
-          return item.href ? (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="group bg-white p-8 rounded-3xl border border-border-default flex flex-col h-full hover:bg-bg-subtle transition-colors"
-            >
-              {content}
-            </Link>
-          ) : (
-            <div
-              key={item.name}
-              className="bg-white p-8 rounded-3xl border border-border-default flex flex-col h-full"
-            >
-              {content}
-            </div>
-          )
-        })}
-      </div>
+      {expanded ? (
+        <div className="flex flex-col gap-6">
+          {section.items.map((item) => (
+            <VariantRow key={item.name} item={item} />
+          ))}
+        </div>
+      ) : (
+        <div className="grid sm:grid-cols-2 gap-4">
+          {section.items.map((item) => {
+            const content = (
+              <>
+                <h3 className="text-xl font-bold text-fg-primary mb-4">
+                  {item.name}
+                </h3>
+                {item.tags && item.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {item.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold leading-none whitespace-nowrap bg-ink-50 text-ink-600"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                <p className="text-fg-muted text-sm leading-relaxed flex-1">
+                  {item.body}
+                </p>
+                {item.href && (
+                  <span className="mt-6 text-sm text-fg-primary font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                    See full details <span aria-hidden>→</span>
+                  </span>
+                )}
+              </>
+            )
+            return item.href ? (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="group bg-white p-8 rounded-3xl border border-border-default flex flex-col h-full hover:bg-bg-subtle transition-colors"
+              >
+                {content}
+              </Link>
+            ) : (
+              <div
+                key={item.name}
+                className="bg-white p-8 rounded-3xl border border-border-default flex flex-col h-full"
+              >
+                {content}
+              </div>
+            )
+          })}
+        </div>
+      )}
     </>
+  )
+}
+
+function VariantRow({
+  item,
+}: {
+  item: Extract<AerosSelectSection, { kind: 'variants' }>['items'][number]
+}) {
+  const images = item.images ?? []
+  const [hero, ...rest] = images
+  return (
+    <div className="bg-white rounded-3xl border border-border-default p-6 md:p-10">
+      <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        {/* Image gallery */}
+        <div className="flex flex-col gap-3">
+          {hero && (
+            <div className="aspect-square rounded-2xl bg-bg-subtle overflow-hidden flex items-center justify-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={hero}
+                alt={item.name}
+                loading="lazy"
+                className="w-full h-full object-contain"
+              />
+            </div>
+          )}
+          {rest.length > 0 && (
+            <div
+              className={`grid gap-3 ${
+                rest.length === 1
+                  ? 'grid-cols-1'
+                  : rest.length === 2
+                    ? 'grid-cols-2'
+                    : 'grid-cols-3'
+              }`}
+            >
+              {rest.map((src, i) => (
+                <div
+                  key={src}
+                  className="aspect-square rounded-xl bg-bg-subtle overflow-hidden flex items-center justify-center"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={src}
+                    alt={`${item.name} — view ${i + 2}`}
+                    loading="lazy"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        {/* Content */}
+        <div>
+          <h3 className="text-2xl md:text-3xl font-bold text-fg-primary mb-4 tracking-tight">
+            {item.name}
+          </h3>
+          {item.tags && item.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-6">
+              {item.tags.map((t) => (
+                <span
+                  key={t}
+                  className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold leading-none whitespace-nowrap bg-ink-50 text-ink-600"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          )}
+          <p className="text-fg-muted text-[15px] leading-relaxed">{item.body}</p>
+          {item.specs && item.specs.length > 0 && (
+            <dl className="mt-8 border-t border-border-default">
+              {item.specs.map((s) => (
+                <div
+                  key={s.label}
+                  className="grid grid-cols-[1fr_auto] gap-4 py-4 border-b border-border-default"
+                >
+                  <dt className="text-[11px] font-mono uppercase tracking-widest text-fg-muted/70 self-center">
+                    {s.label}
+                  </dt>
+                  <dd className="text-fg-primary text-sm font-medium text-right">
+                    {s.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          )}
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -509,6 +615,66 @@ function CustomersContent({
             )}
           </div>
         ))}
+      </div>
+    </>
+  )
+}
+
+function FormatShowcaseContent({
+  section,
+}: {
+  section: Extract<AerosSelectSection, { kind: 'format-showcase' }>
+}) {
+  return (
+    <>
+      <SectionHeader
+        eyebrow="/ format"
+        heading={section.heading}
+        intro={section.intro}
+      />
+      <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-8 lg:gap-12 items-start">
+        {/* Plain hero */}
+        <figure className="bg-white rounded-3xl border border-border-default p-8 md:p-10 flex flex-col items-center">
+          <div className="aspect-square w-full max-w-[420px] flex items-center justify-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={section.plain.image}
+              alt={section.plain.label}
+              loading="lazy"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <figcaption className="mt-6 text-fg-primary text-lg font-bold tracking-tight">
+            {section.plain.label}
+          </figcaption>
+        </figure>
+        {/* Printed grid */}
+        <div className="bg-white rounded-3xl border border-border-default p-6 md:p-8">
+          <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-5">
+            / printed runs
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            {section.printed.map((item) => (
+              <figure
+                key={item.label}
+                className="flex flex-col items-center text-center"
+              >
+                <div className="aspect-square w-full flex items-center justify-center bg-bg-subtle rounded-2xl p-3">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={item.image}
+                    alt={item.label}
+                    loading="lazy"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <figcaption className="mt-3 text-[11px] font-mono uppercase tracking-widest text-fg-muted/70">
+                  {item.label}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
       </div>
     </>
   )
