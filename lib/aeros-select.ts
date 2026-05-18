@@ -78,6 +78,16 @@ type VideoSection = {
   poster?: string
 }
 
+type FormatShowcaseSection = {
+  kind: 'format-showcase'
+  heading: string
+  intro?: string
+  /** Hero shot of the plain (unprinted) format, displayed large on the left. */
+  plain: { image: string; label: string }
+  /** Branded printed examples shown as a grid on the right. */
+  printed: Array<{ image: string; label: string }>
+}
+
 export type AerosSelectSection =
   | SpecsSection
   | FeaturesSection
@@ -88,6 +98,7 @@ export type AerosSelectSection =
   | StatsSection
   | ComparisonSection
   | VideoSection
+  | FormatShowcaseSection
 
 export type AerosSelectProduct = {
   slug: string
@@ -919,6 +930,59 @@ const foils: AerosSelectProduct = {
         {
           name: 'Pinhole venting for hot beverages',
           body: 'For drinks sealed above 85 °C we add a 0.9 – 1 mm pinhole vent — the lid stays leak-proof in transit, but built-up steam has somewhere to escape. Specify on the order if you need it.',
+        },
+      ],
+    },
+    {
+      kind: 'format-showcase',
+      heading: 'Tear-drop shape.',
+      intro:
+        'The peel-tab silhouette — plain on the left, a handful of printed runs we have shipped on the right.',
+      plain: {
+        image:
+          'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-foils-teardrop-tear-off-CFkQbZPs7QFhIa0TbZMVJQa7uiub4p.webp',
+        label: 'Plain',
+      },
+      printed: [
+        {
+          image:
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-foils-teardrop-arabic-1ShAgBXnRsYpUbZhiNE5sVRLqA25Jk.webp',
+          label: 'Shakar',
+        },
+        {
+          image:
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-foils-teardrop-Kenangan-gy1fcmscLnRAFsOWjNGNuxhsgTo1NV.webp',
+          label: 'Kenangan Coffee',
+        },
+        {
+          image:
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-foils-teardrop-a-cup-of-happiness-uvGtvECCfaGquwYJmd3v7f6DsRgQt9.webp',
+          label: 'ab Coffee',
+        },
+        {
+          image:
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-foils-teardrop-third-wave-1-RuAgjvAa7T7WgqprRqZT0giOWQuQLt.webp',
+          label: 'Third Wave Coffee',
+        },
+        {
+          image:
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-foils-teardrop-dunkin-aesp29WUZJ23OK8VGiHFsVM5UyxrD6.webp',
+          label: 'Dunkin\'',
+        },
+        {
+          image:
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-foils-teardrop-tobys-estate-LhEC59ves9rWcZvD8ximr6BsMkLFVr.webp',
+          label: 'Toby\'s Estate',
+        },
+        {
+          image:
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-foils-teardrop-THF-wC9v0y6BHANIhtCKDRJjJrwJGv6a9H.webp',
+          label: 'THF',
+        },
+        {
+          image:
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-foils-teardrop-subko-Ff3swlyhFSAwLegVq9huSHJgePSDLV.webp',
+          label: 'Subko',
         },
       ],
     },

@@ -180,6 +180,9 @@ function SectionRenderer({
           <ComparisonContent section={section} />
         )}
         {section.kind === 'video' && <VideoContent section={section} />}
+        {section.kind === 'format-showcase' && (
+          <FormatShowcaseContent section={section} />
+        )}
       </div>
     </section>
   )
@@ -587,6 +590,66 @@ function CustomersContent({
             )}
           </div>
         ))}
+      </div>
+    </>
+  )
+}
+
+function FormatShowcaseContent({
+  section,
+}: {
+  section: Extract<AerosSelectSection, { kind: 'format-showcase' }>
+}) {
+  return (
+    <>
+      <SectionHeader
+        eyebrow="/ format"
+        heading={section.heading}
+        intro={section.intro}
+      />
+      <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-8 lg:gap-12 items-start">
+        {/* Plain hero */}
+        <figure className="bg-white rounded-3xl border border-border-default p-8 md:p-10 flex flex-col items-center">
+          <div className="aspect-square w-full max-w-[420px] flex items-center justify-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={section.plain.image}
+              alt={section.plain.label}
+              loading="lazy"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <figcaption className="mt-6 text-fg-primary text-lg font-bold tracking-tight">
+            {section.plain.label}
+          </figcaption>
+        </figure>
+        {/* Printed grid */}
+        <div className="bg-white rounded-3xl border border-border-default p-6 md:p-8">
+          <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-5">
+            / printed runs
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            {section.printed.map((item) => (
+              <figure
+                key={item.label}
+                className="flex flex-col items-center text-center"
+              >
+                <div className="aspect-square w-full flex items-center justify-center bg-bg-subtle rounded-2xl p-3">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={item.image}
+                    alt={item.label}
+                    loading="lazy"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <figcaption className="mt-3 text-[11px] font-mono uppercase tracking-widest text-fg-muted/70">
+                  {item.label}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
       </div>
     </>
   )
