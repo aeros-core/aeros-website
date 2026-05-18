@@ -28,7 +28,18 @@ type VariantsSection = {
   kind: 'variants'
   heading: string
   intro?: string
-  items: Array<{ name: string; body: string; tags?: string[]; href?: string }>
+  items: Array<{
+    name: string
+    body: string
+    tags?: string[]
+    href?: string
+    /** When provided, the variant renders in the expanded per-row layout
+     * (image gallery left, content right) instead of the compact card grid. */
+    images?: string[]
+    /** Small per-variant spec table rendered under the body in the expanded
+     * layout. Ignored in the compact card layout. */
+    specs?: Array<{ label: string; value: string }>
+  }>
 }
 
 type FaqSection = {
@@ -431,6 +442,13 @@ const cupSealer: AerosSelectProduct = {
   ],
   sections: [
     {
+      kind: 'video',
+      heading: 'The AeroSeal Cup Sealer at the counter.',
+      intro:
+        'One handle, one motion — paper or PET, 2 oz to 20 oz, sealed clean every time.',
+      src: 'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-4rbhUaG362ifgeltL2ZOD4FzvNT3KG.mp4',
+    },
+    {
       kind: 'customers',
       heading: 'Trusted by India\'s largest chains.',
       intro:
@@ -460,21 +478,69 @@ const cupSealer: AerosSelectProduct = {
           name: 'V1 — Entry',
           tags: ['Manual', 'No timer', 'Energy controller'],
           body: 'The entry point. Pull-handle hot-seal with an energy (analog) controller. Nylon-bush base. No timer, no heater cover. The right choice for counters that just need a clean seal and nothing more.',
+          images: [
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v1-1-9E4c1Vh3wWNBKIqjjlO01GMHhfcVFJ.png',
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v1-2-0gXgkjV7bFISxgvrM1AalimJhSzv37.png',
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v1-3-XJIaGmfZn9c5OhW7VmGtmQfHJJRZwB.png',
+          ],
+          specs: [
+            { label: 'Timer', value: 'No' },
+            { label: 'Temperature control', value: 'Energy controller' },
+            { label: 'Base mounts', value: 'Nylon bushes' },
+            { label: 'Polycarbonate heater cover', value: 'No' },
+            { label: 'Certification', value: 'No' },
+          ],
         },
         {
           name: 'V2 — Analog Timer',
           tags: ['Manual', 'Analog timer', 'External buzzer'],
           body: 'Adds an analog timer and an external end-of-cycle buzzer to the V1 base. Operators stop guessing seal time — the buzzer tells them when the seal is done.',
+          images: [
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v2-1-eLK74jeQZIkqPCfS2dwYDuuGMaUB0L.webp',
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v2-2-r6ZBjZsrJsHuklpTpTx11GnL7XiJiQ.webp',
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v2-3-SStc3uiUpTJ8gjbZnaBX1FmFwTHbIg.webp',
+          ],
+          specs: [
+            { label: 'Timer', value: 'Analog' },
+            { label: 'Temperature control', value: 'Energy controller' },
+            { label: 'Base mounts', value: 'Nylon bushes' },
+            { label: 'Polycarbonate heater cover', value: 'No' },
+            { label: 'Certification', value: 'No' },
+          ],
         },
         {
           name: 'V3 — Digital Control',
           tags: ['Manual', 'Digital PID', 'Polycarbonate cover', 'From $799'],
           body: 'Digital PID temperature controller with ±1 °C accuracy, analog timer, external buzzer, and a polycarbonate heater cover for safety. The most-ordered version. Intro $699 — first 15 days, ends at the NRA show.',
+          images: [
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v3-1-PaQPxLE5fcbGasUrdis7yi9RB49M2P.png',
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v3-2-ZJNF1YU088SU3DyJtqnVF1Cl3h578l.png',
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v3-3-CawJg51Yqe95rJNDpzJRpU42bpL7wZ.webp',
+          ],
+          specs: [
+            { label: 'Timer', value: 'Analog' },
+            { label: 'Temperature control', value: 'Digital PID' },
+            { label: 'Base mounts', value: 'Nylon bushes' },
+            { label: 'Polycarbonate heater cover', value: 'Yes' },
+            { label: 'Certification', value: 'No' },
+          ],
         },
         {
           name: 'V4 — Premium · CE',
           tags: ['Manual', 'Digital timer', 'CE certified'],
           body: 'Digital timer with internal buzzer, digital PID controller, anti-skid rubber base, polycarbonate heater cover, CE certification. The export-ready version for operators that need a paper trail with the machine.',
+          images: [
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v4-1-lvFM5oSQD12bZdE1H10SQAPFj7y5qa.webp',
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v4-2-zMmpnm5EUkRdbzDBpvnZaAKhVZglrW.webp',
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v4-3-whXwGyRIuEOHdwI2VEr2SVgqxUltoY.webp',
+          ],
+          specs: [
+            { label: 'Timer', value: 'Digital' },
+            { label: 'Temperature control', value: 'Digital PID' },
+            { label: 'Base mounts', value: 'Anti-skid rubber' },
+            { label: 'Polycarbonate heater cover', value: 'Yes' },
+            { label: 'Certification', value: 'CE' },
+          ],
         },
       ],
     },
@@ -975,6 +1041,13 @@ const v5: AerosSelectProduct = {
     { label: 'Throughput', value: '8 – 10 cups / minute' },
   ],
   sections: [
+    {
+      kind: 'video',
+      heading: 'V5 in motion.',
+      intro:
+        'One head, one motion — cups, tubs, dessert pots, and family tubs through the same SOP.',
+      src: 'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-v5-PUqyKPGXVIAYFkmDkYWeRsHb8sXrJB.mp4',
+    },
     {
       kind: 'customers',
       heading: 'Trusted by India\'s largest chains.',
