@@ -472,12 +472,13 @@ function UseCasesContent({
             className="bg-white rounded-3xl border border-border-default overflow-hidden flex flex-col"
           >
             {item.image && (
-              <div className="aspect-[16/10] bg-bg-subtle overflow-hidden">
+              <div className="aspect-[16/10] bg-bg-subtle overflow-hidden flex items-center justify-center p-6">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  className="max-w-full max-h-full object-contain"
                 />
               </div>
             )}
