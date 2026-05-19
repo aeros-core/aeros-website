@@ -561,7 +561,7 @@ const cupSealer: AerosSelectProduct = {
         { label: 'Cup top diameters', value: '80, 90, 92, 98 mm — four-die set (80 / 90 typically paper, 92 / 98 typically PET)' },
         { label: 'Sealing temperature', value: '0 – 250 °C' },
         { label: 'Sealing time', value: '1 – 5 s' },
-        { label: 'Rated voltage', value: 'AC 230 V, 50 Hz' },
+        { label: 'Rated voltage', value: 'AC 110 V / 230 V · 50 / 60 Hz — built for both US and international mains' },
         { label: 'Maximum current', value: '0.83 A' },
         { label: 'Rated power', value: '190 W' },
         { label: 'Dimensions', value: '28.5 (L) × 28 (W) × 61 (H) cm' },
@@ -651,7 +651,7 @@ const cupSealer: AerosSelectProduct = {
         },
         {
           q: 'Is installation included?',
-          a: 'Every AeroSeal Cup Sealer is plug-and-play. Unbox, plug into single-phase 230 V mains, set the temperature, and run.',
+          a: 'Every AeroSeal Cup Sealer is plug-and-play. Unbox, plug into single-phase mains (110 V in the US, 230 V elsewhere — the machine accepts both), set the temperature, and run.',
         },
         {
           q: 'How durable is it?',
@@ -745,7 +745,7 @@ const tubSealer: AerosSelectProduct = {
         { label: 'Container range', value: '8 oz (250 ml) – 1 L · cup and tub formats' },
         { label: 'Sealing temperature', value: '0 – 250 °C, digital PID controller' },
         { label: 'Sealing time', value: '1 – 5 s, digital timer' },
-        { label: 'Rated voltage', value: 'AC 230 V, 50 Hz' },
+        { label: 'Rated voltage', value: 'AC 110 V / 230 V · 50 / 60 Hz — built for both US and international mains' },
         { label: 'Maximum current', value: '1.3 A' },
         { label: 'Rated power', value: '300 W' },
         { label: 'Dimensions', value: '28.5 (L) × 28 (W) × 61 (H) cm' },
@@ -809,7 +809,7 @@ const tubSealer: AerosSelectProduct = {
         },
         {
           q: 'Is installation included?',
-          a: 'Every AeroSeal Tub Sealer is plug-and-play. Unbox, plug into single-phase 230 V mains, set the temperature, and run.',
+          a: 'Every AeroSeal Tub Sealer is plug-and-play. Unbox, plug into single-phase mains (110 V in the US, 230 V elsewhere — the machine accepts both), set the temperature, and run.',
         },
         {
           q: 'Custom container sizes?',
@@ -1161,7 +1161,7 @@ const v5: AerosSelectProduct = {
         { label: 'Compatible materials', value: 'Coated paper, PP, PET, bagasse' },
         { label: 'Sealing temperature', value: '0 – 250 °C, digital PID controller — handles hot fills above 85 °C with pinhole-vented foils' },
         { label: 'Throughput', value: '8 – 10 cups / minute' },
-        { label: 'Rated voltage', value: 'AC 230 V, 50 Hz' },
+        { label: 'Rated voltage', value: 'AC 110 V / 230 V · 50 / 60 Hz — built for both US and international mains' },
         { label: 'Maximum current', value: '2.2 A' },
         { label: 'Rated power', value: '500 W' },
         { label: 'Dimensions', value: '38 (L) × 25.5 (W) × 53.5 (H) cm' },
