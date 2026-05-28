@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function FinalCTA() {
   return (
     <section className="py-40 px-6 bg-white">
@@ -22,6 +24,13 @@ export default function FinalCTA() {
           >
             Talk to sales
           </a>
+          <Link
+            href="/partners/us"
+            className="px-8 py-4 rounded-full border border-royal-600 text-royal-700 text-sm font-medium hover:bg-royal-50 transition-colors inline-flex items-center gap-2"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-royal-600" />
+            Become a partner
+          </Link>
         </div>
         <p className="mt-8 text-xs text-fg-muted/60 font-mono">
           No credit card · 14-day trial · Cancel anytime
