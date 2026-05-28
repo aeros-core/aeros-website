@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/landing/Navbar'
 import Footer from '@/components/landing/Footer'
@@ -136,6 +137,35 @@ export default function NraShowPage() {
               <div className="text-fg-primary text-sm font-medium">
                 {BOOTH}
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Booth photo */}
+      <section className="py-32 px-6 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-4">
+              On the show floor
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-fg-primary leading-tight">
+              Booth #12937.
+            </h2>
+            <p className="mt-4 text-fg-muted">
+              McCormick Place, Chicago.
+            </p>
+          </div>
+          <div className="max-w-md sm:max-w-lg mx-auto">
+            <div className="rounded-3xl overflow-hidden border border-border-default bg-bg-subtle">
+              <Image
+                src="/nra/nra-2026.jpg"
+                alt="Aeros booth at the NRA Show — Factory to your doorstep banner with display tables and stools"
+                width={1800}
+                height={2400}
+                sizes="(max-width: 640px) 90vw, 512px"
+                className="w-full h-auto block"
+              />
             </div>
           </div>
         </div>
