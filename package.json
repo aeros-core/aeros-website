@@ -14,6 +14,7 @@
   "dependencies": {
     "@aeros/react": "workspace:*",
     "@aeros/tokens": "workspace:*",
+    "@notionhq/client": "^5.22.0",
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.0.1",
     "next": "16.2.1",
@@ -31,6 +32,10 @@
     "typescript": "^5"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "sharp", "unrs-resolver"]
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "unrs-resolver"
+    ]
   }
 }
