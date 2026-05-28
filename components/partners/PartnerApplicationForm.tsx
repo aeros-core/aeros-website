@@ -311,7 +311,7 @@ export default function PartnerApplicationForm() {
               value={form.website}
               onChange={(e) => update('website', e.target.value)}
               placeholder="acmefoodservice.com"
-              type="url"
+              inputMode="url"
             />
           </Field>
         </div>
