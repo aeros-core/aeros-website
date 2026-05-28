@@ -81,6 +81,14 @@ function optionalNumber(value: string | undefined) {
   return { number: Number.isFinite(n) ? n : null }
 }
 
+function normalizeUrl(value: string | undefined) {
+  if (!value) return null
+  const trimmed = value.trim()
+  if (!trimmed) return null
+  if (/^https?:\/\//i.test(trimmed)) return trimmed
+  return `https://${trimmed}`
+}
+
 export async function submitPartnerApplication(
   input: PartnerApplicationInput
 ): Promise<PartnerApplicationResult> {
@@ -150,7 +158,7 @@ export async function submitPartnerApplication(
         DBA: richText(input.dba),
         EIN: richText(input.ein),
         'Year Founded': optionalNumber(input.yearFounded),
-        Website: { url: input.website ? input.website : null },
+        Website: { url: normalizeUrl(input.website) },
         'Business Model': {
           select: BUSINESS_MODEL_LABEL[input.businessModel]
             ? { name: BUSINESS_MODEL_LABEL[input.businessModel] }
