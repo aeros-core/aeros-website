@@ -15,6 +15,14 @@ type Lead = {
   booth: string
   interests: string[]
   notes: string
+  // Factory-specific (only filled if interests includes 'Factory')
+  factorySize: string
+  factoryMachines: string
+  factoryProducts: string
+  // Warehouse-specific (only filled if interests includes 'Warehouse')
+  warehouseSize: string
+  warehousePallets: string
+  warehouseGoods: string
   // Captured by: 'self' = visitor filled it in, 'owner' = Arjun captured it
   source: 'self' | 'owner'
 }
@@ -37,10 +45,9 @@ const CATEGORIES = [
 ] as const
 
 const INTERESTS = [
+  'Factory',
+  'Warehouse',
   'Marketplace',
-  'Aeros Select',
-  'Factory OS',
-  'Show offer',
   'Just exploring',
 ] as const
 
@@ -56,6 +63,12 @@ const emptyDraft = (): Draft => ({
   booth: '',
   interests: [],
   notes: '',
+  factorySize: '',
+  factoryMachines: '',
+  factoryProducts: '',
+  warehouseSize: '',
+  warehousePallets: '',
+  warehouseGoods: '',
 })
 
 function csvEscape(value: string): string {
@@ -76,6 +89,12 @@ function buildCsv(rows: Lead[]): string {
     'Category',
     'Booth',
     'Interested in',
+    'Factory size (sq ft)',
+    'Factory machines',
+    'Factory products',
+    'Warehouse size (sq ft)',
+    'Warehouse pallet positions',
+    'Warehouse goods',
     'Notes',
   ]
   const lines = [headers.map(csvEscape).join(',')]
@@ -92,6 +111,12 @@ function buildCsv(rows: Lead[]): string {
         r.category,
         r.booth,
         r.interests.join('; '),
+        r.factorySize,
+        r.factoryMachines,
+        r.factoryProducts,
+        r.warehouseSize,
+        r.warehousePallets,
+        r.warehouseGoods,
         r.notes,
       ]
         .map(csvEscape)
@@ -172,6 +197,17 @@ function migrate(raw: unknown): Lead[] {
         booth: typeof o.booth === 'string' ? o.booth : '',
         interests,
         notes: typeof o.notes === 'string' ? o.notes : '',
+        factorySize: typeof o.factorySize === 'string' ? o.factorySize : '',
+        factoryMachines:
+          typeof o.factoryMachines === 'string' ? o.factoryMachines : '',
+        factoryProducts:
+          typeof o.factoryProducts === 'string' ? o.factoryProducts : '',
+        warehouseSize:
+          typeof o.warehouseSize === 'string' ? o.warehouseSize : '',
+        warehousePallets:
+          typeof o.warehousePallets === 'string' ? o.warehousePallets : '',
+        warehouseGoods:
+          typeof o.warehouseGoods === 'string' ? o.warehouseGoods : '',
         source: o.source === 'self' ? 'self' : 'owner',
       }
     })
@@ -392,6 +428,12 @@ export default function ExhibitorCaptureClient() {
       booth: row.booth,
       interests: row.interests,
       notes: row.notes,
+      factorySize: row.factorySize,
+      factoryMachines: row.factoryMachines,
+      factoryProducts: row.factoryProducts,
+      warehouseSize: row.warehouseSize,
+      warehousePallets: row.warehousePallets,
+      warehouseGoods: row.warehouseGoods,
     })
     setEditingId(id)
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -823,6 +865,105 @@ export default function ExhibitorCaptureClient() {
             </div>
           </Field>
 
+          {draft.interests.includes('Factory') && (
+            <SubSection title="About your factory">
+              <div className="grid grid-cols-2 gap-3">
+                <Field label="Size (sq ft)">
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    value={draft.factorySize}
+                    onChange={(e) =>
+                      setDraft((d) => ({ ...d, factorySize: e.target.value }))
+                    }
+                    placeholder="e.g. 25,000"
+                    className={inputCls}
+                  />
+                </Field>
+                <Field label="Machines">
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    value={draft.factoryMachines}
+                    onChange={(e) =>
+                      setDraft((d) => ({
+                        ...d,
+                        factoryMachines: e.target.value,
+                      }))
+                    }
+                    placeholder="e.g. 12"
+                    className={inputCls}
+                  />
+                </Field>
+              </div>
+              <Field label="What you manufacture">
+                <textarea
+                  value={draft.factoryProducts}
+                  onChange={(e) =>
+                    setDraft((d) => ({
+                      ...d,
+                      factoryProducts: e.target.value,
+                    }))
+                  }
+                  rows={2}
+                  placeholder="e.g. Paper cups, lids, food containers"
+                  className={`${inputCls} resize-y min-h-[68px]`}
+                />
+              </Field>
+            </SubSection>
+          )}
+
+          {draft.interests.includes('Warehouse') && (
+            <SubSection title="About your warehouse">
+              <div className="grid grid-cols-2 gap-3">
+                <Field label="Size (sq ft)">
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    value={draft.warehouseSize}
+                    onChange={(e) =>
+                      setDraft((d) => ({
+                        ...d,
+                        warehouseSize: e.target.value,
+                      }))
+                    }
+                    placeholder="e.g. 40,000"
+                    className={inputCls}
+                  />
+                </Field>
+                <Field label="Pallet positions">
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    value={draft.warehousePallets}
+                    onChange={(e) =>
+                      setDraft((d) => ({
+                        ...d,
+                        warehousePallets: e.target.value,
+                      }))
+                    }
+                    placeholder="e.g. 1,200"
+                    className={inputCls}
+                  />
+                </Field>
+              </div>
+              <Field label="What you store">
+                <textarea
+                  value={draft.warehouseGoods}
+                  onChange={(e) =>
+                    setDraft((d) => ({
+                      ...d,
+                      warehouseGoods: e.target.value,
+                    }))
+                  }
+                  rows={2}
+                  placeholder="e.g. Dry goods, refrigerated, restaurant disposables"
+                  className={`${inputCls} resize-y min-h-[68px]`}
+                />
+              </Field>
+            </SubSection>
+          )}
+
           <Field label="Anything else?">
             <textarea
               value={draft.notes}
@@ -940,6 +1081,41 @@ export default function ExhibitorCaptureClient() {
                             ))}
                           </div>
                         )}
+                        {(row.factorySize ||
+                          row.factoryMachines ||
+                          row.factoryProducts) && (
+                          <div className="text-[11px] text-fg-muted mt-2">
+                            <span className="font-mono uppercase tracking-wider text-fg-muted/60">
+                              Factory ·{' '}
+                            </span>
+                            {[
+                              row.factorySize && `${row.factorySize} sq ft`,
+                              row.factoryMachines &&
+                                `${row.factoryMachines} machines`,
+                              row.factoryProducts,
+                            ]
+                              .filter(Boolean)
+                              .join(' · ')}
+                          </div>
+                        )}
+                        {(row.warehouseSize ||
+                          row.warehousePallets ||
+                          row.warehouseGoods) && (
+                          <div className="text-[11px] text-fg-muted mt-1">
+                            <span className="font-mono uppercase tracking-wider text-fg-muted/60">
+                              Warehouse ·{' '}
+                            </span>
+                            {[
+                              row.warehouseSize &&
+                                `${row.warehouseSize} sq ft`,
+                              row.warehousePallets &&
+                                `${row.warehousePallets} pallets`,
+                              row.warehouseGoods,
+                            ]
+                              .filter(Boolean)
+                              .join(' · ')}
+                          </div>
+                        )}
                         {row.notes && (
                           <div className="text-xs text-fg-muted mt-2 line-clamp-2">
                             {row.notes}
@@ -1026,6 +1202,23 @@ function Field({
       </span>
       {children}
     </label>
+  )
+}
+
+function SubSection({
+  title,
+  children,
+}: {
+  title: string
+  children: React.ReactNode
+}) {
+  return (
+    <div className="rounded-2xl bg-bg-subtle border border-border-default p-4 sm:p-5 space-y-4">
+      <div className="text-[11px] font-mono uppercase tracking-widest text-fg-primary">
+        {title}
+      </div>
+      {children}
+    </div>
   )
 }
 
