@@ -300,13 +300,20 @@ export default function NraShowPage() {
             Grab a 15-minute slot with the team. We&apos;ll walk you through
             the marketplace and the offer for show attendees.
           </p>
-          <div className="mt-12 flex items-center justify-center">
+          <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
               href={BOOKING_URL}
               className="px-8 py-4 rounded-full bg-ink-900 text-white text-sm font-medium hover:bg-ink-800 transition-colors"
             >
               Book a meeting at our booth
             </a>
+            <Link
+              href="/partners/us"
+              className="px-8 py-4 rounded-full border border-royal-600 text-royal-700 text-sm font-medium hover:bg-royal-50 transition-colors inline-flex items-center gap-2"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-royal-600" />
+              Become a partner
+            </Link>
           </div>
           <p className="mt-8 text-xs text-fg-muted/60 font-mono">
             15-minute slots · Operator-only · Coffee on us
