@@ -21,7 +21,6 @@ const columns = [
       { label: 'About', href: '#' },
       { label: 'Blog', href: '#' },
       { label: 'Careers', href: '#' },
-      { label: 'Support', href: '/support' },
       { label: 'Contact', href: '#' },
     ],
   },
@@ -29,6 +28,7 @@ const columns = [
     title: 'Legal',
     links: [
       { label: 'Privacy', href: '/privacy' },
+      { label: 'Support', href: '/support' },
       { label: 'Terms', href: '#' },
       { label: 'Cookies', href: '#' },
     ],
