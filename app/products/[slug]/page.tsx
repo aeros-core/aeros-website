@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Navbar from '@/components/landing/Navbar'
 import Footer from '@/components/landing/Footer'
+import CategoryIllustration from '@/components/products/CategoryIllustration'
 import {
   APP_MARKETPLACE_URL,
   CATEGORY_GROUPS,
@@ -202,6 +203,14 @@ function TypesContent({
         {section.items.map((item) => {
           const inner = (
             <>
+              {item.art && (
+                <div className="mb-6 h-20">
+                  <CategoryIllustration
+                    art={item.art}
+                    className="h-full w-auto"
+                  />
+                </div>
+              )}
               <h3 className="text-xl font-bold text-fg-primary mb-3">
                 {item.name}
               </h3>

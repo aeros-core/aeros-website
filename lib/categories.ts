@@ -25,7 +25,13 @@ type TypesSection = {
   kind: 'types'
   heading: string
   intro?: string
-  items: Array<{ name: string; whenToUse: string; sizes?: string; href?: string }>
+  items: Array<{
+    name: string
+    whenToUse: string
+    sizes?: string
+    href?: string
+    art?: string
+  }>
 }
 
 type MeasuringSection = {
@@ -102,6 +108,7 @@ const paperCupsDetail: CategoryDetail = {
           whenToUse:
             'Drip coffee, tea, and other hot drinks served with a sleeve. The lowest-cost option.',
           sizes: '4, 6.5, 8, 12, 16, 20, 24 oz',
+          art: 'single-wall-hot',
         },
         {
           name: 'Double wall paper cups',
@@ -109,24 +116,28 @@ const paperCupsDetail: CategoryDetail = {
             'Specialty coffee and longer dwell times. Holds heat without a sleeve.',
           sizes: '8, 10, 12, 16 oz',
           href: '/products/paper-cups/double-wall-paper-cups',
+          art: 'double-wall-paper-cups',
         },
         {
           name: 'Ripple-wall',
           whenToUse:
             'Premium hot drinks on the go. Textured outer wall offers grip and insulation.',
           sizes: '8, 12, 16 oz',
+          art: 'ripple-wall',
         },
         {
           name: 'Cold cup',
           whenToUse:
             'Iced coffee, juice, soft drinks. Coated to resist condensation.',
           sizes: '9, 12, 16, 22, 32 oz',
+          art: 'cold-cup',
         },
         {
           name: 'Compostable',
           whenToUse:
             'Programs that need to meet a sustainability target. Available across hot and cold.',
           sizes: '8, 12, 16 oz',
+          art: 'compostable',
         },
       ],
     },

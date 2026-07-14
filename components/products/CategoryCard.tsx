@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { Category } from '@/lib/categories'
+import CategoryIllustration from '@/components/products/CategoryIllustration'
 
 export default function CategoryCard({ category }: { category: Category }) {
   const isLinkable = category.available && Boolean(category.detail)
@@ -12,10 +13,13 @@ export default function CategoryCard({ category }: { category: Category }) {
           / {category.name.toLowerCase()}
         </div>
       </div>
+      <div className="mb-6 h-20">
+        <CategoryIllustration art={category.slug} className="h-full w-auto" />
+      </div>
       <h3 className="text-2xl font-bold text-fg-primary mb-2">
         {category.name}
       </h3>
-      <p className="text-fg-muted text-sm mb-8">{category.blurb}</p>
+      <p className="text-fg-muted text-sm mb-8 flex-1">{category.blurb}</p>
 
       {isLinkable ? (
         <span className="text-sm text-fg-primary font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
