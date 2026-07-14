@@ -702,7 +702,7 @@ function VideoContent({
           loop
           playsInline
           preload="metadata"
-          className="w-full h-auto block"
+          className="mx-auto block h-auto w-auto max-h-[80vh] max-w-full"
         />
       </div>
     </>
