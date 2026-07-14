@@ -25,7 +25,7 @@ type TypesSection = {
   kind: 'types'
   heading: string
   intro?: string
-  items: Array<{ name: string; whenToUse: string; sizes?: string }>
+  items: Array<{ name: string; whenToUse: string; sizes?: string; href?: string }>
 }
 
 type MeasuringSection = {
@@ -104,10 +104,11 @@ const paperCupsDetail: CategoryDetail = {
           sizes: '4, 6.5, 8, 12, 16, 20, 24 oz',
         },
         {
-          name: 'Double-wall hot',
+          name: 'Double wall paper cups',
           whenToUse:
             'Specialty coffee and longer dwell times. Holds heat without a sleeve.',
-          sizes: '8, 12, 16 oz',
+          sizes: '8, 10, 12, 16 oz',
+          href: '/products/paper-cups/double-wall-paper-cups',
         },
         {
           name: 'Ripple-wall',
