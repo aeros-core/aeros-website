@@ -55,11 +55,22 @@ export const SUPPLY_METRICS = [
   { value: '7 days', label: 'Pan-India lead time' },
 ]
 
+export type SupplyCategory = {
+  eyebrow: string
+  title: string
+  body: string
+  tags: string[]
+  image: string
+  alt: string
+  /** Renders full grid width with a wider image crop. */
+  wide?: boolean
+}
+
 /**
  * Organised by where in the property the item is used, not by material —
  * that is how a hotel purchase team actually buys.
  */
-export const CATEGORIES = [
+export const CATEGORIES: SupplyCategory[] = [
   {
     eyebrow: 'In-room dining',
     title: 'Room service that travels well.',
@@ -73,10 +84,10 @@ export const CATEGORIES = [
     eyebrow: 'Café & F&B outlets',
     title: 'Branded, cup by cup.',
     body:
-      'Paper cups and lids for the lobby café and outlets, with paper and premium carry bags for anything leaving with the guest. Printed to the property brand book.',
-    tags: ['Paper cups', 'Lids', 'Paper & premium bags'],
-    image: '/products/double-wall-paper-cups/hero.jpg',
-    alt: 'Plain white double wall paper cups in four sizes',
+      'Paper cups and lids for the lobby café, the banquet floor, and every outlet in the property — printed to the brand book so the cup in one city matches the cup in another.',
+    tags: ['Paper cups', 'Lids', 'Printed to brand'],
+    image: '/products/double-wall-paper-cups/printed.jpg',
+    alt: 'Double wall paper cups custom printed with brand artwork',
   },
   {
     eyebrow: 'Guest room & bath',
@@ -95,6 +106,17 @@ export const CATEGORIES = [
     tags: ['Kitchen rolls', 'Tissue', 'Standing supply'],
     image: '/products/hospitality/kitchen-boh.jpg',
     alt: 'Commercial kitchen paper towel rolls beside folded kitchen tissue',
+  },
+  {
+    eyebrow: 'Bags & takeaway',
+    title: 'What leaves with the guest.',
+    body:
+      'Kraft carry bags for everyday outlet use and premium white bags for retail, boutique, and gifting. The last thing a guest is handed, so the paper weight and the finish carry the property name.',
+    tags: ['Kraft carry bags', 'Premium white', 'Retail & gifting'],
+    image: '/products/hospitality/paper-bags.jpg',
+    alt: 'Kraft and white paper carry bags with twisted paper handles, two sizes each',
+    /** Spans the full grid width so five cards leave no orphan cell. */
+    wide: true,
   },
 ]
 

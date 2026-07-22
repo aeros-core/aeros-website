@@ -169,14 +169,24 @@ export default function HospitalityPage() {
             {CATEGORIES.map((c) => (
               <div
                 key={c.eyebrow}
-                className="bg-bg-subtle rounded-3xl border border-border-default flex flex-col overflow-hidden"
+                className={`bg-bg-subtle rounded-3xl border border-border-default flex flex-col overflow-hidden${
+                  c.wide ? ' md:col-span-2' : ''
+                }`}
               >
-                <div className="relative aspect-[3/2] bg-white border-b border-border-default">
+                <div
+                  className={`relative bg-white border-b border-border-default ${
+                    c.wide ? 'aspect-[16/9]' : 'aspect-[3/2]'
+                  }`}
+                >
                   <Image
                     src={c.image}
                     alt={c.alt}
                     fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
+                    sizes={
+                      c.wide
+                        ? '(min-width: 768px) 100vw, 100vw'
+                        : '(min-width: 768px) 50vw, 100vw'
+                    }
                     className="object-cover"
                   />
                 </div>
