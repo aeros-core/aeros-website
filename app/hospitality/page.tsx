@@ -13,6 +13,7 @@ import {
   CONTACT_ROUTES,
   CONTACT_URL,
   FAQS,
+  FOUNDER,
   HOTEL_CLIENTS,
   KITCHEN_SPECS,
   LEGAL_DETAILS,
@@ -531,6 +532,47 @@ export default function HospitalityPage() {
                 </p>
               </div>
             ))}
+          </div>
+
+          {/* Founder direct line */}
+          <div className="mt-4 bg-white rounded-3xl border border-border-default p-10 md:p-12 grid md:grid-cols-[1fr_auto] gap-8 md:gap-12 items-center">
+            <div>
+              <div className="text-[10px] font-mono uppercase tracking-widest text-royal-600 mb-4">
+                Direct line
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-fg-primary leading-tight mb-3">
+                Talking to more than one property?
+              </h3>
+              <p className="text-fg-muted leading-relaxed max-w-lg">
+                For a packaging consultation, a group rate contract, or supply
+                across multiple properties, skip the queue.{' '}
+                {FOUNDER.name}, {FOUNDER.role.toLowerCase()}, takes these
+                directly.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-3 md:min-w-[260px]">
+              <a
+                href={FOUNDER.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-7 py-3.5 rounded-full bg-ink-900 text-white text-sm font-medium hover:bg-ink-800 transition-colors text-center"
+              >
+                WhatsApp {FOUNDER.phoneDisplay}
+              </a>
+              <a
+                href={`tel:${FOUNDER.phoneTel}`}
+                className="px-7 py-3.5 rounded-full border border-border-default text-fg-primary text-sm font-medium hover:bg-bg-subtle transition-colors text-center"
+              >
+                Call {FOUNDER.phoneDisplay}
+              </a>
+              <a
+                href={FOUNDER.mailto}
+                className="px-7 py-3.5 rounded-full border border-border-default text-fg-primary text-sm font-medium hover:bg-bg-subtle transition-colors text-center break-words"
+              >
+                {FOUNDER.email}
+              </a>
+            </div>
           </div>
         </div>
       </section>

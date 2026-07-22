@@ -344,6 +344,23 @@ export const FAQS = [
   },
 ]
 
+/**
+ * Founder's direct line, for packaging consultancy and multi-property deals.
+ * Deliberately separate from the sales routes above — a group-level buyer
+ * negotiating a rate contract wants the person who can agree to it.
+ */
+export const FOUNDER = {
+  name: 'Arjun Panchal',
+  role: 'Founder',
+  phoneDisplay: '+91 84335 36369',
+  phoneTel: '+918433536369',
+  email: 'arjun@aeros-x.com',
+  whatsapp:
+    'https://wa.me/918433536369?text=Hi%20Arjun%2C%20I%20am%20from%20a%20hotel%20group%20and%20would%20like%20to%20discuss%20packaging%20across%20our%20properties.',
+  mailto:
+    'mailto:arjun@aeros-x.com?subject=Packaging%20across%20our%20properties&body=Group%20%2F%20property%3A%0ANumber%20of%20properties%3A%0AWhat%20we%20are%20looking%20at%3A%0AContact%20number%3A',
+}
+
 export const LEGAL_ENTITY = 'Boson Machines (OPC) Private Limited'
 
 /**
