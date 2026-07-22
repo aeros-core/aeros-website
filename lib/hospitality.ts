@@ -125,6 +125,17 @@ export const CATEGORIES: SupplyCategory[] = [
     image: '/products/hospitality/banquet-catering.jpg',
     alt: 'Sugarcane bagasse compartment trays, clamshell boxes, and round plates',
   },
+  {
+    eyebrow: 'Laundry & wardrobe',
+    title: 'One in every wardrobe.',
+    body:
+      'Kraft paper laundry bags for the guest wardrobe — a quiet, high-turnover line that housekeeping never wants to run short of, and one more place the property name can sit.',
+    tags: ['Kraft laundry bags', 'Housekeeping', 'Printed to brand'],
+    image: '/products/hospitality/laundry-bags.jpg',
+    alt: 'Plain kraft paper hotel laundry bags, standing open, closed, and folded flat',
+    /** Seventh card — spans the full width so the grid leaves no orphan. */
+    wide: true,
+  },
 ]
 
 /**

@@ -7,7 +7,9 @@ Higgsfield on 2026-07-22 for the `/hospitality` page.
 - `in-room-dining.jpg` — kraft containers and tubs with lids, plus a cutlery pouch
 - `guest-room-bath.jpg` — sealed paper sachet, card holder sleeve, folded tissues
 - `kitchen-boh.jpg` — commercial kitchen paper rolls and folded tissue
-- `paper-bags.jpg` — kraft twisted-handle and premium rope-handle carry bags (16:9)
+- `paper-bags.jpg` — kraft and white carry bags with twisted paper handles
+- `banquet-catering.jpg` — bagasse compartment trays, clamshells, and plates
+- `laundry-bags.jpg` — kraft paper hotel laundry bags, open, closed, folded (16:9)
 
 They are deliberately **unbranded and carry no text**, so they illustrate a
 product category without implying a specific job for a specific property. They
