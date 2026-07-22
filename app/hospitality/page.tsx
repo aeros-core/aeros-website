@@ -17,11 +17,11 @@ import {
 export const metadata: Metadata = {
   title: 'Five-star supply across India — Aeros',
   description:
-    'How Aeros supplies packaging, amenities, and back-of-house essentials to five-star hotels across India — locked specs, audit-ready documentation, and nationwide delivery.',
+    'How Aeros supplies in-room dining containers, café cups, guest amenities, and kitchen consumables to five-star hotels across India — locked specs, audit-ready documentation, and nationwide delivery.',
   openGraph: {
     title: 'Five-star supply across India — Aeros',
     description:
-      'How Aeros supplies packaging, amenities, and back-of-house essentials to five-star hotels across India.',
+      'How Aeros supplies in-room dining containers, café cups, guest amenities, and kitchen consumables to five-star hotels across India.',
     type: 'website',
   },
 }
@@ -49,9 +49,9 @@ export default function HospitalityPage() {
           </h1>
 
           <p className="mt-10 text-lg md:text-xl text-fg-muted max-w-xl mx-auto leading-relaxed">
-            Paper packaging, guest-facing bags, and housekeeping consumables —
-            made at our own Mumbai plant and delivered to every property on the
-            account in seven days.
+            Room service, the café, the guest bath, the kitchen line — made at
+            our own Mumbai plant and delivered to every property on the account
+            in seven days.
           </p>
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -150,11 +150,11 @@ export default function HospitalityPage() {
               What we supply
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-fg-primary leading-tight">
-              Three categories, one supplier.
+              Every floor of the property.
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 gap-4">
             {CATEGORIES.map((c) => (
               <div
                 key={c.eyebrow}
