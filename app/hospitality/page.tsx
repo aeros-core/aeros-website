@@ -7,11 +7,15 @@ import {
   BRAND_PROOF,
   CATEGORIES,
   CLIENT_SEGMENTS,
+  CONTACT_ROUTES,
   CONTACT_URL,
   HOTEL_CLIENTS,
   OPERATING_MODEL,
+  PHONE_DISPLAY,
+  SAMPLES_URL,
   STANDARDS,
   SUPPLY_METRICS,
+  WHATSAPP_URL,
 } from '@/lib/hospitality'
 
 export const metadata: Metadata = {
@@ -56,17 +60,19 @@ export default function HospitalityPage() {
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
-              href={CONTACT_URL}
+              href={SAMPLES_URL}
               className="px-7 py-3.5 rounded-full bg-ink-900 text-white text-sm font-medium hover:bg-ink-800 transition-colors"
             >
-              Talk to the hospitality team
+              Request a sample kit
             </a>
-            <Link
-              href="/products"
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-7 py-3.5 rounded-full border border-border-default text-fg-primary text-sm font-medium hover:bg-bg-subtle transition-colors"
             >
-              Browse the catalogue
-            </Link>
+              WhatsApp {PHONE_DISPLAY}
+            </a>
           </div>
         </div>
 
@@ -252,6 +258,60 @@ export default function HospitalityPage() {
                   </p>
                 </figcaption>
               </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Samples & talk to a human */}
+      <section className="py-32 px-6 bg-bg-subtle border-t border-b border-border-default">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-4">
+              Before you commit
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-fg-primary leading-tight">
+              Hold it in your hand first.
+            </h2>
+            <p className="mt-6 text-fg-muted text-lg max-w-xl mx-auto leading-relaxed">
+              No purchase manager signs a rate contract off a website. Tell us
+              what you use today and we will send a sample kit to the property.
+            </p>
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href={SAMPLES_URL}
+                className="px-8 py-4 rounded-full bg-ink-900 text-white text-sm font-medium hover:bg-ink-800 transition-colors"
+              >
+                Request a sample kit
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 rounded-full border border-border-default bg-white text-fg-primary text-sm font-medium hover:bg-bg-subtle transition-colors"
+              >
+                WhatsApp us
+              </a>
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-3 gap-4">
+            {CONTACT_ROUTES.map((r) => (
+              <a
+                key={r.label}
+                href={r.href}
+                target={r.href.startsWith('http') ? '_blank' : undefined}
+                rel={r.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className="bg-white p-8 rounded-3xl border border-border-default hover:bg-bg-subtle transition-colors flex flex-col"
+              >
+                <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-3">
+                  {r.label}
+                </div>
+                <div className="text-lg font-bold text-fg-primary leading-tight mb-2 break-words">
+                  {r.value}
+                </div>
+                <p className="text-sm text-fg-muted leading-relaxed">{r.note}</p>
+              </a>
             ))}
           </div>
         </div>

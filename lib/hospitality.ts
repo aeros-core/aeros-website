@@ -207,6 +207,41 @@ export const STANDARDS = [
   },
 ]
 
+export const LEGAL_ENTITY = 'Boson Machines OPC Pvt Ltd'
+export const PHONE_DISPLAY = '+91 79770 77571'
+export const PHONE_TEL = '+917977077571'
+
+export const WHATSAPP_URL =
+  'https://wa.me/917977077571?text=Hi%20Aeros%2C%20I%20am%20from%20a%20hotel%20purchase%20team%20and%20would%20like%20a%20sample%20kit.'
+
+export const SAMPLES_URL =
+  'mailto:sales@aeros-x.com?subject=Sample%20kit%20request%20%E2%80%94%20hotel&body=Property%20%2F%20group%3A%0ACity%3A%0AItems%20of%20interest%3A%0ADelivery%20address%3A%0AContact%20number%3A'
+
+/**
+ * Deliberately three routes. A purchase manager who has run a desk for a
+ * decade will pick up a phone or send a WhatsApp long before a web form.
+ */
+export const CONTACT_ROUTES = [
+  {
+    label: 'WhatsApp',
+    value: PHONE_DISPLAY,
+    href: WHATSAPP_URL,
+    note: 'Fastest. Send a photo of what you use today and we will match it.',
+  },
+  {
+    label: 'Phone',
+    value: PHONE_DISPLAY,
+    href: `tel:${PHONE_TEL}`,
+    note: 'Speak to the person who runs the account, not a call centre.',
+  },
+  {
+    label: 'Email',
+    value: 'sales@aeros-x.com',
+    href: SAMPLES_URL,
+    note: 'For sample kits, rate requests, and vendor registration papers.',
+  },
+]
+
 export const CONTACT_EMAIL = 'sales@aeros-x.com'
 
 export const CONTACT_URL =
