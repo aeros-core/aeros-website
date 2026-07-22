@@ -1704,10 +1704,8 @@ const compostableBags: AerosSelectProduct = {
     subtitle:
       'Single-use plastic carry bags are restricted or banned across most of India. These are made from a corn-starch and PBAT blend — plant-based, food-grade, water-resistant — independently certified by CIPET, CPCB, and TUV Austria, and marked on every bag so your customer can see it.',
     image: {
-      src: '/products/compostable-bags/hero.webp',
-      alt: 'Aeros-branded compostable W-cut carry bag in the rain, marked "I am made from corn — I am NOT a plastic bag, 100% compostable"',
-      aspect: 'tall',
-      fit: 'bleed',
+      src: '/products/compostable-bags/product.webp',
+      alt: 'Aeros compostable W-cut carry bag, marked "I am made from corn — I am NOT a plastic bag · 100% compostable" with the CPCB and TUV Austria certification line',
     },
   },
   highlights: [
@@ -1825,17 +1823,19 @@ const compostableBags: AerosSelectProduct = {
         {
           name: 'Retail & kirana counters',
           body: 'The everyday carry bag, across the six standard sizes that cover a grocery run, a sweet box, or a single-item purchase.',
-          image: '/products/compostable-bags/hero.webp',
+          image: '/products/compostable-bags/counter.webp',
           imageFit: 'bleed',
         },
         {
           name: 'Restaurants, cafés & takeaway',
           body: 'Food-grade and water-resistant, so hot and oily takeaway does not compromise the bag between the counter and the customer.',
+          image: '/products/compostable-bags/material.webp',
+          imageFit: 'bleed',
         },
         {
           name: 'Cloud kitchens & delivery',
           body: 'Holds shape in the rain on a bike, and the compostable marking travels with the order — visible sustainability at the customer\'s door.',
-          image: '/products/compostable-bags/material.webp',
+          image: '/products/compostable-bags/delivery.webp',
           imageFit: 'bleed',
         },
         {
