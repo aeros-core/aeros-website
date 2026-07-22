@@ -4,14 +4,25 @@ import Link from 'next/link'
 import Navbar from '@/components/landing/Navbar'
 import Footer from '@/components/landing/Footer'
 import {
+  BEYOND_SUPPLY,
   BRAND_PROOF,
+  CATALOGUE_URL,
   CATEGORIES,
   CLIENT_SEGMENTS,
+  COMMERCIAL_TERMS,
+  CONTACT_ROUTES,
   CONTACT_URL,
+  FAQS,
   HOTEL_CLIENTS,
+  KITCHEN_SPECS,
+  LEGAL_ENTITY,
   OPERATING_MODEL,
+  PHONE_DISPLAY,
+  SAMPLES_URL,
   STANDARDS,
   SUPPLY_METRICS,
+  VENDOR_URL,
+  WHATSAPP_URL,
 } from '@/lib/hospitality'
 
 export const metadata: Metadata = {
@@ -56,17 +67,19 @@ export default function HospitalityPage() {
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
-              href={CONTACT_URL}
+              href={SAMPLES_URL}
               className="px-7 py-3.5 rounded-full bg-ink-900 text-white text-sm font-medium hover:bg-ink-800 transition-colors"
             >
-              Talk to the hospitality team
+              Request a sample kit
             </a>
-            <Link
-              href="/products"
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-7 py-3.5 rounded-full border border-border-default text-fg-primary text-sm font-medium hover:bg-bg-subtle transition-colors"
             >
-              Browse the catalogue
-            </Link>
+              WhatsApp {PHONE_DISPLAY}
+            </a>
           </div>
         </div>
 
@@ -257,6 +270,106 @@ export default function HospitalityPage() {
         </div>
       </section>
 
+      {/* For the kitchen */}
+      <section className="py-32 px-6 bg-white border-t border-border-default">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-4">
+              For the kitchen
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-fg-primary leading-tight">
+              What the chef will ask.
+            </h2>
+            <p className="mt-6 text-fg-muted text-lg max-w-xl mx-auto leading-relaxed">
+              A container the kitchen does not trust never gets used, whatever
+              the rate. Capacity in ml, temperature ratings, and full specs sit
+              on every product listing in the app.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {KITCHEN_SPECS.map((s) => (
+              <div
+                key={s.title}
+                className="bg-bg-subtle p-10 rounded-3xl border border-border-default flex flex-col"
+              >
+                <h3 className="text-xl font-bold text-fg-primary leading-tight mb-3">
+                  {s.title}
+                </h3>
+                <p className="text-sm text-fg-muted leading-relaxed flex-1">
+                  {s.body}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <a
+              href={CATALOGUE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-fg-muted hover:text-fg-primary transition-colors font-mono"
+            >
+              See capacities and specs on the app →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Samples & talk to a human */}
+      <section className="py-32 px-6 bg-bg-subtle border-t border-b border-border-default">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-4">
+              Before you commit
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-fg-primary leading-tight">
+              Hold it in your hand first.
+            </h2>
+            <p className="mt-6 text-fg-muted text-lg max-w-xl mx-auto leading-relaxed">
+              No purchase manager signs a rate contract off a website. Tell us
+              what you use today and we will send a sample kit to the property.
+            </p>
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href={SAMPLES_URL}
+                className="px-8 py-4 rounded-full bg-ink-900 text-white text-sm font-medium hover:bg-ink-800 transition-colors"
+              >
+                Request a sample kit
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 rounded-full border border-border-default bg-white text-fg-primary text-sm font-medium hover:bg-bg-subtle transition-colors"
+              >
+                WhatsApp us
+              </a>
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-3 gap-4">
+            {CONTACT_ROUTES.map((r) => (
+              <a
+                key={r.label}
+                href={r.href}
+                target={r.href.startsWith('http') ? '_blank' : undefined}
+                rel={r.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className="bg-white p-8 rounded-3xl border border-border-default hover:bg-bg-subtle transition-colors flex flex-col"
+              >
+                <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-3">
+                  {r.label}
+                </div>
+                <div className="text-lg font-bold text-fg-primary leading-tight mb-2 break-words">
+                  {r.value}
+                </div>
+                <p className="text-sm text-fg-muted leading-relaxed">{r.note}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* How the supply runs */}
       <section className="py-32 px-6 bg-bg-subtle border-t border-b border-border-default">
         <div className="max-w-5xl mx-auto">
@@ -290,6 +403,52 @@ export default function HospitalityPage() {
         </div>
       </section>
 
+      {/* How the account is contracted */}
+      <section className="py-32 px-6 bg-white border-t border-border-default">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-4">
+              Commercials
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-fg-primary leading-tight">
+              How the account is contracted.
+            </h2>
+          </div>
+
+          <div className="rounded-3xl border border-border-default bg-bg-subtle divide-y divide-border-default">
+            {COMMERCIAL_TERMS.map((t) => (
+              <div
+                key={t.label}
+                className="px-8 py-7 md:px-12 grid grid-cols-1 md:grid-cols-[190px_220px_1fr] gap-2 md:gap-8 items-baseline"
+              >
+                <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60">
+                  {t.label}
+                </div>
+                <div className="text-fg-primary font-medium">{t.value}</div>
+                <p className="text-sm text-fg-muted leading-relaxed">{t.note}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 rounded-3xl border border-border-default bg-white p-10 text-center">
+            <h3 className="text-2xl font-bold text-fg-primary leading-tight mb-3">
+              Send us your vendor form.
+            </h3>
+            <p className="text-fg-muted leading-relaxed max-w-xl mx-auto">
+              Every group has its own registration format. Send yours and we
+              will return it completed with our statutory documentation
+              attached — {LEGAL_ENTITY}.
+            </p>
+            <a
+              href={VENDOR_URL}
+              className="mt-8 inline-flex px-8 py-4 rounded-full bg-ink-900 text-white text-sm font-medium hover:bg-ink-800 transition-colors"
+            >
+              Start vendor registration
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Why five-star is different */}
       <section className="py-32 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
@@ -313,6 +472,74 @@ export default function HospitalityPage() {
                 </h3>
                 <p className="text-fg-muted leading-relaxed">{s.body}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Beyond supply */}
+      <section className="py-32 px-6 bg-bg-subtle border-t border-b border-border-default">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-4">
+              Beyond supply
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-fg-primary leading-tight">
+              We do more than fill the order.
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-4">
+            {BEYOND_SUPPLY.map((s) => (
+              <div
+                key={s.eyebrow}
+                className="bg-white p-10 rounded-3xl border border-border-default flex flex-col"
+              >
+                <div className="text-[10px] font-mono uppercase tracking-widest text-royal-600 mb-4">
+                  {s.eyebrow}
+                </div>
+                <h3 className="text-2xl font-bold text-fg-primary leading-tight mb-4">
+                  {s.title}
+                </h3>
+                <p className="text-sm text-fg-muted leading-relaxed flex-1">
+                  {s.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-32 px-6 bg-white">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-4">
+              Questions
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-fg-primary leading-tight">
+              What buyers ask us first.
+            </h2>
+          </div>
+
+          <div className="rounded-3xl border border-border-default bg-bg-subtle divide-y divide-border-default">
+            {FAQS.map((f) => (
+              <details key={f.q} className="group px-8 py-6 md:px-10">
+                <summary className="flex items-start justify-between gap-6 cursor-pointer list-none">
+                  <h3 className="text-lg font-medium text-fg-primary leading-snug">
+                    {f.q}
+                  </h3>
+                  <span
+                    aria-hidden
+                    className="mt-1 shrink-0 text-fg-muted/60 transition-transform group-open:rotate-45"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="mt-4 text-fg-muted leading-relaxed max-w-2xl">
+                  {f.a}
+                </p>
+              </details>
             ))}
           </div>
         </div>
