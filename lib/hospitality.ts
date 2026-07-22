@@ -404,11 +404,8 @@ export const LEGAL_ENTITY = 'Boson Machines (OPC) Private Limited'
  * Statutory identity a purchase team needs to raise a PO and to cross-check
  * us on the GST portal. Sourced from the GST registration certificate.
  *
- * DELIBERATELY NOT PUBLISHED HERE: bank account and IFSC from the cancelled
- * cheque, and the PAN card document. Bank details on a public page are a
- * fraud invitation — they belong in the vendor form sent directly to the
- * property. (The PAN itself is embedded in the GSTIN by design, which is
- * normal and unavoidable.)
+ * The PAN card document is not published. The PAN itself is embedded in the
+ * GSTIN by design, which is normal and unavoidable.
  */
 export const LEGAL_DETAILS = [
   { label: 'Legal name', value: 'Boson Machines (OPC) Private Limited' },
@@ -421,8 +418,28 @@ export const LEGAL_DETAILS = [
   },
   { label: 'Works', value: 'Bhiwandi, Maharashtra' },
 ]
+
+/**
+ * Published at Arjun's explicit instruction on 2026-07-22, after the
+ * vendor-payment fraud risk was raised and considered.
+ *
+ * BANK_VERIFICATION_NOTE below must stay on the page alongside these. A
+ * published account number is the raw material for a "our bank details have
+ * changed" scam aimed at a hotel's accounts payable team; a standing
+ * instruction to confirm by phone, and a statement that details never change
+ * by email, is what defeats it. Do not remove one without the other.
+ */
+export const BANK_DETAILS = [
+  { label: 'Account name', value: 'Boson Machines (OPC) Pvt Ltd' },
+  { label: 'Account number', value: '59209870983696' },
+  { label: 'Bank & branch', value: 'HDFC Bank, Goregaon West' },
+  { label: 'IFSC', value: 'HDFC0000322' },
+]
+
 export const PHONE_DISPLAY = '+91 79770 77571'
 export const PHONE_TEL = '+917977077571'
+
+export const BANK_VERIFICATION_NOTE = `These are our only bank details, and they will never change by email. If you receive any message claiming our account has changed, call ${PHONE_DISPLAY} to confirm before releasing payment.`
 
 export const WHATSAPP_URL =
   'https://wa.me/917977077571?text=Hi%20Aeros%2C%20I%20am%20from%20a%20hotel%20purchase%20team%20and%20would%20like%20a%20sample%20kit.'
