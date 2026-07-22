@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/landing/Navbar'
 import Footer from '@/components/landing/Footer'
 import {
+  BRAND_PROOF,
   CATEGORIES,
   CLIENT_SEGMENTS,
   CONTACT_URL,
@@ -178,6 +180,46 @@ export default function HospitalityPage() {
                   ))}
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Plain stock → printed to spec */}
+      <section className="py-32 px-6 bg-white border-t border-border-default">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-4">
+              Plain to printed
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-fg-primary leading-tight">
+              Stock on the shelf, or your brand on it.
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            {BRAND_PROOF.map((img) => (
+              <figure
+                key={img.src}
+                className="bg-white rounded-3xl border border-border-default overflow-hidden flex flex-col"
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  width={img.width}
+                  height={img.height}
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="w-full h-auto"
+                />
+                <figcaption className="p-8 border-t border-border-default">
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-2">
+                    {img.eyebrow}
+                  </div>
+                  <p className="text-sm text-fg-muted leading-relaxed">
+                    {img.caption}
+                  </p>
+                </figcaption>
+              </figure>
             ))}
           </div>
         </div>
