@@ -28,7 +28,18 @@ type VariantsSection = {
   kind: 'variants'
   heading: string
   intro?: string
-  items: Array<{ name: string; body: string; tags?: string[]; href?: string }>
+  items: Array<{
+    name: string
+    body: string
+    tags?: string[]
+    href?: string
+    /** When provided, the variant renders in the expanded per-row layout
+     * (image gallery left, content right) instead of the compact card grid. */
+    images?: string[]
+    /** Small per-variant spec table rendered under the body in the expanded
+     * layout. Ignored in the compact card layout. */
+    specs?: Array<{ label: string; value: string }>
+  }>
 }
 
 type FaqSection = {
@@ -67,6 +78,16 @@ type VideoSection = {
   poster?: string
 }
 
+type FormatShowcaseSection = {
+  kind: 'format-showcase'
+  heading: string
+  intro?: string
+  /** Hero shot of the plain (unprinted) format, displayed large on the left. */
+  plain: { image: string; label: string }
+  /** Branded printed examples shown as a grid on the right. */
+  printed: Array<{ image: string; label: string }>
+}
+
 export type AerosSelectSection =
   | SpecsSection
   | FeaturesSection
@@ -77,6 +98,7 @@ export type AerosSelectSection =
   | StatsSection
   | ComparisonSection
   | VideoSection
+  | FormatShowcaseSection
 
 export type AerosSelectProduct = {
   slug: string
@@ -102,25 +124,25 @@ const sealerMachines: AerosSelectProduct = {
   slug: 'sealer-machines',
   name: 'AeroSeal',
   tagline:
-    'AeroSeal V3 — a manual cup-sealing machine for paper and PET cups. In service at Starbucks, McDonald\'s, KFC, and Dunkin\' across India.',
+    'AeroSeal — the family of cup and tub sealers in daily service at Starbucks, McDonald\'s, KFC, and Dunkin\' across India.',
   hero: {
     eyebrow: 'Aeros Select · Equipment',
-    title: 'AeroSeal V3.',
+    title: 'AeroSeal.',
     subtitle:
-      'A manual, countertop hot-seal machine for paper and PET cups. Already in daily service at Starbucks, McDonald\'s, KFC, and Dunkin\' counters across India.',
+      'A family of manual countertop sealing machines for paper cups, PET cold cups, and food tubs — plus the precut foils that go on top. In daily service at Starbucks, McDonald\'s, KFC, and Dunkin\' counters across India.',
   },
   highlights: [
-    { label: 'Cup top diameter', value: '80 / 90 / 92 / 98 mm' },
-    { label: 'Compatible cups', value: 'Paper (Aqueous, PE, PLA) + PET' },
+    { label: 'Range', value: '60 ml cups to 1 L family tubs' },
+    { label: 'Compatible', value: 'Paper, PET, PP, bagasse' },
     { label: 'Operation', value: 'Manual countertop' },
-    { label: 'From', value: '$799 — intro $699 until NRA show' },
+    { label: 'Lineup', value: 'Cup Sealer · Tub Sealer · V5 · Foils' },
   ],
   sections: [
     {
       kind: 'customers',
       heading: 'Trusted by India\'s largest chains.',
       intro:
-        'AeroSeal V3 is installed and in daily service across some of India\'s biggest QSR and coffee operators.',
+        'AeroSeal is installed and in daily service across some of India\'s biggest QSR and coffee operators.',
       items: [
         { name: 'Starbucks', note: 'India' },
         { name: 'McDonald\'s', note: 'India' },
@@ -143,9 +165,9 @@ const sealerMachines: AerosSelectProduct = {
         'Four products cover the counter — from a 60 ml shot cup to a 1 L tub, plus the precut foils that go on top. Every machine is manual countertop.',
       items: [
         {
-          name: 'AeroSeal Cup Sealer — V3',
-          tags: ['Manual', '60 ml – 600 ml cups', 'From $799'],
-          body: 'The entry machine. Hot-seals paper and PET cups from 2 oz (60 ml) up to 20 oz (600 ml). Ships with the standard four-die set — 80, 90, 92, 98 mm. Intro $699 for the first 15 days, ends at the NRA show.',
+          name: 'AeroSeal Cup Sealer',
+          tags: ['Manual', '60 ml – 600 ml cups', 'V1 → V4'],
+          body: 'The cup-sealing machine in daily service across India\'s biggest QSR and coffee chains. Hot-seals paper and PET cups from 2 oz (60 ml) up to 20 oz (600 ml). Four versions — entry, analog timer, digital control, and CE-certified premium.',
           href: '/products/aeros-select/cup-sealer',
         },
         {
@@ -169,67 +191,24 @@ const sealerMachines: AerosSelectProduct = {
       ],
     },
     {
-      kind: 'specs',
-      heading: 'Standard specifications.',
-      intro:
-        'Every AeroSeal V3 ships with the standard four-die set. Custom geometries and freight options below cover the rest.',
-      items: [
-        { label: 'Model', value: 'AeroSeal V3' },
-        { label: 'Operation', value: 'Manual, countertop, single-motion pull-handle' },
-        { label: 'Cup top diameters', value: '80, 90, 92, 98 mm — four-die set included (80 / 90 typically paper, 92 / 98 typically PET)' },
-        { label: 'Compatible cup coatings', value: 'Aqueous, PE, PLA on paper + virgin PET' },
-        { label: 'Cup heights supported', value: '90 – 200 mm' },
-        { label: 'Foil format', value: 'Precut foil discs — no in-machine cutting required' },
-        { label: 'Sealing temperature', value: '0 – 250 °C, digital PID controller' },
-        { label: 'Sealing time', value: '0 – 5 s, digital timer' },
-        { label: 'Build', value: 'Stainless steel housing, food-grade contact parts' },
-        { label: 'Pricing', value: 'From $799 · introductory $699 — first 15 days, ends at the NRA show' },
-        { label: 'Lead time — standard', value: '15 days door-to-door via DHL air' },
-        { label: 'Lead time — custom', value: '30 days build + 15 days DHL air' },
-        { label: 'Bulk freight', value: 'LCL and 20 ft FCL available for higher-load orders' },
-      ],
-    },
-    {
       kind: 'features',
-      heading: 'What is in the box.',
+      heading: 'What defines AeroSeal.',
       items: [
         {
-          name: 'Four-die set — 80 / 90 / 92 / 98 mm',
-          body: 'Swap dies for the cup you are running. 80 mm and 90 mm cover most paper-cup sizes; 92 mm and 98 mm cover PET cold cups including our U-Shape range.',
+          name: 'Manual countertop, every machine',
+          body: 'Single-motion pull-handle across the lineup. No compressed air, no PLC, no operator training beyond five minutes — just plug in, set temperature, seal.',
         },
         {
-          name: 'Precut foil discs',
-          body: 'AeroSeal foils ship pre-cut to size — drop, seal, done. No in-machine cutter, no ragged edges, no jammed-cutter downtime.',
+          name: 'Precut foil lids',
+          body: 'AeroSeal foils ship precut to size. Drop the disc, pull the handle, done. No in-machine cutter to maintain, no ragged edges, no jammed-cutter downtime.',
+        },
+        {
+          name: 'Stainless Steel 304 build',
+          body: 'Food-grade stainless across the housing and every contact part — easy wipe-down, no rust on the wet counter, built to live in service for years.',
         },
         {
           name: 'Digital PID temperature control',
-          body: 'Holds the seal head within ±1 °C so the seal looks the same on cup #1 and cup #1,000.',
-        },
-        {
-          name: 'Works across cup coatings',
-          body: 'Seals cleanly on Aqueous, PE, and PLA-lined paper cups, plus virgin PET — one machine across the cold-drinks counter.',
-        },
-      ],
-    },
-    {
-      kind: 'use-cases',
-      heading: 'Built for these operations.',
-      items: [
-        {
-          name: 'QSR cold-drink counters',
-          body: 'Seals burger-meal soft drinks, iced teas, and lemonades at the counter — survives the bag and the drive-thru window without leaks.',
-        },
-        {
-          name: 'Coffee chains',
-          body: 'Cold brew, iced lattes, and Frappé-style drinks sealed clean for grab-and-go and aggregator delivery.',
-        },
-        {
-          name: 'Bubble tea & boba bars',
-          body: '92 mm and 98 mm dies handle PET U-Shape cold cups with tapioca pearls and popping boba — no splashing at shaker handoff.',
-        },
-        {
-          name: 'Cloud kitchens & delivery',
-          body: 'Spill-proof seal survives bag transit on Zomato, Swiggy, Zepto, and Blinkit handoffs — fewer refunds, fewer 1-star reviews.',
+          body: 'Holds the seal head within ±1 °C across the shift, so the seal looks the same on cup #1 and cup #1,000.',
         },
       ],
     },
@@ -238,16 +217,12 @@ const sealerMachines: AerosSelectProduct = {
       heading: 'FAQ.',
       items: [
         {
-          q: 'Which cup sizes will AeroSeal seal?',
-          a: 'Any cup with an 80, 90, 92, or 98 mm top diameter. 80 and 90 mm are typically paper cups; 92 and 98 mm are typically PET cold cups. All four dies ship in the standard V3 box.',
+          q: 'Which AeroSeal machine should I order?',
+          a: 'Cup Sealer for cup-only operations (2 oz – 20 oz cups). Tub Sealer if you also run tubs up to 1 L. V5 is the flagship — one machine across the entire menu, 65 mm to 165 mm diameter, hot fills and cold drinks. See each product page for the full breakdown.',
         },
         {
-          q: 'What about a cup size that is not on the standard die set?',
-          a: 'We build to spec. A custom AeroSeal V3 around your cup geometry takes 30 days to manufacture and 15 days for DHL air delivery. Send us the cup drawing to start.',
-        },
-        {
-          q: 'What is the price?',
-          a: 'AeroSeal V3 starts at $799. There is an introductory $699 price for the first 15 days, ending at the NRA show.',
+          q: 'Are all AeroSeal machines manual?',
+          a: 'Yes — every machine in the lineup is manual countertop. The differences are in range, controller, and certification, not in automation.',
         },
         {
           q: 'What is the MOQ for printed foils?',
@@ -255,25 +230,21 @@ const sealerMachines: AerosSelectProduct = {
         },
         {
           q: 'Do I need a foil cutter?',
-          a: 'No — AeroSeal foils ship precut. Drop the foil disc, pull the handle, the cup is sealed. There is no cutter to maintain and no offcut waste.',
-        },
-        {
-          q: 'Is there a seal counter on the machine?',
-          a: 'No. AeroSeal V3 is a clean, manual machine — temperature controller, timer, and seal head. No digital seal counter.',
+          a: 'No — AeroSeal foils ship precut. Drop the foil disc, pull the handle, the cup or tub is sealed. There is no cutter to maintain and no offcut waste.',
         },
         {
           q: 'How is it shipped?',
-          a: 'Standard V3 ships door-to-door in 15 days via DHL air. For multi-machine rollouts, we offer LCL and 20 ft FCL freight at lower per-unit cost — ask us for a quote.',
+          a: 'Standard machines ship door-to-door in 15 days via DHL air. For multi-machine rollouts, we offer LCL and 20 ft FCL freight at lower per-unit cost — ask us for a quote.',
         },
         {
           q: 'Is installation included?',
-          a: 'AeroSeal V3 is plug-and-play. Unbox, plug into single-phase mains, set temperature, run.',
+          a: 'Every AeroSeal is plug-and-play. Unbox, plug into single-phase mains, set temperature, run.',
         },
       ],
     },
   ],
   orderUrl: APP_MARKETPLACE_URL,
-  orderCtaLabel: 'Order an AeroSeal V3',
+  orderCtaLabel: 'Order an AeroSeal',
 }
 
 const uShapePetCups: AerosSelectProduct = {
@@ -436,6 +407,13 @@ const cupSealer: AerosSelectProduct = {
   ],
   sections: [
     {
+      kind: 'video',
+      heading: 'The AeroSeal Cup Sealer at the counter.',
+      intro:
+        'One handle, one motion — paper or PET, 2 oz to 20 oz, sealed clean every time.',
+      src: 'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-4rbhUaG362ifgeltL2ZOD4FzvNT3KG.mp4',
+    },
+    {
       kind: 'customers',
       heading: 'Trusted by India\'s largest chains.',
       intro:
@@ -465,21 +443,69 @@ const cupSealer: AerosSelectProduct = {
           name: 'V1 — Entry',
           tags: ['Manual', 'No timer', 'Energy controller'],
           body: 'The entry point. Pull-handle hot-seal with an energy (analog) controller. Nylon-bush base. No timer, no heater cover. The right choice for counters that just need a clean seal and nothing more.',
+          images: [
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v1-1-9E4c1Vh3wWNBKIqjjlO01GMHhfcVFJ.png',
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v1-2-0gXgkjV7bFISxgvrM1AalimJhSzv37.png',
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v1-3-XJIaGmfZn9c5OhW7VmGtmQfHJJRZwB.png',
+          ],
+          specs: [
+            { label: 'Timer', value: 'No' },
+            { label: 'Temperature control', value: 'Energy controller' },
+            { label: 'Base mounts', value: 'Nylon bushes' },
+            { label: 'Polycarbonate heater cover', value: 'No' },
+            { label: 'Certification', value: 'No' },
+          ],
         },
         {
           name: 'V2 — Analog Timer',
           tags: ['Manual', 'Analog timer', 'External buzzer'],
           body: 'Adds an analog timer and an external end-of-cycle buzzer to the V1 base. Operators stop guessing seal time — the buzzer tells them when the seal is done.',
+          images: [
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v2-1-eLK74jeQZIkqPCfS2dwYDuuGMaUB0L.webp',
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v2-2-r6ZBjZsrJsHuklpTpTx11GnL7XiJiQ.webp',
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v2-3-SStc3uiUpTJ8gjbZnaBX1FmFwTHbIg.webp',
+          ],
+          specs: [
+            { label: 'Timer', value: 'Analog' },
+            { label: 'Temperature control', value: 'Energy controller' },
+            { label: 'Base mounts', value: 'Nylon bushes' },
+            { label: 'Polycarbonate heater cover', value: 'No' },
+            { label: 'Certification', value: 'No' },
+          ],
         },
         {
           name: 'V3 — Digital Control',
           tags: ['Manual', 'Digital PID', 'Polycarbonate cover', 'From $799'],
           body: 'Digital PID temperature controller with ±1 °C accuracy, analog timer, external buzzer, and a polycarbonate heater cover for safety. The most-ordered version. Intro $699 — first 15 days, ends at the NRA show.',
+          images: [
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v3-1-PaQPxLE5fcbGasUrdis7yi9RB49M2P.png',
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v3-2-ZJNF1YU088SU3DyJtqnVF1Cl3h578l.png',
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v3-3-CawJg51Yqe95rJNDpzJRpU42bpL7wZ.webp',
+          ],
+          specs: [
+            { label: 'Timer', value: 'Analog' },
+            { label: 'Temperature control', value: 'Digital PID' },
+            { label: 'Base mounts', value: 'Nylon bushes' },
+            { label: 'Polycarbonate heater cover', value: 'Yes' },
+            { label: 'Certification', value: 'No' },
+          ],
         },
         {
           name: 'V4 — Premium · CE',
           tags: ['Manual', 'Digital timer', 'CE certified'],
           body: 'Digital timer with internal buzzer, digital PID controller, anti-skid rubber base, polycarbonate heater cover, CE certification. The export-ready version for operators that need a paper trail with the machine.',
+          images: [
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v4-1-lvFM5oSQD12bZdE1H10SQAPFj7y5qa.webp',
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v4-2-zMmpnm5EUkRdbzDBpvnZaAKhVZglrW.webp',
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v4-3-whXwGyRIuEOHdwI2VEr2SVgqxUltoY.webp',
+          ],
+          specs: [
+            { label: 'Timer', value: 'Digital' },
+            { label: 'Temperature control', value: 'Digital PID' },
+            { label: 'Base mounts', value: 'Anti-skid rubber' },
+            { label: 'Polycarbonate heater cover', value: 'Yes' },
+            { label: 'Certification', value: 'CE' },
+          ],
         },
       ],
     },
@@ -862,6 +888,59 @@ const foils: AerosSelectProduct = {
       ],
     },
     {
+      kind: 'format-showcase',
+      heading: 'Tear-drop shape.',
+      intro:
+        'The peel-tab silhouette — plain on the left, a handful of printed runs we have shipped on the right.',
+      plain: {
+        image:
+          'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-foils-teardrop-tear-off-CFkQbZPs7QFhIa0TbZMVJQa7uiub4p.webp',
+        label: 'Plain',
+      },
+      printed: [
+        {
+          image:
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-foils-teardrop-arabic-1ShAgBXnRsYpUbZhiNE5sVRLqA25Jk.webp',
+          label: 'Shakar',
+        },
+        {
+          image:
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-foils-teardrop-Kenangan-gy1fcmscLnRAFsOWjNGNuxhsgTo1NV.webp',
+          label: 'Kenangan Coffee',
+        },
+        {
+          image:
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-foils-teardrop-a-cup-of-happiness-uvGtvECCfaGquwYJmd3v7f6DsRgQt9.webp',
+          label: 'ab Coffee',
+        },
+        {
+          image:
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-foils-teardrop-third-wave-1-RuAgjvAa7T7WgqprRqZT0giOWQuQLt.webp',
+          label: 'Third Wave Coffee',
+        },
+        {
+          image:
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-foils-teardrop-dunkin-aesp29WUZJ23OK8VGiHFsVM5UyxrD6.webp',
+          label: 'Dunkin\'',
+        },
+        {
+          image:
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-foils-teardrop-tobys-estate-LhEC59ves9rWcZvD8ximr6BsMkLFVr.webp',
+          label: 'Toby\'s Estate',
+        },
+        {
+          image:
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-foils-teardrop-THF-wC9v0y6BHANIhtCKDRJjJrwJGv6a9H.webp',
+          label: 'THF',
+        },
+        {
+          image:
+            'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-foils-teardrop-subko-Ff3swlyhFSAwLegVq9huSHJgePSDLV.webp',
+          label: 'Subko',
+        },
+      ],
+    },
+    {
       kind: 'specs',
       heading: 'Tear-drop foils.',
       intro:
@@ -984,6 +1063,13 @@ const v5: AerosSelectProduct = {
     { label: 'Throughput', value: '8 – 10 cups / minute' },
   ],
   sections: [
+    {
+      kind: 'video',
+      heading: 'V5 in motion.',
+      intro:
+        'One head, one motion — cups, tubs, dessert pots, and family tubs through the same SOP.',
+      src: 'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-v5-PUqyKPGXVIAYFkmDkYWeRsHb8sXrJB.mp4',
+    },
     {
       kind: 'customers',
       heading: 'Trusted by India\'s largest chains.',

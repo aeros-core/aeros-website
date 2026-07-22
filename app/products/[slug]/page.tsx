@@ -199,27 +199,50 @@ function TypesContent({
         intro={section.intro}
       />
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {section.items.map((item) => (
-          <div
-            key={item.name}
-            className="bg-white p-8 rounded-3xl border border-border-default flex flex-col h-full"
-          >
-            <h3 className="text-xl font-bold text-fg-primary mb-3">
-              {item.name}
-            </h3>
-            <p className="text-fg-muted text-sm leading-relaxed mb-4 flex-1">
-              {item.whenToUse}
-            </p>
-            {item.sizes && (
-              <div>
-                <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-1">
-                  Common sizes
+        {section.items.map((item) => {
+          const inner = (
+            <>
+              <h3 className="text-xl font-bold text-fg-primary mb-3">
+                {item.name}
+              </h3>
+              <p className="text-fg-muted text-sm leading-relaxed mb-4 flex-1">
+                {item.whenToUse}
+              </p>
+              {item.sizes && (
+                <div>
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-1">
+                    Common sizes
+                  </div>
+                  <div className="text-sm text-fg-primary">{item.sizes}</div>
                 </div>
-                <div className="text-sm text-fg-primary">{item.sizes}</div>
-              </div>
-            )}
-          </div>
-        ))}
+              )}
+            </>
+          )
+
+          if (item.href) {
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="group bg-white p-8 rounded-3xl border border-border-default flex flex-col h-full hover:bg-bg-subtle transition-colors"
+              >
+                {inner}
+                <span className="mt-6 text-sm text-fg-primary font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                  See full details <span aria-hidden>→</span>
+                </span>
+              </Link>
+            )
+          }
+
+          return (
+            <div
+              key={item.name}
+              className="bg-white p-8 rounded-3xl border border-border-default flex flex-col h-full"
+            >
+              {inner}
+            </div>
+          )
+        })}
       </div>
     </>
   )
