@@ -139,7 +139,7 @@ export const OPERATING_MODEL = [
     step: '04',
     title: 'Seven days, pan-India',
     body:
-      'Dispatch to every property on the account from one order, on a seven-day lead time whether it is a metro or a resort town.',
+      'Dispatch to every property on the account from one order under our pan-India logistics agreement with Delhivery, on a seven-day lead time whether it is a metro or a resort town.',
   },
 ]
 
@@ -159,6 +159,11 @@ export const STANDARDS = [
     title: 'Printed to the brand book',
     body:
       'Print, colour, and finish are held to the property standard. A key card holder or a carry bag is a brand surface, and it gets treated like one.',
+  },
+  {
+    title: 'Live tracking, not phone calls',
+    body:
+      'A pan-India logistics agreement with Delhivery moves every order, and shipment status reports live into the Aeros app — so a property can see where its stock is without chasing anyone for an update.',
   },
   {
     title: 'Low MOQ, ready stock',
