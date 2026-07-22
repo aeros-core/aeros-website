@@ -100,12 +100,23 @@ export default function HospitalityPage() {
           </div>
 
           {HOTEL_CLIENTS.length > 0 ? (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {HOTEL_CLIENTS.map((c) => (
                 <div
                   key={c.name}
-                  className="bg-white p-8 rounded-3xl border border-border-default"
+                  className="bg-white p-8 rounded-3xl border border-border-default flex flex-col"
                 >
+                  {c.logo ? (
+                    <div className="relative h-10 mb-4">
+                      <Image
+                        src={c.logo}
+                        alt={c.name}
+                        fill
+                        sizes="200px"
+                        className="object-contain object-left"
+                      />
+                    </div>
+                  ) : null}
                   <div className="text-lg font-bold text-fg-primary leading-tight mb-1">
                     {c.name}
                   </div>
