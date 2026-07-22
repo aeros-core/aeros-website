@@ -356,6 +356,32 @@ export const FAQS = [
 ]
 
 /**
+ * Aeros Select cross-sell, framed for a property rather than a QSR. Sealing
+ * is what makes the in-room dining promise on this page actually true, so
+ * the equipment belongs next to the packaging, not on a separate island.
+ */
+export const SELECT_HIGHLIGHTS = [
+  {
+    name: 'AeroSeal cup & tub sealers',
+    body:
+      'Seal the container in the kitchen and nothing shifts on the way to the room. Manual countertop machines, stainless steel, digital temperature control.',
+    href: '/products/aeros-select/sealer-machines',
+  },
+  {
+    name: 'AeroSeal foils',
+    body:
+      'Precut aluminium foil lids sized to every cup and tub we supply. Airtight and leak-proof — drop on, seal, send.',
+    href: '/products/aeros-select/foils',
+  },
+  {
+    name: 'Mesh delivery bags',
+    body:
+      'For room service runs and outdoor catering, where a tray has to travel further than a corridor.',
+    href: '/products/aeros-select/mesh-delivery-bags',
+  },
+]
+
+/**
  * Founder's direct line, for packaging consultancy and multi-property deals.
  * Deliberately separate from the sales routes above — a group-level buyer
  * negotiating a rate contract wants the person who can agree to it.
@@ -391,7 +417,7 @@ export const LEGAL_DETAILS = [
   {
     label: 'Registered office',
     value:
-      '76/612, Motilal Nagar No. 1, behind the post office, near Siddharth Hospital, Goregaon West, Mumbai',
+      '76/612, Motilal Nagar No. 1, Goregaon (W), Mumbai 400104, Maharashtra, India',
   },
   { label: 'Works', value: 'Bhiwandi, Maharashtra' },
 ]

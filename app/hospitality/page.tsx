@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/landing/Navbar'
 import Footer from '@/components/landing/Footer'
+import { AEROS_SELECT_TAGLINE } from '@/lib/aeros-select'
 import {
   BEYOND_SUPPLY,
   BRAND_PROOF,
@@ -20,6 +21,7 @@ import {
   OPERATING_MODEL,
   PHONE_DISPLAY,
   SAMPLES_URL,
+  SELECT_HIGHLIGHTS,
   STANDARDS,
   SUPPLY_METRICS,
   VENDOR_URL,
@@ -313,6 +315,54 @@ export default function HospitalityPage() {
             >
               See capacities and specs on the app →
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Aeros Select */}
+      <section className="py-32 px-6 bg-bg-subtle border-t border-b border-border-default">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="text-[10px] font-mono uppercase tracking-widest text-royal-600 mb-4">
+              Aeros Select
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-fg-primary leading-tight">
+              The equipment that seals it.
+            </h2>
+            <p className="mt-6 text-fg-muted text-lg max-w-xl mx-auto leading-relaxed">
+              {AEROS_SELECT_TAGLINE} A sealed container is what turns a
+              leak-proof tub into a dish that actually arrives intact.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-4">
+            {SELECT_HIGHLIGHTS.map((s) => (
+              <Link
+                key={s.name}
+                href={s.href}
+                className="group bg-white p-10 rounded-3xl border border-border-default flex flex-col hover:bg-bg-subtle transition-colors"
+              >
+                <h3 className="text-xl font-bold text-fg-primary leading-tight mb-3">
+                  {s.name}
+                </h3>
+                <p className="text-sm text-fg-muted leading-relaxed flex-1">
+                  {s.body}
+                </p>
+                <span className="mt-8 text-sm text-fg-primary font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                  See the range <span aria-hidden>→</span>
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              href="/products/aeros-select"
+              className="inline-flex px-8 py-4 rounded-full border border-royal-600 text-royal-700 text-sm font-medium hover:bg-royal-50 transition-colors items-center gap-2"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-royal-600" />
+              Browse the full Aeros Select range
+            </Link>
           </div>
         </div>
       </section>
