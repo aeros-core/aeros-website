@@ -5,6 +5,8 @@ import Navbar from '@/components/landing/Navbar'
 import Footer from '@/components/landing/Footer'
 import { AEROS_SELECT_TAGLINE } from '@/lib/aeros-select'
 import {
+  BANK_DETAILS,
+  BANK_VERIFICATION_NOTE,
   BEYOND_SUPPLY,
   BRAND_PROOF,
   CATALOGUE_URL,
@@ -509,6 +511,29 @@ export default function HospitalityPage() {
               ))}
             </dl>
 
+            <dl className="mt-8">
+              {BANK_DETAILS.map((b) => (
+                <div
+                  key={b.label}
+                  className="py-4 border-b border-border-default grid grid-cols-1 sm:grid-cols-[170px_1fr] gap-1 sm:gap-6 items-baseline"
+                >
+                  <dt className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60">
+                    {b.label}
+                  </dt>
+                  <dd className="text-sm text-fg-primary leading-relaxed font-mono">
+                    {b.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            <p className="mt-6 text-sm text-fg-muted leading-relaxed bg-bg-subtle border border-border-default rounded-2xl p-6">
+              <span className="font-medium text-fg-primary">
+                Before you pay:
+              </span>{' '}
+              {BANK_VERIFICATION_NOTE}
+            </p>
+
             <div className="mt-10 text-center">
               <a
                 href={VENDOR_URL}
@@ -516,10 +541,6 @@ export default function HospitalityPage() {
               >
                 Start vendor registration
               </a>
-              <p className="mt-6 text-xs text-fg-muted/60 max-w-md mx-auto leading-relaxed">
-                Bank details are shared on the completed vendor form, not
-                published here.
-              </p>
             </div>
           </div>
         </div>
