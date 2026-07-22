@@ -11,10 +11,14 @@ Higgsfield on 2026-07-22 for the `/hospitality` page.
 - `banquet-catering.jpg` — bagasse compartment trays, clamshells, and plates
 - `laundry-bags.jpg` — kraft paper hotel laundry bags, open, closed, folded (16:9)
 
-They are deliberately **unbranded and carry no text**, so they illustrate a
-product category without implying a specific job for a specific property. They
-should not be captioned or presented as photographs of work delivered to a
-named client.
+They are deliberately **unbranded**, so they illustrate a product category
+without implying a specific job for a specific property. They should not be
+captioned or presented as photographs of work delivered to a named client.
+
+The only text on any of them is the generic word `LAUNDRY` on the laundry
+bags, which is a product marking rather than a brand. Its spelling was
+checked letter by letter before use — AI-rendered text garbles easily, so
+re-check it on any replacement render.
 
 Replace them with real product photography as soon as it exists — that is
 strictly better on a page whose purpose is credibility with hotel procurement
