@@ -407,12 +407,12 @@ export const LEGAL_ENTITY = 'Boson Machines (OPC) Private Limited'
  * The PAN card document is not published. The PAN itself is embedded in the
  * GSTIN by design, which is normal and unavoidable.
  *
- * TODO(arjun): the MSME line cites a Udyog Aadhaar (UAM MH18A0100990, filed
- * 2019). Udyog Aadhaar was superseded by Udyam Registration in July 2020 and
- * UAM registrations ceased to be valid after 31 March 2021. Confirm we hold a
- * current Udyam number and replace this value with it — MSME status carries
- * the MSMED Act payment protection, which is worth real money against a hotel
- * group's payment cycle. If registration has lapsed, remove this row.
+ * The MSME line cites the current Udyam registration, UDYAM-MH-18-0092157,
+ * issued 2021 and superseding the earlier Udyog Aadhaar MH18A0100990 (which
+ * the Udyam certificate itself lists as the linked prior registration). Use
+ * the Udyam number, not the UAM — UAM registrations ceased to be valid after
+ * 31 March 2021 and a hotel vendor team will check the current one. MSME
+ * status carries MSMED Act payment protection, so keep this row accurate.
  */
 export const LEGAL_DETAILS = [
   { label: 'Legal name', value: 'Boson Machines (OPC) Private Limited' },
@@ -420,7 +420,7 @@ export const LEGAL_DETAILS = [
   { label: 'Constitution', value: 'Private limited company, GST registered since 2017' },
   {
     label: 'MSME',
-    value: 'Micro enterprise, manufacturing — Udyog Aadhaar MH18A0100990',
+    value: 'Micro enterprise, manufacturing — UDYAM-MH-18-0092157',
   },
   {
     label: 'Registered office',
