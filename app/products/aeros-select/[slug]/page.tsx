@@ -92,18 +92,40 @@ export default async function AerosSelectDetailPage({
             </span>
           </div>
 
-          {hero.image && (
-            <div className="mt-20 mx-auto max-w-4xl">
-              <div className="rounded-3xl border border-border-default bg-bg-subtle overflow-hidden aspect-[16/10] sm:aspect-[16/9]">
+          {hero.image &&
+            (hero.image.fit === 'bleed' ? (
+              // Keeps its own backdrop — fill the frame so there is no gutter.
+              <div
+                className={`mt-20 mx-auto ${
+                  hero.image.aspect === 'tall' ? 'max-w-md' : 'max-w-4xl'
+                }`}
+              >
+                <div
+                  className={`rounded-3xl border border-border-default overflow-hidden ${
+                    hero.image.aspect === 'tall'
+                      ? 'aspect-[4/5]'
+                      : 'aspect-[16/10] sm:aspect-[16/9]'
+                  }`}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={hero.image.src}
+                    alt={hero.image.alt}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            ) : (
+              // Background-free — sits on the page itself, no card, no edge.
+              <div className="mt-16 mx-auto max-w-2xl">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={hero.image.src}
                   alt={hero.image.alt}
-                  className="w-full h-full object-contain"
+                  className="w-full h-auto max-h-[34rem] object-contain mx-auto"
                 />
               </div>
-            </div>
-          )}
+            ))}
         </div>
       </section>
 
@@ -196,6 +218,7 @@ function SectionRenderer({
         {section.kind === 'format-showcase' && (
           <FormatShowcaseContent section={section} />
         )}
+        {section.kind === 'diagram' && <DiagramContent section={section} />}
       </div>
     </section>
   )
@@ -311,7 +334,7 @@ function VariantRow({
         {/* Image gallery */}
         <div className="flex flex-col gap-3">
           {hero && (
-            <div className="aspect-square rounded-2xl bg-bg-subtle overflow-hidden flex items-center justify-center">
+            <div className="aspect-square rounded-2xl overflow-hidden flex items-center justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={hero}
@@ -334,7 +357,7 @@ function VariantRow({
               {rest.map((src, i) => (
                 <div
                   key={src}
-                  className="aspect-square rounded-xl bg-bg-subtle overflow-hidden flex items-center justify-center"
+                  className="aspect-square rounded-xl overflow-hidden flex items-center justify-center"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -472,13 +495,21 @@ function UseCasesContent({
             className="bg-white rounded-3xl border border-border-default overflow-hidden flex flex-col"
           >
             {item.image && (
-              <div className="aspect-[16/10] bg-bg-subtle overflow-hidden flex items-center justify-center p-6">
+              <div
+                className={`aspect-[16/10] overflow-hidden flex items-center justify-center ${
+                  item.imageFit === 'bleed' ? '' : 'p-6'
+                }`}
+              >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={item.image}
                   alt={item.name}
                   loading="lazy"
-                  className="max-w-full max-h-full object-contain"
+                  className={
+                    item.imageFit === 'bleed'
+                      ? 'w-full h-full object-cover'
+                      : 'max-w-full max-h-full object-contain'
+                  }
                 />
               </div>
             )}
@@ -505,7 +536,7 @@ function ComparisonContent({
   return (
     <>
       <SectionHeader
-        eyebrow="/ versions compared"
+        eyebrow={section.eyebrow ?? '/ versions compared'}
         heading={section.heading}
         intro={section.intro}
       />
@@ -515,7 +546,7 @@ function ComparisonContent({
             <thead>
               <tr className="border-b border-border-default">
                 <th className="px-6 sm:px-8 py-5 text-[11px] font-mono uppercase tracking-widest text-fg-muted/60 font-medium w-1/3">
-                  Feature
+                  {section.rowHeader ?? 'Feature'}
                 </th>
                 {section.columns.map((col) => (
                   <th
@@ -660,7 +691,7 @@ function FormatShowcaseContent({
                 key={item.label}
                 className="flex flex-col items-center text-center"
               >
-                <div className="aspect-square w-full flex items-center justify-center bg-bg-subtle rounded-2xl p-3">
+                <div className="aspect-square w-full flex items-center justify-center rounded-2xl p-3">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={item.image}
@@ -677,6 +708,43 @@ function FormatShowcaseContent({
           </div>
         </div>
       </div>
+    </>
+  )
+}
+
+function DiagramContent({
+  section,
+}: {
+  section: Extract<AerosSelectSection, { kind: 'diagram' }>
+}) {
+  return (
+    <>
+      <SectionHeader
+        eyebrow="/ dimensions"
+        heading={section.heading}
+        intro={section.intro}
+      />
+      <figure className="bg-white rounded-3xl border border-border-default p-6 sm:p-10">
+        {section.figureLabel && (
+          <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-8">
+            {section.figureLabel}
+          </div>
+        )}
+        <div className="overflow-x-auto">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={section.image}
+            alt={section.alt}
+            loading="lazy"
+            className="w-full min-w-[640px] h-auto"
+          />
+        </div>
+        {section.caption && (
+          <figcaption className="mt-8 pt-6 border-t border-border-default text-fg-muted text-sm leading-relaxed">
+            {section.caption}
+          </figcaption>
+        )}
+      </figure>
     </>
   )
 }

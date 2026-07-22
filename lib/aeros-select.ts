@@ -21,7 +21,14 @@ type UseCasesSection = {
   kind: 'use-cases'
   heading: string
   intro?: string
-  items: Array<{ name: string; body: string; image?: string }>
+  items: Array<{
+    name: string
+    body: string
+    image?: string
+    /** See the note on hero.image.fit. 'bleed' fills the card's image band edge
+     * to edge; 'cutout' (default) sits a background-free shot on the card. */
+    imageFit?: 'cutout' | 'bleed'
+  }>
 }
 
 type VariantsSection = {
@@ -66,6 +73,10 @@ type ComparisonSection = {
   kind: 'comparison'
   heading: string
   intro?: string
+  /** Overrides the default '/ versions compared' mono eyebrow. */
+  eyebrow?: string
+  /** Label for the first column. Defaults to 'Feature'. */
+  rowHeader?: string
   columns: string[]
   rows: Array<{ label: string; values: string[] }>
 }
@@ -76,6 +87,19 @@ type VideoSection = {
   intro?: string
   src: string
   poster?: string
+}
+
+type DiagramSection = {
+  kind: 'diagram'
+  heading: string
+  intro?: string
+  /** A drawing authored for the web (SVG in DS colours), not a lifted deck asset. */
+  image: string
+  alt: string
+  /** Mono label printed above the figure, e.g. 'standard sizes — inches'. */
+  figureLabel?: string
+  /** Optional note under the figure for units, tolerances, or caveats. */
+  caption?: string
 }
 
 type FormatShowcaseSection = {
@@ -99,6 +123,7 @@ export type AerosSelectSection =
   | ComparisonSection
   | VideoSection
   | FormatShowcaseSection
+  | DiagramSection
 
 export type AerosSelectProduct = {
   slug: string
@@ -108,7 +133,22 @@ export type AerosSelectProduct = {
     eyebrow: string
     title: string
     subtitle: string
-    image?: { src: string; alt: string }
+    /** `aspect` defaults to 'wide'. Use 'tall' for portrait shots so they fill
+     * a 4:5 frame instead of letterboxing inside the 16:9 one.
+     *
+     * `fit` controls how the shot meets the page, and every image must pick the
+     * one that leaves no visible seam:
+     *  - 'cutout' (default) — a background-free PNG/WebP. Rendered straight onto
+     *    the page with no card behind it, so there is no edge to see.
+     *  - 'bleed' — a photograph that keeps its own background (a scene, a macro).
+     *    Fills the rounded frame edge to edge, so again there is no gutter.
+     * Never put a shot that has its own backdrop into 'cutout'. */
+    image?: {
+      src: string
+      alt: string
+      aspect?: 'wide' | 'tall'
+      fit?: 'cutout' | 'bleed'
+    }
   }
   highlights: Array<{ label: string; value: string }>
   sections: AerosSelectSection[]
@@ -1054,6 +1094,9 @@ const v5: AerosSelectProduct = {
     image: {
       src: '/products/v5/hero.png',
       alt: 'AeroSeal V5 sealing the full portfolio — soups, ramen, rice, biryani, gravy, and sauce containers',
+      // Shot on a beige backdrop, so it fills the frame rather than sitting as
+      // a beige rectangle inside a grey card.
+      fit: 'bleed',
     },
   },
   highlights: [
@@ -1183,17 +1226,14 @@ const v5: AerosSelectProduct = {
         {
           name: 'Biryani, rice, dal & gravy',
           body: 'XL and L lids cover the family-size tubs that anchor any biryani or rice-bowl menu — sealed at the prep station, leak-proof through delivery.',
-          image: '/products/v5/biryani.webp',
         },
         {
           name: 'Ramen, noodles & pasta',
           body: 'Hot fills above 85 °C with the pinhole-vented foil — the V5\'s 500 W heater seals fast without warping the tub rim on its way to the customer.',
-          image: '/products/v5/ramen.webp',
         },
         {
           name: 'Soups, broths & curries',
           body: 'Single-machine workflow for hot mains and sides — the same SOP across the cloud kitchen, regardless of which kitchen station the order came from.',
-          image: '/products/v5/soup.webp',
         },
         {
           name: 'Salads, poke bowls & meal prep',
@@ -1206,7 +1246,6 @@ const v5: AerosSelectProduct = {
         {
           name: 'Sauces, chutneys & condiments',
           body: 'S lids (65 – 72 mm) seal the sauce pots and chutney cups that ride along with main orders — fewer dipping-sauce spills on aggregator deliveries.',
-          image: '/products/v5/gravy.webp',
         },
         {
           name: 'Desserts & ice cream',
@@ -1262,6 +1301,623 @@ const v5: AerosSelectProduct = {
   parentSlug: 'sealer-machines',
 }
 
+const meshDeliveryBags: AerosSelectProduct = {
+  slug: 'mesh-delivery-bags',
+  name: 'Mesh Delivery Bags',
+  tagline:
+    'Laminated non-woven delivery bag with a silver thermal lining — built to keep every order dry and at temperature through the monsoon.',
+  hero: {
+    eyebrow: 'Aeros Select · Packaging',
+    title: 'The all-weather delivery bag.',
+    subtitle:
+      'Rain and spills bead off the laminated non-woven surface, a silver thermal lining holds temperature in transit, and a tear-resistant body carries a full order without splitting — then gets reused instead of binned. Custom-printed edge to edge, any colour.',
+    image: {
+      src: '/products/mesh-delivery-bags/hero.webp',
+      alt: 'Aeros mesh delivery bag in green with an all-over printed Aeros pattern and stitched loop handles',
+    },
+  },
+  highlights: [
+    { label: 'Material', value: 'BOPP-laminated spunbond non-woven' },
+    { label: 'Lining', value: 'Silver thermal — hot and cold' },
+    { label: 'MOQ', value: '10,000 pcs · custom printed' },
+    { label: 'Lead time', value: '25 – 30 days · ships pan-India' },
+  ],
+  sections: [
+    {
+      kind: 'variants',
+      heading: 'Two running sizes.',
+      intro:
+        'Both sizes carry a 35 mm flap closure, reinforced X-box stitched loop handles, and the same laminate and thermal lining. Custom sizes are quoted on request.',
+      items: [
+        {
+          name: 'THB-001 — Standard',
+          tags: ['220 × 150 × 250 mm', '+35 mm flap', 'From Rs 20/pc'],
+          body: 'The single-order size — a meal for one or two, a coffee run, a dessert box. The size most cloud kitchens and cafés start on.',
+          images: ['/products/mesh-delivery-bags/hero.webp'],
+          specs: [
+            { label: 'Dimensions', value: '220 × 150 × 250 mm' },
+            { label: 'Flap', value: '+35 mm' },
+            { label: 'Price from', value: 'Rs 20 / pc' },
+            { label: 'MOQ', value: '10,000 pcs' },
+          ],
+        },
+        {
+          name: 'THB-002 — Large',
+          tags: ['260 × 170 × 345 mm', '+35 mm flap', 'From Rs 26/pc'],
+          body: 'The family-order size — multiple mains, 1 L tubs, a full grocery or party pickup. Taller body for upright containers that must not tip.',
+          images: ['/products/mesh-delivery-bags/silver-lining.webp'],
+          specs: [
+            { label: 'Dimensions', value: '260 × 170 × 345 mm' },
+            { label: 'Flap', value: '+35 mm' },
+            { label: 'Price from', value: 'Rs 26 / pc' },
+            { label: 'MOQ', value: '10,000 pcs' },
+          ],
+        },
+      ],
+    },
+    {
+      kind: 'features',
+      heading: 'Built to deliver.',
+      intro:
+        'Five things separate a delivery-grade bag from a carry bag that happens to be used for delivery.',
+      items: [
+        {
+          name: 'Weatherproof laminate',
+          body: 'A BOPP laminate over spunbond non-woven — rain and spills bead up and run off instead of soaking in. Orders arrive dry, and the print underneath stays sharp.',
+        },
+        {
+          name: 'Silver thermal lining',
+          body: 'A reflective silver lining inside holds temperature in transit — hot mains stay hot, cold desserts and drinks stay cold, across the whole ride.',
+        },
+        {
+          name: 'Tear-resistant body',
+          body: 'The non-woven body holds a full order under load without splitting at the base or the gussets — the failure mode that ruins a paper bag on the third stop.',
+        },
+        {
+          name: 'Reinforced X-box stitched handles',
+          body: 'Loop handles stitched with an X-box at each anchor point — the stress concentrates where the stitching is strongest, not where the fabric is weakest.',
+        },
+        {
+          name: 'Reusable, not single-use',
+          body: 'Customers keep it and reuse it. Your brand keeps showing up long after the order, and you cut single-use waste on every delivery.',
+        },
+      ],
+    },
+    {
+      kind: 'use-cases',
+      heading: 'Built for these runs.',
+      items: [
+        {
+          name: 'Monsoon delivery',
+          body: 'The case the bag was designed for. Paper goes soggy and plastic tears in heavy rain — the laminate beads it off and the order arrives dry.',
+          image: '/products/mesh-delivery-bags/texture.webp',
+          imageFit: 'bleed',
+        },
+        {
+          name: 'Cloud kitchens & aggregator orders',
+          body: 'A gusseted body keeps sealed tubs and cups upright through the ride. Pairs with AeroSeal-sealed containers for a leak-proof handoff end to end.',
+        },
+        {
+          name: 'Hot mains & cold desserts in one bag',
+          body: 'The silver lining slows heat loss on curries and biryani and holds the chill on ice cream and shakes — useful when one order carries both.',
+          image: '/products/mesh-delivery-bags/silver-lining.webp',
+        },
+        {
+          name: 'Cafés & grab-and-go counters',
+          body: 'A branded bag the customer keeps — for a café, cheaper per impression than almost any other media buy in the neighbourhood.',
+        },
+        {
+          name: 'Brand campaigns & launches',
+          body: 'Full-colour, all-over print in any colour. Run a seasonal or launch design across 10,000 bags and put it on every bike in the city.',
+          image: '/products/mesh-delivery-bags/colours.webp',
+        },
+      ],
+    },
+    {
+      kind: 'comparison',
+      heading: 'Against paper and plastic.',
+      intro:
+        'The comparison that matters on a wet evening with a full order and thirty minutes on the clock.',
+      columns: ['Aeros', 'Paper / Plastic'],
+      rows: [
+        { label: 'In the rain', values: ['Beads off, stays dry', 'Soaks and tears'] },
+        { label: 'Temperature', values: ['Silver thermal lining', 'None'] },
+        { label: 'Under load', values: ['Holds a full order', 'Splits'] },
+        { label: 'Lifespan', values: ['Reused for months', 'One trip'] },
+        { label: 'Branding', values: ['Full-colour, all-over', 'Limited'] },
+      ],
+    },
+    {
+      kind: 'specs',
+      heading: 'Specifications.',
+      items: [
+        { label: 'Sizes', value: 'THB-001 — 220 × 150 × 250 mm · THB-002 — 260 × 170 × 345 mm' },
+        { label: 'Flap', value: '+35 mm on both sizes' },
+        { label: 'Body material', value: 'Spunbond non-woven with BOPP laminate' },
+        { label: 'Lining', value: 'Silver thermal lining' },
+        { label: 'Handles', value: 'Loop handles, reinforced X-box stitching' },
+        { label: 'Printing', value: 'Full-colour, all-over custom print · any body colour' },
+        { label: 'Pricing from', value: 'THB-001 — Rs 20 / pc · THB-002 — Rs 26 / pc' },
+        { label: 'MOQ', value: '10,000 pcs per design' },
+        { label: 'Production lead time', value: '25 – 30 days from artwork approval' },
+        { label: 'Delivery', value: 'Pan-India' },
+        { label: 'Reuse', value: 'Reusable — holds shape over repeated trips' },
+      ],
+    },
+    {
+      kind: 'faq',
+      heading: 'FAQ.',
+      items: [
+        {
+          q: 'What is the MOQ?',
+          a: '10,000 pieces per design. These are custom-printed to order — there is no plain stocked version of this bag.',
+        },
+        {
+          q: 'How long does production take?',
+          a: '25 – 30 days from artwork approval, then dispatch pan-India. Send artwork early if you are timing a launch or a season.',
+        },
+        {
+          q: 'Which size should I order?',
+          a: 'THB-001 (220 × 150 × 250 mm) for single and two-person orders — the volume runner for most kitchens. THB-002 (260 × 170 × 345 mm) for family orders, 1 L tubs, and taller containers. Many operators run both and pick at packing.',
+        },
+        {
+          q: 'Can I get a custom size?',
+          a: 'Yes, provided the volume justifies new tooling. Send us your container dimensions and target quantity and we will scope it.',
+        },
+        {
+          q: 'Is it really waterproof?',
+          a: 'It is water-repellent, not submersible. The BOPP laminate makes rain and spills bead up and run off the surface, so the order stays dry on a normal monsoon run — it is not a dry bag for standing water.',
+        },
+        {
+          q: 'How well does it hold temperature?',
+          a: 'The silver lining reflects radiant heat back and slows the loss, which covers a typical 20 – 40 minute delivery. It is insulation, not refrigeration — it holds what you put in, it does not cool or heat.',
+        },
+        {
+          q: 'Can I print any colour?',
+          a: 'Yes — full-colour, all-over print on any body colour. The bag becomes a moving billboard, which is most of the reason operators reorder.',
+        },
+        {
+          q: 'Is it reusable?',
+          a: 'Yes — that is the point. Customers keep it and reuse it, so your brand keeps showing up and you cut single-use waste on every order.',
+        },
+      ],
+    },
+  ],
+  orderUrl: APP_MARKETPLACE_URL,
+  orderCtaLabel: 'Order Mesh Delivery Bags',
+}
+
+const clearPpCups: AerosSelectProduct = {
+  slug: 'clear-pp-cups',
+  name: 'Clear PP Cups',
+  tagline:
+    'Five sizes, two bottoms, one lid — a crystal-clear PP cold cup range where every size is capped by the same Ø85 string-lock lid.',
+  hero: {
+    eyebrow: 'Aeros Select · Packaging',
+    title: 'Five sizes. Two shapes. One lid.',
+    subtitle:
+      'A crystal-clear PP cold cup family — 250, 350, and 500 ml flat-bottom, plus 350 and 500 ml U-bottom that sit cleaner in a holder. Every single size is sealed by the same 85 mm string-lock lid, so there is one lid SKU to stock for the whole range.',
+    image: {
+      src: '/products/clear-pp-cups/hero.webp',
+      alt: 'The full clear PP cup range on a café counter — five sizes across flat-bottom and U-bottom, with string-lock lids',
+      fit: 'bleed',
+    },
+  },
+  highlights: [
+    { label: 'Range', value: '5 sizes · flat and U bottom' },
+    { label: 'One lid', value: 'Ø85 string-lock fits all five' },
+    { label: 'Material', value: 'Crystal-clear PP · one-poly' },
+    { label: 'Custom print', value: 'From 5,000 cups' },
+  ],
+  sections: [
+    {
+      kind: 'variants',
+      heading: 'Two bottoms, one lid.',
+      intro:
+        'Pick the bottom that suits your counter — the flat-bottom for shelf stability and stack depth, the U-bottom for a cleaner sit in a car or bike holder. Both take the same lid.',
+      items: [
+        {
+          name: 'Flat-bottom — 250 · 350 · 500 ml',
+          tags: ['3 sizes', 'TD 85 mm', 'Stands on any surface'],
+          body: 'The workhorse shape. A flat base means the cup stands unaided on a counter, a tray, or a shelf — the right call for dine-in, retail display, and anywhere a cup gets put down mid-drink.',
+          images: ['/products/clear-pp-cups/flat-range.webp'],
+          specs: [
+            { label: '250 ml', value: 'TD 85 · BD 45 · H 96 mm · 1,000 / case' },
+            { label: '350 ml', value: 'TD 85 · BD 49 · H 115 mm · 1,000 / case' },
+            { label: '500 ml', value: 'TD 85 · BD 54 · H 155 mm · 500 / case' },
+          ],
+        },
+        {
+          name: 'U-bottom — 350 · 500 ml',
+          tags: ['2 sizes', 'TD 85 mm', 'Sits cleaner in a holder'],
+          body: 'A rounded U-base on a narrow 32 mm footprint — drops into a cup holder or a delivery carrier without rocking, and reads as the more premium shape on a cold-brew or mocktail menu.',
+          images: ['/products/clear-pp-cups/u-range.webp'],
+          specs: [
+            { label: '350 ml', value: 'TD 85 · BD 32 · H 95 mm · 1,000 / case' },
+            { label: '500 ml', value: 'TD 85 · BD 32 · H 134 mm · 500 / case' },
+          ],
+        },
+        {
+          name: 'Ø85 String-Lock Lid',
+          tags: ['One lid, five cups', 'Tethered plug', 'Clear PP'],
+          body: 'A clear 85 mm lid with a tethered plug that flips open to sip and snaps shut again. The plug stays attached to the lid — nothing to lose on the counter, and the closure resists spills in a bag or a holder.',
+          images: ['/products/clear-pp-cups/lid.webp'],
+          specs: [
+            { label: 'Diameter', value: 'Ø 85 mm' },
+            { label: 'Closure', value: 'Tethered string-lock plug' },
+            { label: 'Fits', value: 'All five cups in the range' },
+            { label: 'Material', value: 'Clear PP — same polymer as the cup' },
+          ],
+        },
+      ],
+    },
+    {
+      kind: 'comparison',
+      heading: 'The range at a glance.',
+      intro:
+        'Every cup shares the same 85 mm top diameter — which is why one lid covers the whole range.',
+      columns: ['250 Flat', '350 Flat', '500 Flat', '350 U', '500 U'],
+      rows: [
+        {
+          label: 'TD × BD × H (mm)',
+          values: [
+            '85 × 45 × 96',
+            '85 × 49 × 115',
+            '85 × 54 × 155',
+            '85 × 32 × 95',
+            '85 × 32 × 134',
+          ],
+        },
+        {
+          label: 'Per case',
+          values: ['1,000', '1,000', '500', '1,000', '500'],
+        },
+        {
+          label: 'Lid',
+          values: ['Ø85', 'Ø85', 'Ø85', 'Ø85', 'Ø85'],
+        },
+      ],
+    },
+    {
+      kind: 'features',
+      heading: 'Why one lid changes the counter.',
+      items: [
+        {
+          name: 'One lid SKU for five cups',
+          body: 'Every size shares an 85 mm top diameter, so there is one lid to buy, one lid to store, and one lid bin at the station. No mismatched sleeves, no wrong-lid handoffs during a rush.',
+        },
+        {
+          name: 'Tethered string-lock plug',
+          body: 'The plug flips open to sip and snaps shut, and stays attached to the lid throughout. Resists spills in a delivery bag or a cup holder — and there is no loose part for the customer to drop.',
+        },
+        {
+          name: 'Crystal-clear PP',
+          body: 'The cup is the packaging on a cold drink. Clear PP shows the layers in a cold brew, the colour of a mocktail, and the fruit in a smoothie — the reason clear cups outsell opaque ones on a chilled shelf.',
+        },
+        {
+          name: 'Two bottoms, one decision',
+          body: 'Flat-bottom stands anywhere; U-bottom drops cleanly into a holder. Same rim, same lid, same case logistics — so running both costs you nothing extra in stocking complexity.',
+        },
+        {
+          name: 'One-poly cup and lid',
+          body: 'Cup and lid are the same polymer, so the sealed unit goes into a single recycling stream instead of needing to be separated first.',
+        },
+      ],
+    },
+    {
+      kind: 'use-cases',
+      heading: 'Built for these drinks.',
+      items: [
+        {
+          name: 'Cold brew & iced coffee',
+          body: 'Clear walls show the pour and the ice. The 350 ml sizes are the volume runners on most café cold menus; 500 ml covers the large.',
+          image: '/products/clear-pp-cups/12oz-pair.webp',
+        },
+        {
+          name: 'Smoothies & shakes',
+          body: '500 ml in either bottom takes a full blend. The rigid PP wall holds shape under a press-fit lid without flexing at the rim.',
+        },
+        {
+          name: 'Mocktails & iced teas',
+          body: 'Layered and garnished drinks read through clear PP — the U-bottom is the more premium silhouette for a bar or a hotel counter.',
+        },
+        {
+          name: 'Delivery & aggregator orders',
+          body: 'The tethered string-lock plug resists spills in the bag, and the U-bottom sits without rocking in a rider\'s carrier.',
+        },
+        {
+          name: 'Branded café programmes',
+          body: 'Custom print from 5,000 cups per design — cheap enough to run a seasonal design without committing to a year of stock.',
+          image: '/products/clear-pp-cups/hero.webp',
+          imageFit: 'bleed',
+        },
+      ],
+    },
+    {
+      kind: 'specs',
+      heading: 'Specifications.',
+      items: [
+        { label: 'Material', value: 'Crystal-clear polypropylene (PP)' },
+        { label: 'Top diameter', value: '85 mm across all five sizes' },
+        { label: 'Flat-bottom sizes', value: '250 ml (85 × 45 × 96) · 350 ml (85 × 49 × 115) · 500 ml (85 × 54 × 155) mm' },
+        { label: 'U-bottom sizes', value: '350 ml (85 × 32 × 95) · 500 ml (85 × 32 × 134) mm' },
+        { label: 'Case pack — 250 ml', value: '1,000 cups / case' },
+        { label: 'Case pack — 350 ml', value: '1,000 cups / case (both bottoms)' },
+        { label: 'Case pack — 500 ml', value: '500 cups / case (both bottoms)' },
+        { label: 'Lid', value: 'Ø 85 mm clear PP string-lock lid with tethered plug — fits every size' },
+        { label: 'Cup + lid', value: 'One-poly — cup and lid are the same material' },
+        { label: 'Custom print', value: 'From 5,000 cups per design' },
+        { label: 'Use temperature', value: 'Cold drinks' },
+      ],
+    },
+    {
+      kind: 'faq',
+      heading: 'FAQ.',
+      items: [
+        {
+          q: 'Does one lid really fit all five cups?',
+          a: 'Yes — every cup in the range is built on the same 85 mm top diameter, flat-bottom and U-bottom alike. One lid SKU covers the whole range.',
+        },
+        {
+          q: 'What is a string-lock lid?',
+          a: 'A clear lid with a plug tethered to it. The plug flips open to drink and snaps shut again, and never separates from the lid — so it resists spills in transit and there is no loose piece to lose.',
+        },
+        {
+          q: 'Flat-bottom or U-bottom?',
+          a: 'Flat-bottom stands unaided — better for dine-in, trays, and retail shelves. U-bottom sits cleaner in a cup holder or a delivery carrier and reads as the more premium shape. Same rim and same lid, so you can run both.',
+        },
+        {
+          q: 'What is the MOQ?',
+          a: 'Custom-printed runs start at 5,000 cups per design. Talk to us for current stock on plain cups and lids.',
+        },
+        {
+          q: 'How do these differ from your U-Shape PET cups?',
+          a: 'Different material and a different rim. The PET range is a 92 mm rim built for foil sealing and a sipper lid; this range is PP on an 85 mm rim built around the string-lock lid. The lids are not interchangeable between the two — pick the range, then stock its lid.',
+        },
+        {
+          q: 'Can I use these for hot drinks?',
+          a: 'These are specified as cold cups. If you need a container for a hot drink, use our paper hot-cup range — or write to us with the fill temperature and we will confirm what is safe.',
+        },
+        {
+          q: 'Can I get them printed?',
+          a: 'Yes — fully custom-printable, from 5,000 cups per design. Send us artwork and quantity and we will scope a lead time.',
+        },
+        {
+          q: 'Are they recyclable?',
+          a: 'The cup and lid are both PP, so the pair goes into one stream rather than needing separation. Rinse before disposal.',
+        },
+      ],
+    },
+  ],
+  orderUrl: APP_MARKETPLACE_URL,
+  orderCtaLabel: 'Order Clear PP cups',
+}
+
+const compostableBags: AerosSelectProduct = {
+  slug: 'compostable-bags',
+  name: 'Compostable Bags',
+  tagline:
+    'Not a plastic bag. Corn-starch and PBAT, independently certified, composts in 180 days — carry bags, food pouches, and bin liners in six standard sizes.',
+  hero: {
+    eyebrow: 'Aeros Select · Packaging',
+    title: 'Not a plastic bag.',
+    subtitle:
+      'Single-use plastic carry bags are restricted or banned across most of India. These are made from a corn-starch and PBAT blend — plant-based, food-grade, water-resistant — independently certified by CIPET, CPCB, and TUV Austria, and marked on every bag so your customer can see it.',
+    image: {
+      src: '/products/compostable-bags/hero.webp',
+      alt: 'Aeros-branded compostable W-cut carry bag in the rain, marked "I am made from corn — I am NOT a plastic bag, 100% compostable"',
+      aspect: 'tall',
+      fit: 'bleed',
+    },
+  },
+  highlights: [
+    { label: 'Material', value: 'Corn-starch + PBAT · plant-based' },
+    { label: 'Certified', value: 'CIPET · CPCB · TUV Austria' },
+    { label: 'Composts in', value: '180 days · industrial composting' },
+    { label: 'Sold by', value: 'Weight — 6 sizes, 20 – 60 micron' },
+  ],
+  sections: [
+    {
+      kind: 'diagram',
+      heading: 'Six standard sizes.',
+      intro:
+        'Every format is made in the same six sizes. Drawn here to scale against each other, so you can see what actually fits an order before you pick one.',
+      image: '/products/compostable-bags/sizes.svg',
+      alt: 'The six standard compostable bag sizes drawn to scale — 8x10, 10x12, 11x14, 13x16, 16x20 and 22x24 inches',
+      figureLabel: 'standard sizes — inches',
+      caption:
+        'Custom sizes are made to order. Thicker film is required as the bag gets bigger — see the thickness guidance below.',
+    },
+    {
+      kind: 'comparison',
+      eyebrow: '/ bags per kilo',
+      rowHeader: 'Size',
+      heading: 'What a kilo gets you.',
+      intro:
+        'These are sold by weight, not by piece — so this is the number that matters when you are working out how much to order. Approximate counts per kilogram, by size and film thickness.',
+      columns: ['20 micron', '25 micron', '30 micron', '45 micron', '50 micron', '60 micron'],
+      rows: [
+        { label: '8 × 10 in', values: ['372', '298', '248', '165', '149', '124'] },
+        { label: '10 × 12 in', values: ['248', '198', '165', '110', '99', '82'] },
+        { label: '11 × 14 in', values: ['193', '154', '129', '86', '77', '64'] },
+        { label: '13 × 16 in', values: ['143', '115', '95', '63', '57', '47'] },
+        { label: '16 × 20 in', values: ['93', '74', '62', '41', '37', '31'] },
+        { label: '22 × 24 in', values: ['56', '45', '37', '25', '22', '18'] },
+      ],
+    },
+    {
+      kind: 'diagram',
+      heading: 'Four formats, one film.',
+      intro:
+        'The same certified compostable film, converted into the formats a shop or kitchen actually needs.',
+      image: '/products/compostable-bags/formats.svg',
+      alt: 'Line drawings of the four compostable bag formats — W-cut carry bag, D-cut carry bag, food pouch, and garbage bag',
+      figureLabel: 'formats — not to scale',
+    },
+    {
+      kind: 'variants',
+      heading: 'Pick the format and the grade.',
+      intro:
+        'Carry bags and pouches come in two film grades; pouches add a translucent option where the customer should see the product. Minimums are per size, and every format is sold by the kilo.',
+      items: [
+        {
+          name: 'Carry bags — W-cut & D-cut',
+          tags: ['Grade A or B', 'Plain from 10 kg', 'Printed from 50 kg'],
+          body: 'The direct replacement for the banned plastic carry bag. W-cut vest style for retail and takeaway counters; D-cut punched handle for a cleaner branded look at sweet shops and boutiques.',
+        },
+        {
+          name: 'Food pouches',
+          tags: ['Grade A, B or translucent', 'Plain from 30 kg', 'Printed from 50 kg'],
+          body: 'Flat pouches for snacks, staples, and dry goods. The translucent film runs about 80% transparency, so the product shows through without giving up the compostable spec.',
+        },
+        {
+          name: 'Garbage bags',
+          tags: ['Bin liners', 'Kitchens, cafés, offices'],
+          body: 'Compostable bin liners — the wet-waste stream can go to composting bag and all, instead of a plastic liner that has to be separated out first.',
+        },
+      ],
+    },
+    {
+      kind: 'features',
+      heading: 'Plants in. Soil out.',
+      items: [
+        {
+          name: 'Corn-starch + PBAT, not petro-plastic',
+          body: 'A plant-based blend rather than conventional polyethylene. It handles like a plastic bag on the counter — it just does not persist like one afterwards.',
+        },
+        {
+          name: 'Independently certified',
+          body: 'CIPET to ISO 17088, CPCB registration for India, and TUV Austria to EN 13432 for international compostability. Three separate bodies, not a self-declaration.',
+        },
+        {
+          name: 'Composts in 180 days',
+          body: 'In industrial composting conditions the film breaks down within 180 days, leaving no microplastics and no visible residue behind.',
+        },
+        {
+          name: 'Holds up in the monsoon',
+          body: 'Water beads off the film, so the bag keeps its shape and its load in the rain — the failure mode that makes paper a poor swap for plastic in an Indian monsoon.',
+        },
+        {
+          name: 'Marked so customers can tell',
+          body: 'Every bag carries "I am made from corn — I am NOT a plastic bag · 100% compostable" alongside the certification marks. It answers the question at the counter before it gets asked.',
+        },
+        {
+          name: 'Printed with your brand',
+          body: 'Food-safe printing up to 3 colours, on one or both sides, with a one-time plate charge per colour per side per size. Bag colour can be customised too.',
+        },
+      ],
+    },
+    {
+      kind: 'specs',
+      heading: 'Choosing a thickness.',
+      intro:
+        'Rate is the same whichever thickness you pick, so this is purely a strength decision — a big bag in thin film is the one complaint worth avoiding.',
+      items: [
+        { label: '8 × 10 · 10 × 12 in', value: 'Any thickness from 20 to 60 micron works' },
+        { label: '11 × 14 · 13 × 16 in', value: '30 micron and above recommended — 20 to 25 micron only for light loads' },
+        { label: '16 × 20 · 22 × 24 in', value: '45 micron and above ideal · 30 micron acceptable · 20 micron not recommended' },
+      ],
+    },
+    {
+      kind: 'use-cases',
+      heading: 'Where these go.',
+      items: [
+        {
+          name: 'Retail & kirana counters',
+          body: 'The everyday carry bag, across the six standard sizes that cover a grocery run, a sweet box, or a single-item purchase.',
+          image: '/products/compostable-bags/hero.webp',
+          imageFit: 'bleed',
+        },
+        {
+          name: 'Restaurants, cafés & takeaway',
+          body: 'Food-grade and water-resistant, so hot and oily takeaway does not compromise the bag between the counter and the customer.',
+        },
+        {
+          name: 'Cloud kitchens & delivery',
+          body: 'Holds shape in the rain on a bike, and the compostable marking travels with the order — visible sustainability at the customer\'s door.',
+          image: '/products/compostable-bags/material.webp',
+          imageFit: 'bleed',
+        },
+        {
+          name: 'Kitchens & offices — waste streams',
+          body: 'Compostable bin liners let wet waste go to composting with the liner still on, instead of being tipped out and the bag binned separately.',
+        },
+        {
+          name: 'Packaged snacks & dry goods',
+          body: 'Food pouches in plain, Grade B, or translucent film for shelf-packed staples — translucent where the product should sell itself.',
+        },
+      ],
+    },
+    {
+      kind: 'specs',
+      heading: 'Specifications.',
+      items: [
+        { label: 'Material', value: 'Corn-starch + PBAT compostable blend' },
+        { label: 'Properties', value: 'Food-grade · water-resistant · heat-durable' },
+        { label: 'Formats', value: 'Carry bags (W-cut, D-cut) · food pouches · garbage bags' },
+        { label: 'Grades', value: 'Grade A and Grade B · pouches also in translucent (approx. 80% transparency)' },
+        { label: 'Standard sizes', value: '8 × 10 · 10 × 12 · 11 × 14 · 13 × 16 · 16 × 20 · 22 × 24 in' },
+        { label: 'Thickness', value: '20 · 25 · 30 · 45 · 50 · 60 micron' },
+        { label: 'Custom sizes', value: 'Made to order — send dimensions and volumes' },
+        { label: 'Sold by', value: 'Weight — rate is the same across every size and thickness' },
+        { label: 'MOQ — carry bags', value: 'Plain 10 kg per size · printed 50 kg per size' },
+        { label: 'MOQ — food pouches', value: 'Plain 30 kg per size · printed 50 kg per size' },
+        { label: 'Printing', value: 'Food-safe, up to 3 colours, 1 or 2 sides · one-time plate charge per colour, per side, per size' },
+        { label: 'Bag marking', value: '"I am made from corn — I am NOT a plastic bag · 100% compostable"' },
+        { label: 'Certification — India', value: 'CIPET (ISO 17088) · CPCB' },
+        { label: 'Certification — international', value: 'TUV Austria (EN 13432)' },
+        { label: 'Compost time', value: '180 days in industrial composting — no microplastics, no residue' },
+        { label: 'Packing', value: 'Bulk woven sacks of roughly 23 – 25 kg, marked with size and net weight — not cartoned' },
+        { label: 'Samples', value: 'Free — ask and we will send them' },
+      ],
+    },
+    {
+      kind: 'faq',
+      heading: 'FAQ.',
+      items: [
+        {
+          q: 'Why are these priced by weight instead of per bag?',
+          a: 'Because the film is the cost, not the shape. The rate is the same across every size and thickness, so a kilo of 20 micron 8 × 10 costs what a kilo of 60 micron 22 × 24 costs — you just get a different number of bags. The table above converts weight to bag count.',
+        },
+        {
+          q: 'What are these actually made of?',
+          a: 'A blend of corn starch and PBAT. It is plant-based rather than petroleum-based, and formulated to handle like a conventional bag — food-grade, water-resistant, and heat-durable.',
+        },
+        {
+          q: 'Who certifies them?',
+          a: 'Three independent bodies: CIPET against ISO 17088, CPCB for India, and TUV Austria against EN 13432 for international compostability. Certificates are available on request.',
+        },
+        {
+          q: 'Does 180 days mean they compost in my bin?',
+          a: 'No — the 180-day figure is for industrial composting conditions, which run hotter and more controlled than a home compost heap. In a landfill or on the roadside these will not break down on that timeline. Plan for the bags to reach an industrial composting stream.',
+        },
+        {
+          q: 'Do these satisfy the single-use plastic rules?',
+          a: 'Certified compostable bags are the standard substitute where single-use plastic carry bags are restricted, and ours carry CPCB certification for India. Rules vary by state and change over time — we will share the current certificates so your compliance team can confirm against your local requirement.',
+        },
+        {
+          q: 'What thickness should I order?',
+          a: 'Small bags take any thickness. From 11 × 14 in upward go to 30 micron or above, and for the two largest sizes 45 micron and above is ideal. Since the rate does not change with thickness, err heavier on the big sizes.',
+        },
+        {
+          q: 'What is the difference between Grade A and Grade B?',
+          a: 'Two film grades at different price points, both certified compostable and both available across the standard sizes. Tell us the application and we will recommend the grade — or send samples of both so you can judge in hand.',
+        },
+        {
+          q: 'What is the minimum order?',
+          a: 'Plain carry bags start at 10 kg per size and plain pouches at 30 kg per size. Anything printed is 50 kg per size, plus a one-time plate charge per colour, per side, per size. Samples are free.',
+        },
+        {
+          q: 'How do they arrive?',
+          a: 'In bulk woven sacks of roughly 23 to 25 kg, marked with the size and net weight — these are not cartoned, so factor that into your storage.',
+        },
+      ],
+    },
+  ],
+  orderUrl: APP_MARKETPLACE_URL,
+  orderCtaLabel: 'Order compostable bags',
+}
+
 export const aerosSelectProducts: AerosSelectProduct[] = [
   sealerMachines,
   cupSealer,
@@ -1269,6 +1925,9 @@ export const aerosSelectProducts: AerosSelectProduct[] = [
   v5,
   foils,
   uShapePetCups,
+  meshDeliveryBags,
+  clearPpCups,
+  compostableBags,
 ]
 
 /** Products shown at the top of /products/aeros-select. Hides sub-products
