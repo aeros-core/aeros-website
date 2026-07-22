@@ -5,15 +5,16 @@
  * the page.
  *
  * ─────────────────────────────────────────────────────────────────────────
- * NAMED CLIENTS — DO NOT PUBLISH WITHOUT WRITTEN SIGN-OFF
+ * NAMED CLIENTS — PUBLISHED WITH CONSENT
  *
- * We supply Taj Qmin (central rate contract), Taj SATS, JW Marriott and Fern
- * India. As of the last check we do NOT have written permission from any of
- * them to use their name or marks publicly.
+ * Arjun confirmed on 2026-07-22 that these brands have consented to being
+ * named publicly. Everything in HOTEL_CLIENTS renders on the live page and
+ * ships in the client JS bundle, so do not add a brand here without that
+ * same confirmation, and remove one the moment consent is withdrawn.
  *
- * Anything added to HOTEL_CLIENTS below is rendered on the live page AND
- * ships in the client JS bundle. Only add a name once that brand has given
- * written approval — one entry per approved brand.
+ * Names are rendered as plain text. Logos are third-party trademarks — only
+ * ever use a logo file supplied by the brand itself. Never approximate,
+ * redraw, or generate one.
  * ─────────────────────────────────────────────────────────────────────────
  */
 
@@ -22,12 +23,24 @@ export type HotelClient = {
   name: string
   /** Short qualifier — city, property count, or the group it belongs to. */
   detail: string
+  /**
+   * Path to a brand-supplied logo in /public/clients. Leave undefined to
+   * render the name as text. TODO(arjun): supply official logo files.
+   */
+  logo?: string
 }
 
-/** Empty until brands approve. Page falls back to the anonymous block. */
-export const HOTEL_CLIENTS: HotelClient[] = []
+export const HOTEL_CLIENTS: HotelClient[] = [
+  { name: 'Taj Qmin', detail: 'Central rate contract' },
+  { name: 'Taj SATS', detail: 'Airline & institutional catering' },
+  { name: 'JW Marriott', detail: 'International five-star chain' },
+  { name: 'Fern India', detail: 'Premium Indian hotel group' },
+]
 
-/** Non-identifying descriptions of the kinds of accounts we run. */
+/**
+ * Rendered only when HOTEL_CLIENTS is empty, as a non-identifying fallback.
+ * Kept so the page degrades safely if consent is ever withdrawn.
+ */
 export const CLIENT_SEGMENTS = [
   'Luxury hotel groups',
   'Airline & institutional catering',
@@ -139,7 +152,7 @@ export const OPERATING_MODEL = [
     step: '04',
     title: 'Seven days, pan-India',
     body:
-      'Dispatch to every property on the account from one order, on a seven-day lead time whether it is a metro or a resort town.',
+      'Dispatch to every property on the account from one order under our pan-India logistics agreement with Delhivery, on a seven-day lead time whether it is a metro or a resort town.',
   },
 ]
 
@@ -153,12 +166,17 @@ export const STANDARDS = [
   {
     title: 'A plant that has been audited',
     body:
-      'Our Bhiwandi facility has been audited on-site by client procurement teams, including a luxury hotel group and a national quick-commerce platform.',
+      'Our Bhiwandi facility has been audited on-site by client procurement teams, including Taj Qmin and Zepto.',
   },
   {
     title: 'Printed to the brand book',
     body:
       'Print, colour, and finish are held to the property standard. A key card holder or a carry bag is a brand surface, and it gets treated like one.',
+  },
+  {
+    title: 'Live tracking, not phone calls',
+    body:
+      'A pan-India logistics agreement with Delhivery moves every order, and shipment status reports live into the Aeros app — so a property can see where its stock is without chasing anyone for an update.',
   },
   {
     title: 'Low MOQ, ready stock',
