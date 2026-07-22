@@ -158,26 +158,37 @@ export default function HospitalityPage() {
             {CATEGORIES.map((c) => (
               <div
                 key={c.eyebrow}
-                className="bg-bg-subtle p-10 rounded-3xl border border-border-default flex flex-col"
+                className="bg-bg-subtle rounded-3xl border border-border-default flex flex-col overflow-hidden"
               >
-                <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-4">
-                  {c.eyebrow}
+                <div className="relative aspect-[3/2] bg-white border-b border-border-default">
+                  <Image
+                    src={c.image}
+                    alt={c.alt}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover"
+                  />
                 </div>
-                <h3 className="text-2xl font-bold text-fg-primary leading-tight mb-4">
-                  {c.title}
-                </h3>
-                <p className="text-sm text-fg-muted leading-relaxed flex-1">
-                  {c.body}
-                </p>
-                <div className="mt-8 flex flex-wrap gap-2">
-                  {c.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="text-[11px] font-mono px-2.5 py-1 rounded-full border border-border-default text-fg-muted"
-                    >
-                      {t}
-                    </span>
-                  ))}
+                <div className="p-10 flex flex-col flex-1">
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-4">
+                    {c.eyebrow}
+                  </div>
+                  <h3 className="text-2xl font-bold text-fg-primary leading-tight mb-4">
+                    {c.title}
+                  </h3>
+                  <p className="text-sm text-fg-muted leading-relaxed flex-1">
+                    {c.body}
+                  </p>
+                  <div className="mt-8 flex flex-wrap gap-2">
+                    {c.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="text-[11px] font-mono px-2.5 py-1 rounded-full border border-border-default text-fg-muted"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
