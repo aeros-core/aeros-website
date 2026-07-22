@@ -52,7 +52,7 @@ export const CLIENT_SEGMENTS = [
 export const SUPPLY_METRICS = [
   { value: '10+', label: 'Five-star properties supplied' },
   { value: 'Since 2021', label: 'Supplying five-star India' },
-  { value: '7 days', label: 'Pan-India lead time' },
+  { value: '7–10 days', label: 'From PO, pan-India' },
 ]
 
 export type SupplyCategory = {
@@ -115,8 +115,15 @@ export const CATEGORIES: SupplyCategory[] = [
     tags: ['Kraft carry bags', 'Premium white', 'Retail & gifting'],
     image: '/products/hospitality/paper-bags.jpg',
     alt: 'Kraft and white paper carry bags with twisted paper handles, two sizes each',
-    /** Spans the full grid width so five cards leave no orphan cell. */
-    wide: true,
+  },
+  {
+    eyebrow: 'Banquet & catering',
+    title: 'Volume, without looking like volume.',
+    body:
+      'Bagasse trays, clamshells, and plates for banquets, weddings, and outdoor catering — compostable sugarcane fibre that holds a hot buffet line. Plastic options where the brief calls for it.',
+    tags: ['Bagasse trays', 'Clamshells', 'Plates'],
+    image: '/products/hospitality/banquet-catering.jpg',
+    alt: 'Sugarcane bagasse compartment trays, clamshell boxes, and round plates',
   },
 ]
 
@@ -172,9 +179,9 @@ export const OPERATING_MODEL = [
   },
   {
     step: '04',
-    title: 'Seven days, pan-India',
+    title: 'Seven to ten days, pan-India',
     body:
-      'Dispatch to every property on the account from one order under our pan-India logistics agreement with Delhivery, on a seven-day lead time whether it is a metro or a resort town.',
+      'Dispatch to every property on the account under our pan-India logistics agreement with Delhivery. Standard timeline is 7–10 days from purchase order where a projection has been shared with us, metro or resort town alike.',
   },
 ]
 
@@ -207,12 +214,145 @@ export const STANDARDS = [
   },
 ]
 
+/** Marketplace listing with per-SKU capacity, temperature, and spec detail. */
+export const CATALOGUE_URL = 'https://app.aeros-x.com'
+
+/**
+ * Written for the chef, not the buyer. Every line is a property a kitchen
+ * actually tests before it will sign off on a container.
+ */
+export const KITCHEN_SPECS = [
+  {
+    title: 'Leak-proof',
+    body:
+      'Containers hold gravy and curry without seeping at the seam or the base, which is the failure a room-service tray shows up with.',
+  },
+  {
+    title: 'Microwave-safe',
+    body:
+      'Reheat in the container. No transfer to another vessel between the kitchen pass and the guest.',
+  },
+  {
+    title: 'Freezer-safe on request',
+    body:
+      'Available where prep is batched and frozen ahead. Tell us the application and we will spec the right board.',
+  },
+  {
+    title: 'Plastic where it is right',
+    body:
+      'Bagasse and paper are the default, but we run plastic options too. The brief decides the material, not a house preference.',
+  },
+]
+
+/**
+ * How the account is actually contracted. All five confirmed by Arjun on
+ * 2026-07-22 — do not add a term here that has not been confirmed.
+ */
+export const COMMERCIAL_TERMS = [
+  {
+    label: 'Rate contract',
+    value: 'Annual, valid 12 months',
+    note: 'Lock a rate for the year so the property is not re-quoting every quarter.',
+  },
+  {
+    label: 'Pricing basis',
+    value: 'Delivered (FOR) pan-India',
+    note: 'Rates are quoted delivered to the property. No freight surprise on the invoice.',
+  },
+  {
+    label: 'Samples',
+    value: 'Free for five-star properties',
+    note: 'Sent on Blue Dart for quick delivery anywhere in India.',
+  },
+  {
+    label: 'Standard timeline',
+    value: '7–10 days from PO',
+    note: 'Where a projection has been shared, so we can hold the stock against it.',
+  },
+  {
+    label: 'Vendor registration',
+    value: 'Documentation pack on request',
+    note: 'Send us your form. We will return it completed with our statutory papers attached.',
+  },
+]
+
+/**
+ * Beyond supply. Confirmed services — design work for brands, design
+ * consultancy, and catering supply for banquets and events.
+ */
+export const BEYOND_SUPPLY = [
+  {
+    eyebrow: 'Design',
+    title: 'A packaging revamp, end to end.',
+    body:
+      'We do complete design work for brands — not just printing what you send us. If the property is refreshing its identity, the packaging can be redrawn with it rather than retrofitted after.',
+  },
+  {
+    eyebrow: 'Consultancy',
+    title: 'Advice before the artwork.',
+    body:
+      'Material, format, and spec consultancy for teams rethinking a category. Often the cheapest change is the one made before a die is cut.',
+  },
+  {
+    eyebrow: 'Events & banquets',
+    title: 'Catering supply at event scale.',
+    body:
+      'Bagasse trays, clamshells, and plates for weddings, conferences, and outdoor catering, on the same account and the same rate contract.',
+  },
+]
+
+export const FAQS = [
+  {
+    q: 'How do we register you as a vendor?',
+    a: 'Send us your standard vendor registration form and we will return it completed, with our statutory documentation attached. We supply five-star groups already, so the paperwork is familiar ground.',
+  },
+  {
+    q: 'Can we hold a rate for the year?',
+    a: 'Yes. We run annual rate contracts with twelve-month validity, so the property is not re-quoting every quarter.',
+  },
+  {
+    q: 'Are rates delivered or ex-works?',
+    a: 'Delivered. We quote FOR rates to the property anywhere in India, so freight is not a separate line that appears later.',
+  },
+  {
+    q: 'Can we get samples before committing?',
+    a: 'Yes, and for five-star properties they are free. We send them on Blue Dart for quick delivery anywhere in India. Tell us what you use today and we will match it.',
+  },
+  {
+    q: 'What is the lead time?',
+    a: 'Standard timeline is 7 to 10 days from purchase order, where a projection has been shared with us so stock can be held against it. Plain stock is held ready across almost every item.',
+  },
+  {
+    q: 'Is there a minimum order quantity?',
+    a: 'We keep MOQs low, which the ready plain stock is what makes possible. A property can order what it actually needs this month rather than commit to a full production run.',
+  },
+  {
+    q: 'Where do I find capacities, temperatures, and full specs?',
+    a: 'Every product is listed on our app with capacity in ml, temperature ratings, and the rest of the technical detail, so chefs and purchase teams can check specifications directly rather than wait on a datasheet.',
+  },
+  {
+    q: 'Are the containers microwave and freezer safe?',
+    a: 'All containers are leak-proof and microwave-safe. Freezer-safe versions are available on request — tell us the application and we will spec the right board.',
+  },
+  {
+    q: 'Can you print to our brand guidelines?',
+    a: 'Yes. Print, colour, and finish are held to the property brand book, and the spec is locked so a reorder in one city matches the first run in another. We also do complete design work if the identity is being refreshed.',
+  },
+  {
+    q: 'Can you supply every property in the group?',
+    a: 'Yes. Dispatch runs to every property on the account under our pan-India logistics agreement with Delhivery, and shipment status reports live into the Aeros app.',
+  },
+]
+
 export const LEGAL_ENTITY = 'Boson Machines OPC Pvt Ltd'
 export const PHONE_DISPLAY = '+91 79770 77571'
 export const PHONE_TEL = '+917977077571'
 
 export const WHATSAPP_URL =
   'https://wa.me/917977077571?text=Hi%20Aeros%2C%20I%20am%20from%20a%20hotel%20purchase%20team%20and%20would%20like%20a%20sample%20kit.'
+
+export const VENDOR_URL =
+  'mailto:sales@aeros-x.com?subject=Vendor%20registration%20%E2%80%94%20hotel&body=Property%20%2F%20group%3A%0AYour%20registration%20format%20is%20attached%3A%0AContact%20name%20and%20number%3A'
 
 export const SAMPLES_URL =
   'mailto:sales@aeros-x.com?subject=Sample%20kit%20request%20%E2%80%94%20hotel&body=Property%20%2F%20group%3A%0ACity%3A%0AItems%20of%20interest%3A%0ADelivery%20address%3A%0AContact%20number%3A'
