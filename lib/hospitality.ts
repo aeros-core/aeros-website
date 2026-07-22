@@ -42,27 +42,46 @@ export const SUPPLY_METRICS = [
   { value: '7 days', label: 'Pan-India lead time' },
 ]
 
+/**
+ * Organised by where in the property the item is used, not by material —
+ * that is how a hotel purchase team actually buys.
+ */
 export const CATEGORIES = [
   {
-    eyebrow: 'Paper packaging',
-    title: 'Containers, cups, and lids.',
+    eyebrow: 'In-room dining',
+    title: 'Room service that travels well.',
     body:
-      'Paper containers and tubs, branded paper cups, and matching lids — food-grade, migration-tested, and printed to the property brand book.',
-    tags: ['Containers & tubs', 'Paper cups', 'Lids'],
+      'Paper containers and tubs with matching lids, plus cutlery pouches — food-grade and migration-tested, so a hot dish reaches the room the way the kitchen sent it.',
+    tags: ['Containers & tubs', 'Lids', 'Cutlery pouches'],
+    image: '/products/hospitality/in-room-dining.jpg',
+    alt: 'Kraft paper food containers and tubs with lids beside a paper cutlery pouch',
   },
   {
-    eyebrow: 'Bags & guest-facing',
-    title: 'What the guest actually holds.',
+    eyebrow: 'Café & F&B outlets',
+    title: 'Branded, cup by cup.',
     body:
-      'Paper bags, premium carry bags, and key card holders. The pieces that leave the property with the guest, so print and finish have to hold up.',
-    tags: ['Paper bags', 'Premium bags', 'Key card holders'],
+      'Paper cups and lids for the lobby café and outlets, with paper and premium carry bags for anything leaving with the guest. Printed to the property brand book.',
+    tags: ['Paper cups', 'Lids', 'Paper & premium bags'],
+    image: '/products/double-wall-paper-cups/hero.jpg',
+    alt: 'Plain white double wall paper cups in four sizes',
   },
   {
-    eyebrow: 'Housekeeping consumables',
-    title: 'The floors and the kitchen.',
+    eyebrow: 'Guest room & bath',
+    title: 'The small things, done properly.',
     body:
-      'Tissue and kitchen rolls on standing supply, held to the same stock and lead-time commitment as the packaging lines.',
-    tags: ['Tissue', 'Kitchen rolls', 'Standing supply'],
+      'Toothbrush pouches, tissues, and key card holders. Low-value items a guest handles directly, which is exactly why the print and finish have to be right.',
+    tags: ['Toothbrush pouches', 'Tissues', 'Key card holders'],
+    image: '/products/hospitality/guest-room-bath.jpg',
+    alt: 'Paper toothbrush pouch, key card holder sleeve, and folded facial tissues',
+  },
+  {
+    eyebrow: 'Kitchen & back-of-house',
+    title: 'Standing supply for the line.',
+    body:
+      'Kitchen rolls and tissue held on standing supply, on the same stock and lead-time commitment as everything else on the account.',
+    tags: ['Kitchen rolls', 'Tissue', 'Standing supply'],
+    image: '/products/hospitality/kitchen-boh.jpg',
+    alt: 'Commercial kitchen paper towel rolls beside folded kitchen tissue',
   },
 ]
 
