@@ -66,6 +66,37 @@ export const CATEGORIES = [
   },
 ]
 
+/**
+ * Two-shot band proving the "plain stock held ready" and "printed to the brand
+ * book" claims. Both images are reused from the double wall paper cups product
+ * page — they are the only premium, on-palette product photography we hold.
+ *
+ * TODO(arjun): we have no photography at all for paper bags, premium bags, key
+ * card holders, tissue, or kitchen rolls. Those two categories render text-only
+ * until real shots exist. The v5 assets are red line-art icons and are off
+ * brand palette, so they are deliberately not used here.
+ */
+export const BRAND_PROOF = [
+  {
+    src: '/products/double-wall-paper-cups/hero.jpg',
+    alt: 'Plain white double wall paper cups in four sizes',
+    width: 2000,
+    height: 1200,
+    eyebrow: 'Plain stock',
+    caption:
+      'Held ready across almost every item, which is what makes a low MOQ possible.',
+  },
+  {
+    src: '/products/double-wall-paper-cups/printed.jpg',
+    alt: 'Double wall paper cups custom printed with brand artwork',
+    width: 2000,
+    height: 1280,
+    eyebrow: 'Printed to spec',
+    caption:
+      'The same cup, run to the property brand book — colour, mark, and finish locked.',
+  },
+]
+
 export const OPERATING_MODEL = [
   {
     step: '01',
