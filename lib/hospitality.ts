@@ -262,7 +262,7 @@ export const COMMERCIAL_TERMS = [
   {
     label: 'Samples',
     value: 'Free for five-star properties',
-    note: 'Sent on Blue Dart for quick delivery anywhere in India.',
+    note: 'Sent on Blue Dart or FedEx for quick delivery anywhere in India.',
   },
   {
     label: 'Standard timeline',
@@ -316,7 +316,7 @@ export const FAQS = [
   },
   {
     q: 'Can we get samples before committing?',
-    a: 'Yes, and for five-star properties they are free. We send them on Blue Dart for quick delivery anywhere in India. Tell us what you use today and we will match it.',
+    a: 'Yes, and for five-star properties they are free. We send them on Blue Dart or FedEx for quick delivery anywhere in India. Tell us what you use today and we will match it.',
   },
   {
     q: 'What is the lead time?',
@@ -344,7 +344,29 @@ export const FAQS = [
   },
 ]
 
-export const LEGAL_ENTITY = 'Boson Machines OPC Pvt Ltd'
+export const LEGAL_ENTITY = 'Boson Machines (OPC) Private Limited'
+
+/**
+ * Statutory identity a purchase team needs to raise a PO and to cross-check
+ * us on the GST portal. Sourced from the GST registration certificate.
+ *
+ * DELIBERATELY NOT PUBLISHED HERE: bank account and IFSC from the cancelled
+ * cheque, and the PAN card document. Bank details on a public page are a
+ * fraud invitation — they belong in the vendor form sent directly to the
+ * property. (The PAN itself is embedded in the GSTIN by design, which is
+ * normal and unavoidable.)
+ */
+export const LEGAL_DETAILS = [
+  { label: 'Legal name', value: 'Boson Machines (OPC) Private Limited' },
+  { label: 'GSTIN', value: '27AAHCB4282B1ZW' },
+  { label: 'Constitution', value: 'Private limited company, GST registered since 2017' },
+  {
+    label: 'Registered office',
+    value:
+      '76/612, Motilal Nagar No. 1, behind the post office, near Siddharth Hospital, Goregaon West, Mumbai',
+  },
+  { label: 'Works', value: 'Bhiwandi, Maharashtra' },
+]
 export const PHONE_DISPLAY = '+91 79770 77571'
 export const PHONE_TEL = '+917977077571'
 

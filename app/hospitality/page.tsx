@@ -15,7 +15,7 @@ import {
   FAQS,
   HOTEL_CLIENTS,
   KITCHEN_SPECS,
-  LEGAL_ENTITY,
+  LEGAL_DETAILS,
   OPERATING_MODEL,
   PHONE_DISPLAY,
   SAMPLES_URL,
@@ -62,7 +62,7 @@ export default function HospitalityPage() {
           <p className="mt-10 text-lg md:text-xl text-fg-muted max-w-xl mx-auto leading-relaxed">
             Room service, the café, the guest bath, the kitchen line — made at
             our own Mumbai plant and delivered to every property on the account
-            in seven days.
+            in 7 to 10 days.
           </p>
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -430,21 +430,46 @@ export default function HospitalityPage() {
             ))}
           </div>
 
-          <div className="mt-8 rounded-3xl border border-border-default bg-white p-10 text-center">
-            <h3 className="text-2xl font-bold text-fg-primary leading-tight mb-3">
-              Send us your vendor form.
-            </h3>
-            <p className="text-fg-muted leading-relaxed max-w-xl mx-auto">
-              Every group has its own registration format. Send yours and we
-              will return it completed with our statutory documentation
-              attached — {LEGAL_ENTITY}.
-            </p>
-            <a
-              href={VENDOR_URL}
-              className="mt-8 inline-flex px-8 py-4 rounded-full bg-ink-900 text-white text-sm font-medium hover:bg-ink-800 transition-colors"
-            >
-              Start vendor registration
-            </a>
+          <div className="mt-8 rounded-3xl border border-border-default bg-white p-10 md:p-12">
+            <div className="text-center">
+              <h3 className="text-2xl font-bold text-fg-primary leading-tight mb-3">
+                Send us your vendor form.
+              </h3>
+              <p className="text-fg-muted leading-relaxed max-w-xl mx-auto">
+                Every group has its own registration format. Send yours and we
+                will return it completed, with our GST certificate, PAN, MSME
+                registration, and cancelled cheque attached.
+              </p>
+            </div>
+
+            <dl className="mt-10 border-t border-border-default">
+              {LEGAL_DETAILS.map((d) => (
+                <div
+                  key={d.label}
+                  className="py-4 border-b border-border-default grid grid-cols-1 sm:grid-cols-[170px_1fr] gap-1 sm:gap-6 items-baseline"
+                >
+                  <dt className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60">
+                    {d.label}
+                  </dt>
+                  <dd className="text-sm text-fg-primary leading-relaxed">
+                    {d.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            <div className="mt-10 text-center">
+              <a
+                href={VENDOR_URL}
+                className="inline-flex px-8 py-4 rounded-full bg-ink-900 text-white text-sm font-medium hover:bg-ink-800 transition-colors"
+              >
+                Start vendor registration
+              </a>
+              <p className="mt-6 text-xs text-fg-muted/60 max-w-md mx-auto leading-relaxed">
+                Bank details are shared on the completed vendor form, not
+                published here.
+              </p>
+            </div>
           </div>
         </div>
       </section>
