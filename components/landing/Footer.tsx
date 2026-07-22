@@ -9,6 +9,7 @@ const columns = [
   {
     title: 'Solutions',
     links: [
+      { label: 'For Hotels', href: '/hospitality' },
       { label: 'For Manufacturers', href: '#' },
       { label: 'For Retailers', href: '#' },
       { label: 'For Traders', href: '#' },
