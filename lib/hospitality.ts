@@ -111,10 +111,10 @@ export const CATEGORIES: SupplyCategory[] = [
     eyebrow: 'Bags & takeaway',
     title: 'What leaves with the guest.',
     body:
-      'Kraft carry bags for everyday outlet use and premium rope-handle bags for retail, boutique, and gifting. The last thing a guest is handed, so the paper weight and the finish carry the property name.',
-    tags: ['Kraft carry bags', 'Premium rope-handle', 'Retail & gifting'],
+      'Kraft carry bags for everyday outlet use and premium white bags for retail, boutique, and gifting. The last thing a guest is handed, so the paper weight and the finish carry the property name.',
+    tags: ['Kraft carry bags', 'Premium white', 'Retail & gifting'],
     image: '/products/hospitality/paper-bags.jpg',
-    alt: 'Kraft paper carry bags with twisted handles and premium white bags with rope handles',
+    alt: 'Kraft and white paper carry bags with twisted paper handles, two sizes each',
     /** Spans the full grid width so five cards leave no orphan cell. */
     wide: true,
   },
