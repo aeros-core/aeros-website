@@ -391,7 +391,7 @@ export const LEGAL_DETAILS = [
   {
     label: 'Registered office',
     value:
-      '76/612, Motilal Nagar No. 1, behind the post office, near Siddharth Hospital, Goregaon West, Mumbai',
+      '76/612, Motilal Nagar No. 1, Goregaon (W), Mumbai 400104, Maharashtra, India',
   },
   { label: 'Works', value: 'Bhiwandi, Maharashtra' },
 ]
