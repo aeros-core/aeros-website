@@ -1776,6 +1776,24 @@ const compostableBags: AerosSelectProduct = {
       ],
     },
     {
+      kind: 'format-showcase',
+      heading: 'Your brand, on a bag that composts.',
+      intro:
+        'Full-colour custom print, up to 3 colours. A handful of the printed runs we have shipped — sweet shops, restaurants, and cloud kitchens across India and the Gulf.',
+      plain: {
+        image: '/products/compostable-bags/product.webp',
+        label: 'Plain',
+      },
+      printed: [
+        { image: '/products/compostable-bags/branded/alfa-sweets.webp', label: 'Alfa Sweets' },
+        { image: '/products/compostable-bags/branded/paradise.webp', label: 'Paradise' },
+        { image: '/products/compostable-bags/branded/kwality-foods.webp', label: 'Kwality Foods Corner' },
+        { image: '/products/compostable-bags/branded/asha-pan-palace.webp', label: 'Asha Pan Palace' },
+        { image: '/products/compostable-bags/branded/turk-saram.webp', label: 'Turk Saram' },
+        { image: '/products/compostable-bags/branded/mughal.webp', label: 'Mughal Restaurant' },
+      ],
+    },
+    {
       kind: 'features',
       heading: 'Plants in. Soil out.',
       items: [
