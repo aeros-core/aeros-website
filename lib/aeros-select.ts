@@ -1936,6 +1936,386 @@ const compostableBags: AerosSelectProduct = {
   orderCtaLabel: 'Order compostable bags',
 }
 
+const bagasseContainers: AerosSelectProduct = {
+  slug: 'bagasse-containers',
+  name: 'Anti-Leak Bagasse Containers',
+  tagline:
+    'Anti-leak moulded sugarcane containers for delivery — round for curries and dals, rectangular for rice and mains. 500 / 750 / 1000 ml, a matching lid for every size.',
+  hero: {
+    eyebrow: 'Aeros Select · Packaging',
+    title: 'Fail-proof at 6 km.',
+    subtitle:
+      'A leaked gravy is a refund, a one-star rating, and a customer you never see again. These anti-leak moulded bagasse containers are built for the delivery ride — round for curries and dals, rectangular for rice and mains — with a locking lid on every size. Compostable sugarcane fibre, microwave and fridge safe.',
+    image: {
+      src: '/products/bagasse-containers/round.webp',
+      alt: 'Round anti-leak bagasse delivery container with its matching moulded lid',
+    },
+  },
+  highlights: [
+    { label: 'Material', value: 'Moulded sugarcane bagasse' },
+    { label: 'Shapes', value: 'Round · Rectangular' },
+    { label: 'Sizes', value: '500 · 750 · 1000 ml, both shapes' },
+    { label: 'Safe', value: 'Microwave · fridge · compostable' },
+  ],
+  sections: [
+    {
+      kind: 'variants',
+      heading: 'Round or rectangular.',
+      intro:
+        'Two shapes off the same anti-leak lid system. Round nests curries and gravies; rectangular flat-stacks rice and mains in the delivery bag. Both come in three sizes, each with its own matching lid.',
+      items: [
+        {
+          name: 'Round — curries, dals & gravies',
+          tags: ['500 / 750 / 1000 ml', 'Locking bagasse lid', 'SKU RDC-001…003'],
+          body: 'The bowl shape for anything with a sauce. The lid locks down so dals, curries, and gravies stay in the box and not in the bag. Sturdy enough to eat straight from, dine-in or delivery.',
+          images: [
+            '/products/bagasse-containers/round.webp',
+            '/products/bagasse-containers/round-range.webp',
+          ],
+          specs: [
+            { label: '500 ml', value: '600 / case · lid RDC-001' },
+            { label: '750 ml', value: '600 / case · lid RDC-002' },
+            { label: '1000 ml', value: '400 / case · lid RDC-003' },
+          ],
+        },
+        {
+          name: 'Rectangular — rice, biryani & mains',
+          tags: ['500 / 750 / 1000 ml', 'Same anti-leak lid', 'SKU RTC-001…003'],
+          body: 'The flat-stack format. Rectangular boxes sit tight in delivery bags and fridges without rolling, and the same locking lid keeps rice, biryani, and noodles put on the ride.',
+          images: [
+            '/products/bagasse-containers/rectangular.webp',
+            '/products/bagasse-containers/rect-range.webp',
+          ],
+          specs: [
+            { label: '500 ml', value: '600 / case · lid RTC-001' },
+            { label: '750 ml', value: '600 / case · lid RTC-002' },
+            { label: '1000 ml', value: '600 / case · lid RTC-003' },
+          ],
+        },
+      ],
+    },
+    {
+      kind: 'comparison',
+      eyebrow: '/ round or rectangular',
+      rowHeader: '',
+      heading: 'Pick the shape for the dish.',
+      intro:
+        'Same material, same anti-leak lid, same three sizes. The shape is the only real decision — and it comes down to what you are putting in it.',
+      columns: ['Round', 'Rectangular'],
+      rows: [
+        { label: 'Best for', values: ['Curries · dals · gravies', 'Rice · biryani · noodles · mains'] },
+        { label: 'In the bag', values: ['Nests and stacks', 'Flat-stacks tight, no roll'] },
+        { label: 'Sizes', values: ['500 / 750 / 1000 ml', '500 / 750 / 1000 ml'] },
+        { label: 'Case pack', values: ['600 / 600 / 400', '600 / 600 / 600'] },
+        { label: 'Lid', values: ['Matching lid, every size', 'Matching lid, every size'] },
+      ],
+    },
+    {
+      kind: 'features',
+      heading: 'Everything a delivery box has to survive.',
+      items: [
+        {
+          name: 'Anti-leak locking lid',
+          body: 'The lid locks to the rim rather than resting on it — gravies and sauces stay sealed through the bag, the bike, and the handoff. The failure mode that generates refunds, designed out.',
+        },
+        {
+          name: 'Microwave and fridge safe',
+          body: 'Straight from the fridge to the microwave in the same box — bagasse takes the heat and the cold without warping or going soft, so the customer reheats in the container you shipped.',
+        },
+        {
+          name: '100% compostable sugarcane fibre',
+          body: 'Moulded from sugarcane bagasse — a by-product of sugar milling, not a tree and not a barrel of oil. It composts back to nothing, so there is no plastic and no guilt in the bin.',
+        },
+        {
+          name: 'Sturdy, no sogging',
+          body: 'The moulded fibre wall holds hot gravies and cold desserts without turning soft at the base — sturdy in one hand, good enough to eat straight from, no plate needed.',
+        },
+        {
+          name: 'Food-grade, made in India',
+          body: 'Food-contact grade and manufactured in India — shorter lead times and freight that makes sense for an Indian kitchen, with none of the microplastic worry of rigid plastic.',
+        },
+      ],
+    },
+    {
+      kind: 'variants',
+      heading: 'Seal it, then brand it.',
+      intro:
+        'Two add-ons turn a plain bowl into a tamper-evident, branded delivery unit — both printed with your logo.',
+      items: [
+        {
+          name: 'Anti-leak inner tray',
+          tags: ['Printed', 'Extra seal'],
+          body: 'A printed inner tray sits over the food edge to edge, then the bagasse lid locks on top — a second barrier against spills and a tamper-evident seal in one.',
+          images: ['/products/bagasse-containers/inner-tray.webp'],
+        },
+        {
+          name: 'Branded sleeve',
+          tags: ['Printed', 'Tamper-evident'],
+          body: 'A printed sleeve wraps the sealed bowl and carries your brand on every order that leaves the kitchen — and doubles as a tamper strip the customer breaks to open.',
+          images: ['/products/bagasse-containers/sleeve.webp'],
+        },
+      ],
+    },
+    {
+      kind: 'use-cases',
+      heading: 'On the counter and in the bag.',
+      items: [
+        {
+          name: 'Cloud kitchens & delivery',
+          body: 'The case these were built for — sealed gravies and rice that survive a 6 km ride without a leak, so the order arrives the way it left the pass.',
+          image: '/products/bagasse-containers/cafe-round.webp',
+          imageFit: 'bleed',
+        },
+        {
+          name: 'Dine-in & grab-and-go',
+          body: 'Sturdy enough to eat straight from with no plate — the round bowl works on the table as well as it does in the bag.',
+          image: '/products/bagasse-containers/cafe-rect.webp',
+          imageFit: 'bleed',
+        },
+        {
+          name: 'Curries, dals & gravies',
+          body: 'The round format nests anything with a sauce; the locking lid is what keeps it off the bag on the way over.',
+        },
+        {
+          name: 'Rice, biryani & mains',
+          body: 'The rectangular box flat-stacks the heavy mains that anchor a delivery menu — no rolling, no crush, no spill.',
+        },
+        {
+          name: 'Meal-prep & catering',
+          body: 'Microwave-and-fridge safe across 500 / 750 / 1000 ml — portion ahead, chill, and reheat in the same compostable box.',
+        },
+      ],
+    },
+    {
+      kind: 'specs',
+      heading: 'Specifications.',
+      items: [
+        { label: 'Material', value: 'Moulded sugarcane bagasse fibre' },
+        { label: 'Shapes', value: 'Round and rectangular' },
+        { label: 'Sizes', value: '500 · 750 · 1000 ml in both shapes' },
+        { label: 'Lids', value: 'Matching anti-leak locking lid for every size — RDC-001…003 round, RTC-001…003 rectangular' },
+        { label: 'Sold as', value: 'Container only, lid only, or container + lid set' },
+        { label: 'Case pack — round', value: '500 ml 600 · 750 ml 600 · 1000 ml 400 per case' },
+        { label: 'Case pack — rectangular', value: '500 / 750 / 1000 ml — 600 per case' },
+        { label: 'Temperature', value: 'Microwave and fridge safe · bagasse withstands roughly −10 °C to +120 °C' },
+        { label: 'Compostability', value: '100% compostable sugarcane fibre' },
+        { label: 'Compliance', value: 'Food-contact grade · made in India' },
+        { label: 'Branding', value: 'Printed inner tray and printed sleeve available — quoted on request' },
+      ],
+    },
+    {
+      kind: 'faq',
+      heading: 'FAQ.',
+      items: [
+        {
+          q: 'How anti-leak are these, really?',
+          a: 'The lid locks to the rim instead of resting on it, and the optional printed inner tray adds a second barrier over the food before the lid goes on. For thin gravies on a long ride, run the inner tray as well as the lid — that is the belt-and-braces setup.',
+        },
+        {
+          q: 'Round or rectangular — which should I order?',
+          a: 'Round for anything with a sauce — curries, dals, gravies. Rectangular for rice, biryani, noodles, and mains that flat-stack in the bag. Same material, same lid system, same three sizes, so many kitchens run both and pick at packing.',
+        },
+        {
+          q: 'Can the customer microwave it?',
+          a: 'Yes — bagasse is microwave and fridge safe, so the order goes fridge-to-microwave in the same box. It also takes hot fills straight off the pass without warping.',
+        },
+        {
+          q: 'Do the lids fit across sizes?',
+          a: 'No — each size has its own matching lid (RDC-001…003 for round, RTC-001…003 for rectangular). Order the lid that matches the container, or take the container-and-lid set so they always pair.',
+        },
+        {
+          q: 'What is the case pack?',
+          a: 'Round: 600 each for 500 ml and 750 ml, 400 for 1000 ml. Rectangular: 600 per case across all three sizes. Order by the case on the Aeros app.',
+        },
+        {
+          q: 'Can I print my brand on them?',
+          a: 'Yes — via the printed inner tray and the printed sleeve, both of which carry your logo on the sealed bowl. Send artwork and quantity and we will quote the print run and lead time.',
+        },
+        {
+          q: 'Is bagasse actually better than plastic here?',
+          a: 'For delivery, yes on two counts: it composts back to nothing instead of persisting for decades, and it is microwave-safe where most rigid plastics are not. It is moulded from sugarcane fibre left over from sugar milling — a by-product, not a fresh raw material.',
+        },
+      ],
+    },
+  ],
+  orderUrl: APP_MARKETPLACE_URL,
+  orderCtaLabel: 'Order bagasse containers',
+}
+
+const cupDeliverySystem: AerosSelectProduct = {
+  slug: 'cup-delivery-system',
+  name: 'Cup Delivery System',
+  tagline:
+    'Holder plus carrier bag — a fold-flat kraft holder that cradles the cup and a tall bag that keeps it upright, so delivered drinks arrive sealed and spill-free.',
+  hero: {
+    eyebrow: 'Aeros Select · Packaging',
+    title: 'Drinks that arrive upright.',
+    subtitle:
+      'A delivered drink should not land tipped, leaking, or half-empty. The complete cup delivery system pairs a fold-flat kraft holder that cradles the cup with a tall carrier bag that keeps it upright the whole way — sealed at the counter, opened only by your customer. One cup or two, white or brown, all recycled kraft.',
+    image: {
+      src: '/products/cup-delivery-system/hero.webp',
+      alt: 'Clear cold cup standing upright inside a tall Aeros-printed kraft carrier bag',
+      aspect: 'tall',
+    },
+  },
+  highlights: [
+    { label: 'The system', value: 'Fold-flat holder + carrier bag' },
+    { label: 'Capacity', value: 'One cup or two' },
+    { label: 'Finish', value: 'White or brown recycled kraft' },
+    { label: 'Recyclable', value: 'Fully recyclable kraft' },
+  ],
+  sections: [
+    {
+      kind: 'variants',
+      heading: 'Two parts, one job.',
+      intro:
+        'The holder grips the base so the cup cannot tip; the bag stands tall around it and seals at the counter. Order them together as the system, or either part on its own.',
+      items: [
+        {
+          name: 'Fold-flat cup holder',
+          tags: ['Single or double', 'Corrugated E-flute kraft', 'Ships flat'],
+          body: 'A corrugated kraft holder that cradles the cup base so it stays upright and level. It ships and stores dead flat, then folds up at the counter — no bulky pre-formed trays taking over the back room. Single-cup and double-cup versions.',
+          images: [
+            '/products/cup-delivery-system/single-holder.webp',
+            '/products/cup-delivery-system/double-holder.webp',
+          ],
+          specs: [
+            { label: 'Single holder', value: 'Brown kraft · corrugated E-flute · 800 / case' },
+            { label: 'Double holder', value: 'Brown kraft · 210 × 95 × 60 mm · corrugated E-flute' },
+            { label: 'Format', value: 'Fold-flat — ships and stores flat' },
+          ],
+        },
+        {
+          name: 'Upright carrier bag',
+          tags: ['Single or double', 'White or brown kraft', 'THIS SIDE UP'],
+          body: 'A tall SOS kraft bag sized to keep the cup standing the whole ride. Printed with a coffee-icon pattern and a "THIS SIDE UP — DO NOT TILT" cue, with a fold-over top that seals at the counter so the order is only opened by the customer.',
+          images: ['/products/cup-delivery-system/carrier-bags.webp'],
+          specs: [
+            { label: 'Single carrier', value: 'SOS · 130 × 90 × 310 mm · white or brown kraft · 500 / case' },
+            { label: 'Double carrier', value: 'SOS · 230 × 125 × 335 mm · white or brown kraft · 500 / case' },
+            { label: 'Paper', value: 'White bleached kraft 100 gsm · brown kraft 80 gsm' },
+          ],
+        },
+      ],
+    },
+    {
+      kind: 'features',
+      heading: 'Details that travel well.',
+      items: [
+        {
+          name: 'Holds every cup upright',
+          body: 'The holder grips the base and the bag stands tall around it, so the cup cannot tip in transit. "THIS SIDE UP — DO NOT TILT" is printed on the bag as a cue to the rider.',
+        },
+        {
+          name: 'Fold-flat holders',
+          body: 'The holders ship and store dead flat and fold up in a second at the counter — the grip of a moulded carrier without the storage footprint of one.',
+        },
+        {
+          name: 'Sealed-at-counter tamper flap',
+          body: 'The fold-over top seals the bag at the counter, so the order reaches the customer exactly as it left the pass — opened by them, not on the way.',
+        },
+        {
+          name: 'One cup or two',
+          body: 'Single and double across both the holder and the bag, so a solo coffee and a two-drink order both travel in the format built for them.',
+        },
+        {
+          name: 'Recycled kraft, recyclable',
+          body: 'Made from recycled kraft and fully recyclable at end of life — white bleached or natural brown, whichever suits your brand.',
+        },
+      ],
+    },
+    {
+      kind: 'comparison',
+      eyebrow: '/ white or brown',
+      rowHeader: '',
+      heading: 'Single or double, white or brown.',
+      intro:
+        'Every carrier ships in both a white bleached-kraft and a natural brown-kraft finish. Pick the size for the order and the colour for the brand.',
+      columns: ['Single carrier', 'Double carrier'],
+      rows: [
+        { label: 'Holds', values: ['One cup', 'Two cups'] },
+        { label: 'Bag size', values: ['130 × 90 × 310 mm', '230 × 125 × 335 mm'] },
+        { label: 'Finishes', values: ['White or brown kraft', 'White or brown kraft'] },
+        { label: 'Case pack', values: ['500 / case', '500 / case'] },
+        { label: 'Paired holder', values: ['Single, 800 / case', 'Double, 210 × 95 × 60 mm'] },
+      ],
+    },
+    {
+      kind: 'use-cases',
+      heading: 'Built for the drinks run.',
+      items: [
+        {
+          name: 'Cafés that deliver',
+          body: 'Cold brew, iced lattes, and shakes that need to arrive upright and unspilled — the holder and bag do together what a loose cup in a bag never could.',
+        },
+        {
+          name: 'Cloud kitchens & QSR',
+          body: 'The sealed fold-over top is a tamper cue on every beverage order, and the fold-flat holder keeps the back-room footprint small.',
+        },
+        {
+          name: 'Two-drink orders',
+          body: 'The double holder and double bag keep a pair of drinks apart and upright, so neither leans into the other on the ride.',
+        },
+        {
+          name: 'Branded takeaway',
+          body: 'Coffee-icon kraft in white or brown, ready to carry your own print — a cup carrier that doubles as a moving brand impression.',
+        },
+      ],
+    },
+    {
+      kind: 'specs',
+      heading: 'Specifications.',
+      items: [
+        { label: 'System', value: 'Fold-flat cup holder + upright SOS carrier bag' },
+        { label: 'Single holder', value: 'Corrugated E-flute brown kraft · 800 / case' },
+        { label: 'Double holder', value: 'Corrugated E-flute brown kraft · 210 × 95 × 60 mm (L × W × H)' },
+        { label: 'Single carrier bag', value: 'SOS 130 × 90 × 310 mm (W × G × H) · white 80 gsm or brown 80 gsm · 500 / case' },
+        { label: 'Double carrier bag', value: 'SOS 230 × 125 × 335 mm (W × G × H) · white 100 gsm or brown 80 gsm · 500 / case' },
+        { label: 'Finishes', value: 'White bleached kraft · natural brown kraft' },
+        { label: 'Closure', value: 'Fold-over top, sealed at counter — tamper-evident' },
+        { label: 'Print', value: 'Coffee-icon kraft · "THIS SIDE UP — DO NOT TILT" · custom print on request' },
+        { label: 'Material', value: 'Recycled kraft — fully recyclable' },
+      ],
+    },
+    {
+      kind: 'faq',
+      heading: 'FAQ.',
+      items: [
+        {
+          q: 'Do I need both the holder and the bag?',
+          a: 'They are designed to work together — the holder grips the base and the bag keeps the whole thing upright and sealed — but you can order either part on its own if you already run the other.',
+        },
+        {
+          q: 'What is the difference between single and double?',
+          a: 'Single carries one cup, double carries two. Both the fold-flat holder and the carrier bag come in single and double, so a solo drink and a two-drink order each travel in the right format.',
+        },
+        {
+          q: 'White or brown?',
+          a: 'Both. Every carrier ships in a white bleached-kraft and a natural brown-kraft finish — the white on slightly heavier 100 gsm paper on the double. Pick the colour that suits your brand.',
+        },
+        {
+          q: 'Why fold-flat holders?',
+          a: 'A moulded carrier gives you grip but eats storage; a fold-flat holder gives the same grip and ships dead flat, so it stores in a fraction of the space and folds up in a second at the counter.',
+        },
+        {
+          q: 'How does the tamper seal work?',
+          a: 'The bag has a fold-over top that is sealed at the counter after the drink goes in, so the order is only opened by your customer — a visible tamper cue on every beverage delivery.',
+        },
+        {
+          q: 'What is the case pack?',
+          a: 'Carrier bags are 500 per case in both sizes. Single holders are 800 per case. Order by the case on the Aeros app.',
+        },
+        {
+          q: 'Can I print my own brand on them?',
+          a: 'Yes — the kraft carries custom print. Send artwork and quantity and we will quote the print run and lead time.',
+        },
+      ],
+    },
+  ],
+  orderUrl: APP_MARKETPLACE_URL,
+  orderCtaLabel: 'Order the cup delivery system',
+}
+
 export const aerosSelectProducts: AerosSelectProduct[] = [
   sealerMachines,
   cupSealer,
@@ -1946,6 +2326,8 @@ export const aerosSelectProducts: AerosSelectProduct[] = [
   meshDeliveryBags,
   clearPpCups,
   compostableBags,
+  bagasseContainers,
+  cupDeliverySystem,
 ]
 
 /** Products shown at the top of /products/aeros-select. Hides sub-products
