@@ -10,6 +10,7 @@ Higgsfield on 2026-07-22 for the `/hospitality` page.
 - `paper-bags.jpg` — kraft and white carry bags with twisted paper handles
 - `banquet-catering.jpg` — bagasse compartment trays, clamshells, and plates
 - `laundry-bags.jpg` — kraft paper hotel laundry bags, open, closed, folded (16:9)
+- `bin-liners.jpg` — colour-coded waste segregation bin liner rolls: green, blue, black, red, yellow (16:9)
 
 They are deliberately **unbranded**, so they illustrate a product category
 without implying a specific job for a specific property. They should not be

@@ -133,8 +133,15 @@ export const CATEGORIES: SupplyCategory[] = [
     tags: ['Kraft laundry bags', 'Housekeeping', 'Printed to brand'],
     image: '/products/hospitality/laundry-bags.jpg',
     alt: 'Kraft paper hotel laundry bags printed LAUNDRY, standing open, closed, and folded flat',
-    /** Seventh card — spans the full width so the grid leaves no orphan. */
-    wide: true,
+  },
+  {
+    eyebrow: 'Waste & bin liners',
+    title: 'Colour-coded, floor by floor.',
+    body:
+      'Garbage bags for the guest room and every housekeeping floor, colour-coded by department so waste segregation is right at the point of use. Room liners at 19 × 21 inches, housekeeping at 30 × 40 and 30 × 50.',
+    tags: ['Room 19×21"', 'Housekeeping 30×40 / 30×50"', 'Colour-coded'],
+    image: '/products/hospitality/bin-liners.jpg',
+    alt: 'Rolls of hotel bin liner garbage bags in green, blue, black, red, and yellow for waste segregation',
   },
 ]
 
