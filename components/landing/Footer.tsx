@@ -31,8 +31,8 @@ const columns = [
     links: [
       { label: 'Privacy', href: '/privacy' },
       { label: 'Support', href: '/support' },
-      { label: 'Terms', href: '#' },
-      { label: 'Cookies', href: '#' },
+      { label: 'Terms', href: '/terms' },
+      { label: 'Cookies', href: '/cookies' },
     ],
   },
 ]
