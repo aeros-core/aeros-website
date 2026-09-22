@@ -110,7 +110,7 @@ const sections = [
       },
       {
         heading: 'Exercising your rights',
-        body: 'To exercise any of these rights, please contact us at privacy@aeros.io. We will respond to your request within 30 days.',
+        body: 'To exercise any of these rights, please contact us at support@aeros-x.com. We will respond to your request within 30 days.',
       },
     ],
   },
@@ -159,7 +159,7 @@ const sections = [
     content: [
       {
         heading: 'Get in touch',
-        body: 'If you have questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact our Data Protection Officer at privacy@aeros.io or write to us at: Aeros Technologies, Data Protection Officer, [Address].',
+        body: 'If you have questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact our Data Protection Officer at support@aeros-x.com or write to us at: Boson Machines OPC Pvt Ltd, Data Protection Officer, 76/612, Motilal Nagar no. 1, Goregaon West, Mumbai, Maharashtra 400104, India.',
       },
     ],
   },
@@ -192,7 +192,7 @@ export default function PrivacyPolicy() {
         <div className="max-w-3xl mx-auto">
           <div className="mb-12 p-6 rounded-2xl border border-border-default bg-bg-subtle">
             <p className="text-fg-primary-800 leading-relaxed text-[15px]">
-              This Privacy Policy describes how Aeros Technologies (&quot;Aeros&quot;, &quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) collects, uses, shares, and protects personal information when you use our platform, products, and services (&quot;Services&quot;). By using our Services, you agree to the collection and use of information in accordance with this policy.
+              This Privacy Policy describes how Boson Machines OPC Pvt Ltd, trading as Aeros and Aeros Packaging (&quot;Aeros&quot;, &quot;we&quot;, &quot;our&quot;, or &quot;us&quot;), collects, uses, shares, and protects personal information when you use our platform, products, and services (&quot;Services&quot;). By using our Services, you agree to the collection and use of information in accordance with this policy.
             </p>
           </div>
 
@@ -220,9 +220,9 @@ export default function PrivacyPolicy() {
 
           <div className="mt-16 pt-8 border-t border-border-default">
             <p className="text-fg-muted text-sm leading-relaxed">
-              This policy applies to all Aeros products and services unless a separate privacy notice is provided. For questions, contact{' '}
-              <a href="mailto:privacy@aeros.io" className="text-fg-primary underline hover:text-royal-600 transition-colors">
-                privacy@aeros.io
+              This policy is issued by Boson Machines OPC Pvt Ltd and applies to all Aeros products and services unless a separate privacy notice is provided. For questions, contact{' '}
+              <a href="mailto:support@aeros-x.com" className="text-fg-primary underline hover:text-royal-600 transition-colors">
+                support@aeros-x.com
               </a>.
             </p>
           </div>
