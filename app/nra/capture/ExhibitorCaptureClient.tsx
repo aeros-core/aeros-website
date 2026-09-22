@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { company as aerosCompany } from '@/lib/company'
 
 type Lead = {
   id: string
@@ -218,8 +219,8 @@ const AEROS_VCARD = `BEGIN:VCARD
 VERSION:3.0
 FN:Aeros
 ORG:Aeros — Boson Machines OPC Pvt Ltd
-EMAIL;TYPE=WORK:hello@aeros.io
-URL:https://aeros.io
+EMAIL;TYPE=WORK:${aerosCompany.salesEmail}
+URL:https://${aerosCompany.website}
 TITLE:Marketplace for the back-of-house
 NOTE:Met at NRA Show 2026, Booth #12937, McCormick Place Chicago.
 END:VCARD
