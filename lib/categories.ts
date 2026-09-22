@@ -25,7 +25,13 @@ type TypesSection = {
   kind: 'types'
   heading: string
   intro?: string
-  items: Array<{ name: string; whenToUse: string; sizes?: string; href?: string }>
+  items: Array<{
+    name: string
+    whenToUse: string
+    sizes?: string
+    href?: string
+    image?: string
+  }>
 }
 
 type MeasuringSection = {
@@ -80,6 +86,7 @@ export type Category = {
   name: string
   blurb: string
   available: boolean
+  image?: string
   detail?: CategoryDetail
 }
 
@@ -109,18 +116,21 @@ const paperCupsDetail: CategoryDetail = {
             'Specialty coffee and longer dwell times. Holds heat without a sleeve.',
           sizes: '8, 10, 12, 16 oz',
           href: '/products/paper-cups/double-wall-paper-cups',
+          image: '/products/types/double-wall.jpg',
         },
         {
           name: 'Ripple-wall',
           whenToUse:
             'Premium hot drinks on the go. Textured outer wall offers grip and insulation.',
           sizes: '8, 12, 16 oz',
+          image: '/products/types/ripple-wall.jpg',
         },
         {
           name: 'Cold cup',
           whenToUse:
             'Iced coffee, juice, soft drinks. Coated to resist condensation.',
           sizes: '9, 12, 16, 22, 32 oz',
+          image: '/products/types/cold-cup.jpg',
         },
         {
           name: 'Compostable',
@@ -264,6 +274,7 @@ export const categories: Category[] = [
     name: 'Paper cups',
     blurb: 'Single-wall, double-wall, ripple, cold, and compostable.',
     available: true,
+    image: '/products/categories/paper-cups.jpg',
     detail: paperCupsDetail,
   },
   {
@@ -272,6 +283,7 @@ export const categories: Category[] = [
     name: 'Lids',
     blurb: 'Sip, slot, and dome lids in PP and PLA.',
     available: false,
+    image: '/products/categories/lids.jpg',
   },
   {
     slug: 'paper-bowls',
@@ -279,6 +291,7 @@ export const categories: Category[] = [
     name: 'Paper bowls',
     blurb: 'Soup, salad, and noodle bowls with matching lids.',
     available: false,
+    image: '/products/categories/paper-bowls.jpg',
   },
   {
     slug: 'takeout-containers',
@@ -286,6 +299,7 @@ export const categories: Category[] = [
     name: 'Takeout containers',
     blurb: 'Bagasse, kraft, and aluminium — vented and leakproof.',
     available: false,
+    image: '/products/categories/takeout-containers.jpg',
   },
   {
     slug: 'napkins',

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import type { Category } from '@/lib/categories'
 
@@ -12,10 +13,21 @@ export default function CategoryCard({ category }: { category: Category }) {
           / {category.name.toLowerCase()}
         </div>
       </div>
+      {category.image && (
+        <div className="relative mb-6 aspect-[4/3] rounded-2xl overflow-hidden bg-bg-subtle">
+          <Image
+            src={category.image}
+            alt={category.name}
+            fill
+            sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 90vw"
+            className="object-cover"
+          />
+        </div>
+      )}
       <h3 className="text-2xl font-bold text-fg-primary mb-2">
         {category.name}
       </h3>
-      <p className="text-fg-muted text-sm mb-8">{category.blurb}</p>
+      <p className="text-fg-muted text-sm mb-8 flex-1">{category.blurb}</p>
 
       {isLinkable ? (
         <span className="text-sm text-fg-primary font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
