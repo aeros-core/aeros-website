@@ -1,3 +1,5 @@
+import { company, addressLines } from '@/lib/company'
+
 const columns = [
   {
     title: 'Product',
@@ -23,16 +25,17 @@ const columns = [
       { label: 'About', href: '#' },
       { label: 'Blog', href: '#' },
       { label: 'Careers', href: '#' },
-      { label: 'Contact', href: '#' },
+      { label: 'Contact', href: '/contact' },
     ],
   },
   {
     title: 'Legal',
     links: [
-      { label: 'Privacy', href: '/privacy' },
+      { label: 'Terms & Conditions', href: '/terms' },
+      { label: 'Privacy Policy', href: '/privacy' },
+      { label: 'Refund & Cancellation', href: '/refund-policy' },
+      { label: 'Shipping Policy', href: '/shipping-policy' },
       { label: 'Support', href: '/support' },
-      { label: 'Terms', href: '#' },
-      { label: 'Cookies', href: '#' },
     ],
   },
 ]
@@ -49,6 +52,34 @@ export default function Footer() {
             <p className="mt-4 text-sm text-fg-muted max-w-xs leading-relaxed">
               One operating system for your entire business.
             </p>
+
+            <address className="mt-6 not-italic text-xs text-fg-muted leading-relaxed">
+              {addressLines.map((line, i) => (
+                <div key={line} className={i === 0 ? 'font-semibold text-fg-primary' : undefined}>
+                  {line}
+                </div>
+              ))}
+            </address>
+
+            <div className="mt-4 space-y-1 text-xs text-fg-muted">
+              <div>
+                <a
+                  href={`mailto:${company.email}`}
+                  className="hover:text-fg-primary transition-colors"
+                >
+                  {company.email}
+                </a>
+              </div>
+              <div>
+                <a
+                  href={`tel:${company.phoneHref}`}
+                  className="hover:text-fg-primary transition-colors"
+                >
+                  {company.phone}
+                </a>
+              </div>
+              <div className="font-mono text-fg-muted/70 pt-1">GSTIN {company.gstin}</div>
+            </div>
           </div>
 
           {columns.map((col) => (
@@ -72,12 +103,12 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-20 pt-8 border-t border-border-default flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-20 pt-8 border-t border-border-default flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <p className="text-xs text-fg-muted/60 font-mono">
-            © {new Date().getFullYear()} Aeros. All rights reserved.
+            © {new Date().getFullYear()} {company.legalName}. All rights reserved.
           </p>
           <p className="text-xs text-fg-muted/60 font-mono">
-            Made for operators.
+            {company.brandAttribution}
           </p>
         </div>
       </div>
