@@ -1,6 +1,7 @@
 'use server'
 
 import { Client } from '@notionhq/client'
+import { company } from '@/lib/company'
 
 export type PartnerApplicationInput = {
   businessName: string
@@ -202,7 +203,7 @@ export async function submitPartnerApplication(
     return {
       ok: false,
       error:
-        'We could not record your application. Please try again, or email hello@aeros.io.',
+        `We could not record your application. Please try again, or email ${company.salesEmail}.`,
     }
   }
 }
