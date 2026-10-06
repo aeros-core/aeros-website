@@ -6,7 +6,8 @@ export type LegalSection = {
   title: string
   content: {
     heading: string
-    body: string
+    /** Usually plain text; inline elements (links, buttons) are allowed — it renders in a <p>. */
+    body: React.ReactNode
     bullets?: string[]
   }[]
 }

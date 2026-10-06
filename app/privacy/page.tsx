@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Navbar from '@/components/landing/Navbar'
 import Footer from '@/components/landing/Footer'
+import CookieSettingsButton from '@/components/analytics/CookieSettingsButton'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy — Aeros',
@@ -52,6 +54,10 @@ const sections = [
       {
         heading: 'Service providers',
         body: 'We share your information with third-party service providers who perform services on our behalf, such as cloud hosting, payment processing, analytics, and customer support. These providers are contractually obligated to use your information only as directed by us.',
+      },
+      {
+        heading: 'Meta (advertising measurement)',
+        body: 'We share information with Meta Platforms, Inc. and Meta Platforms Ireland Limited ("Meta"), which operate Facebook, Instagram and WhatsApp, so that we can measure and improve our advertising on those services. This includes information collected by the Meta Pixel on aeros-x.com and app.aeros-x.com and events we send to Meta from our servers through Meta\'s Conversions API, such as hashed contact identifiers, order values and ad-click identifiers. Meta also processes this information under its own privacy policy. Section 7 explains what is shared and how to opt out.',
       },
       {
         heading: 'Business transfers',
@@ -118,12 +124,68 @@ const sections = [
     title: '7. Cookies and Tracking',
     content: [
       {
-        heading: 'Types of cookies we use',
-        body: 'We use essential cookies necessary for our services to function, performance cookies to understand how our services are used, and functional cookies to remember your preferences. We do not use third-party advertising cookies.',
+        heading: 'Essential cookies and storage',
+        body: 'Our websites and apps use cookies and similar technologies, such as your browser\'s local storage, that they need in order to work: to keep you signed in and your session secure, to remember the items in your cart, and to remember the cookie choice you make. Our sign-in and payment providers (such as Google Sign-In, Razorpay and Stripe) may also set cookies needed for secure sign-in, payment processing and fraud prevention. These cannot be switched off, because the services would not work without them.',
       },
       {
-        heading: 'Your cookie choices',
-        body: 'You can control cookies through your browser settings. Disabling certain cookies may affect the functionality of our services. For more details, see our Cookie Policy.',
+        heading: 'The Meta Pixel',
+        body: 'On aeros-x.com and app.aeros-x.com we use the Meta Pixel, a technology provided by Meta, to measure how well our ads on Facebook, Instagram and WhatsApp work and to show our ads to people likely to be interested in Aeros. When it is active, the pixel tells Meta which pages you visit and the actions you take, such as viewing a product, adding it to your cart, starting checkout, placing an order, submitting an enquiry, or tapping our WhatsApp, email or phone links, together with your IP address and browser details. It uses two cookies set on our own domain: _fbp, which identifies your browser to Meta, and _fbc, which stores the ad-click identifier when you arrive from one of our Meta ads; each expires 90 days after it was last set. When you are signed in to app.aeros-x.com, or enter your email address or phone number in one of our forms, the pixel may also send your email address, phone number and account identifier in hashed (SHA-256) form, so that Meta can match the activity to a Meta account.',
+      },
+      {
+        heading: 'Server-side events (Meta Conversions API)',
+        body: 'We also send events to Meta directly from our servers through Meta\'s Conversions API. This lets us report actions that are not completed in your browser, such as an order paid through UPI or a payment link and confirmed by our payment provider, and keeps measurement working when a browser blocks the pixel. These events can include your email address, phone number and account identifier in hashed (SHA-256) form; for orders, also your name and the city, state, postcode and country of the delivery address, likewise hashed; the order value, currency and the products ordered; your IP address and browser user agent; and the _fbp and _fbc values. Hashing turns these details into fixed-length codes, so we do not send your email address or phone number to Meta in readable form; Meta compares the codes with those it holds to match events to Meta accounts. Meta uses this information to measure and improve the delivery of our ads and to help us build advertising audiences, for example people who have visited our website or who are similar to our existing customers.',
+      },
+      {
+        heading: 'WhatsApp click-to-chat ads',
+        body: 'Some of our ads open a WhatsApp conversation with us. When you message us from one of these ads, Meta gives us an identifier for that ad click. We report back to Meta, against that identifier, how the conversation progressed (that a lead was received, that it became a qualified lead, and whether it led to a purchase, with the order value) so that Meta can measure and optimise those ads. We do not send the content of your messages to Meta for this purpose.',
+      },
+      {
+        heading: 'Your choices',
+        body: (
+          <>
+            The first time you visit aeros-x.com or app.aeros-x.com, a banner explains this tracking.
+            If you visit from Europe (which we infer from your device&apos;s time zone), the Meta
+            Pixel stays off unless you accept it; elsewhere it is on by default and you can opt out
+            at any time. You can change your choice whenever you like using{' '}
+            <CookieSettingsButton className="text-fg-primary underline hover:text-fg-muted transition-colors cursor-pointer" />{' '}
+            at the bottom of every page on aeros-x.com, or the privacy setting in the Aeros app. When
+            you opt out, the pixel stops sending events and we stop sending server-side events
+            about what you do in that browser. If your browser sends a Global Privacy Control (GPC)
+            signal, we honour it by switching on Meta&apos;s Limited Data Use mode for the events we
+            send. Our{' '}
+            <Link href="/cookie-policy" className="text-fg-primary underline hover:text-fg-muted transition-colors">
+              Cookie Policy
+            </Link>{' '}
+            lists the cookies we use and how long each one lasts.
+          </>
+        ),
+      },
+      {
+        heading: 'Other ways to opt out',
+        body: (
+          <>
+            You can block or delete cookies in your browser settings; essential features may then
+            stop working, and your cookie choice will be forgotten. You can also control how Meta
+            uses information from other businesses to show you ads in your Facebook or Instagram
+            settings. To ask us to stop sending your information to Meta altogether, including
+            server-side events about your orders and WhatsApp conversations, write to{' '}
+            <a href="mailto:support@aeros-x.com" className="text-fg-primary underline hover:text-fg-muted transition-colors">
+              support@aeros-x.com
+            </a>
+            . If you are in India, you can exercise your rights under the Digital Personal Data
+            Protection Act, 2023, including withdrawing your consent, in the same way; if you are
+            not satisfied with our response, ask for your request to be escalated to our grievance
+            officer, as described on our{' '}
+            <Link href="/contact" className="text-fg-primary underline hover:text-fg-muted transition-colors">
+              Contact page
+            </Link>
+            .
+          </>
+        ),
+      },
+      {
+        heading: 'Retention',
+        body: 'The _fbp and _fbc cookies expire 90 days after they were last set. Your cookie choice stays in your browser until you change it or clear your browser data. We keep a record of each choice (the choice, when it was made and a random identifier for your browser) so that we can show what you agreed to. On our own systems, the hashed identifiers, IP address and user agent attached to server-side events are deleted after 30 days; we keep only the record that an event was sent. Meta keeps the information it receives in line with its own privacy policy.',
       },
     ],
   },
@@ -182,8 +244,8 @@ export default function PrivacyPolicy() {
             We are committed to protecting your personal information and being transparent about how we collect and use it.
           </p>
           <div className="flex flex-wrap gap-6 text-xs text-fg-muted/60 font-mono">
-            <span>Last updated: March 25, 2026</span>
-            <span>Effective: March 25, 2026</span>
+            <span>Last updated: October 6, 2026</span>
+            <span>Effective: October 6, 2026</span>
           </div>
         </div>
       </section>
