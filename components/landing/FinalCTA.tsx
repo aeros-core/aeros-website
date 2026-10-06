@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { company } from '@/lib/company'
 
 export default function FinalCTA() {
   return (
@@ -13,13 +14,13 @@ export default function FinalCTA() {
         </p>
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-3">
           <a
-            href="#"
+            href={company.marketplace}
             className="px-8 py-4 rounded-full bg-ink-900 text-white text-sm font-medium hover:bg-ink-800 transition-colors"
           >
             Start for free
           </a>
           <a
-            href="#"
+            href={`mailto:${company.salesEmail}?subject=${encodeURIComponent('Talk to sales')}`}
             className="px-8 py-4 rounded-full border border-border-default text-fg-primary text-sm font-medium hover:bg-bg-subtle transition-colors"
           >
             Talk to sales
