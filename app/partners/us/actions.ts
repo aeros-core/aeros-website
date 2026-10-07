@@ -125,17 +125,16 @@ export async function submitPartnerApplication(
   const token = process.env.NOTION_TOKEN
   const databaseId = process.env.NOTION_PARTNER_APPLICATIONS_DB_ID
 
-  console.log('[partners/us] new application', {
-    business: input.businessName,
-    proprietor: input.proprietorName,
-    email: input.contactEmail,
-    state: input.operatingState,
-    model: input.businessModel,
-  })
+  // Logs carry correlation fields only. Never log what the applicant typed
+  // (EIN, names, company, email, phone, address); that belongs in Notion.
+  const submissionId = crypto.randomUUID()
+  const startedAt = Date.now()
+  console.log('[partners/us] new application', { submissionId })
 
   if (!token || !databaseId) {
     console.error(
-      '[partners/us] Notion env vars missing — application logged but not persisted'
+      '[partners/us] Notion env vars missing — application not persisted',
+      { submissionId }
     )
     return {
       ok: false,
@@ -144,9 +143,11 @@ export async function submitPartnerApplication(
   }
 
   try {
-    const notion = new Client({ auth: token })
+    // Silence the client's own logger: its failure warning prints Notion's
+    // error message, which can quote the submitted values.
+    const notion = new Client({ auth: token, logger: () => {} })
 
-    await notion.pages.create({
+    const page = await notion.pages.create({
       parent: { database_id: databaseId },
       properties: {
         'Business Name': {
@@ -195,10 +196,24 @@ export async function submitPartnerApplication(
         Notes: richText(input.notes),
       },
     })
+    console.log('[partners/us] application saved', {
+      submissionId,
+      notionPageId: page.id,
+      durationMs: Date.now() - startedAt,
+    })
 
     return { ok: true }
   } catch (err) {
-    console.error('[partners/us] Notion write failed', err)
+    // Never log the message or body: Notion's can quote the submitted values.
+    const e = (err ?? {}) as Record<string, unknown>
+    console.error('[partners/us] Notion write failed', {
+      submissionId,
+      durationMs: Date.now() - startedAt,
+      error: e.name,
+      code: e.code,
+      status: e.status,
+      requestId: e.request_id,
+    })
     return {
       ok: false,
       error:
