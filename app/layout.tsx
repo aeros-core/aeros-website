@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { Plus_Jakarta_Sans, IBM_Plex_Mono } from 'next/font/google'
+import ConsentBanner from '@/components/analytics/ConsentBanner'
+import MetaPixel from '@/components/analytics/MetaPixel'
 import '@aeros/react/styles.css'
 import './globals.css'
 
@@ -36,7 +39,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${jakarta.variable} ${mono.variable}`} data-theme="light">
       <body className="bg-bg-canvas text-fg-primary font-sans antialiased overflow-x-hidden">
+        <ConsentBanner />
         {children}
+        {/* Reads the search params, so it needs a Suspense boundary to keep pages static. */}
+        <Suspense fallback={null}>
+          <MetaPixel />
+        </Suspense>
       </body>
     </html>
   )

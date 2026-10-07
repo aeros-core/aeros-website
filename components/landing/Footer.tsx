@@ -1,4 +1,5 @@
 import { company, addressLines } from '@/lib/company'
+import CookieSettingsButton from '@/components/analytics/CookieSettingsButton'
 
 const columns = [
   {
@@ -33,9 +34,12 @@ const columns = [
     links: [
       { label: 'Terms & Conditions', href: '/terms' },
       { label: 'Privacy Policy', href: '/privacy' },
+      { label: 'Cookie Policy', href: '/cookie-policy' },
       { label: 'Refund & Cancellation', href: '/refund-policy' },
       { label: 'Shipping Policy', href: '/shipping-policy' },
       { label: 'Support', href: '/support' },
+      // Opens the cookie banner rather than navigating.
+      { label: 'Cookie Settings', action: 'cookie-settings' },
     ],
   },
 ]
@@ -90,12 +94,18 @@ export default function Footer() {
               <ul className="space-y-3">
                 {col.links.map((l) => (
                   <li key={l.label}>
-                    <a
-                      href={l.href}
-                      className="text-sm text-fg-muted hover:text-fg-primary transition-colors"
-                    >
-                      {l.label}
-                    </a>
+                    {l.action === 'cookie-settings' ? (
+                      <CookieSettingsButton className="cursor-pointer text-left text-sm text-fg-muted hover:text-fg-primary transition-colors">
+                        {l.label}
+                      </CookieSettingsButton>
+                    ) : (
+                      <a
+                        href={l.href}
+                        className="text-sm text-fg-muted hover:text-fg-primary transition-colors"
+                      >
+                        {l.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
