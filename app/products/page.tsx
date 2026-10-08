@@ -10,6 +10,7 @@ import {
   getCategoriesByGroup,
 } from '@/lib/categories'
 import { aerosSelectProducts } from '@/lib/aeros-select'
+import { company } from '@/lib/company'
 
 export const metadata: Metadata = {
   title: 'Products & Categories — Aeros',
@@ -66,7 +67,7 @@ export default function ProductsPage() {
               Aeros Select
             </Link>
             <a
-              href="mailto:hello@aeros.io?subject=Marketplace%20catalog"
+              href={`mailto:${company.salesEmail}?subject=Marketplace%20catalog`}
               className="px-7 py-3.5 rounded-full border border-border-default text-fg-primary text-sm font-medium hover:bg-bg-subtle transition-colors"
             >
               Talk to sales

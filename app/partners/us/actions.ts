@@ -1,6 +1,7 @@
 'use server'
 
 import { Client } from '@notionhq/client'
+import { company } from '@/lib/company'
 
 import { scheduleMetaLead } from '@/lib/meta/capi'
 import { PARTNER_LEAD_PARAMS } from '@/lib/tracking/config'
@@ -218,7 +219,7 @@ export async function submitPartnerApplication(
     return {
       ok: false,
       error:
-        'We could not record your application. Please try again, or email hello@aeros.io.',
+        `We could not record your application. Please try again, or email ${company.salesEmail}.`,
     }
   }
 }

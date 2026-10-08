@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/landing/Navbar'
 import Footer from '@/components/landing/Footer'
+import { company } from '@/lib/company'
 
 export const metadata: Metadata = {
   title: 'Clients — Aeros',
@@ -179,7 +180,7 @@ export default function ClientsPage() {
               See AeroSeal
             </Link>
             <a
-              href="mailto:hello@aeros.io?subject=AeroSeal%20for%20our%20stores"
+              href={`mailto:${company.salesEmail}?subject=AeroSeal%20for%20our%20stores`}
               className="px-7 py-3.5 rounded-full border border-border-default text-fg-primary text-sm font-medium hover:bg-bg-subtle transition-colors"
             >
               Talk to sales
@@ -290,7 +291,7 @@ export default function ClientsPage() {
               See AeroSeal V3
             </Link>
             <a
-              href="mailto:hello@aeros.io?subject=Order%20an%20AeroSeal"
+              href={`mailto:${company.salesEmail}?subject=Order%20an%20AeroSeal`}
               className="px-8 py-4 rounded-full border border-border-default text-fg-primary text-sm font-medium hover:bg-bg-subtle transition-colors"
             >
               Order one for your store

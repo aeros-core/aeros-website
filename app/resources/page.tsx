@@ -8,6 +8,7 @@ import {
   getGuidesByCategory,
   guides,
 } from '@/lib/resources'
+import { company } from '@/lib/company'
 
 export const metadata: Metadata = {
   title: 'Food Service Resources — Aeros',
@@ -203,7 +204,7 @@ export default function ResourcesPage() {
               Browse the catalog
             </Link>
             <a
-              href="mailto:hello@aeros.io?subject=Food%20Service%20Resources"
+              href={`mailto:${company.salesEmail}?subject=Food%20Service%20Resources`}
               className="px-8 py-4 rounded-full border border-border-default text-fg-primary text-sm font-medium hover:bg-bg-subtle transition-colors"
             >
               Suggest a guide

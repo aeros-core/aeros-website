@@ -3,10 +3,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/landing/Navbar'
 import Footer from '@/components/landing/Footer'
+import { company } from '@/lib/company'
 
 const BOOTH = 'Booth #12937'
-const BOOKING_URL =
-  'mailto:hello@aeros.io?subject=NRA%20Show%20%E2%80%94%20Meeting%20Request'
+const BOOKING_URL = `mailto:${company.salesEmail}?subject=NRA%20Show%20%E2%80%94%20Meeting%20Request`
 const SHOW_URL = 'https://www.nationalrestaurantshow.com/'
 
 export const metadata: Metadata = {
