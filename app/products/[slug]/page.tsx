@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Navbar from '@/components/landing/Navbar'
@@ -202,6 +203,17 @@ function TypesContent({
         {section.items.map((item) => {
           const inner = (
             <>
+              {item.image && (
+                <div className="relative mb-6 aspect-[4/3] rounded-2xl overflow-hidden bg-bg-subtle">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 90vw"
+                    className="object-cover"
+                  />
+                </div>
+              )}
               <h3 className="text-xl font-bold text-fg-primary mb-3">
                 {item.name}
               </h3>
