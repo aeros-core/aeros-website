@@ -89,6 +89,23 @@ type VideoSection = {
   poster?: string
 }
 
+type ProcessSection = {
+  kind: 'process'
+  heading: string
+  intro?: string
+  /** Ordered steps, rendered as a numbered flow with an image per step. */
+  steps: Array<{
+    name: string
+    body: string
+    image: string
+    /** See hero.image.fit — 'cutout' (default) sits on the page, 'bleed' fills. */
+    imageFit?: 'cutout' | 'bleed'
+    /** Optional note, e.g. pointing at another Aeros Select product. */
+    href?: string
+    hrefLabel?: string
+  }>
+}
+
 type DiagramSection = {
   kind: 'diagram'
   heading: string
@@ -124,6 +141,7 @@ export type AerosSelectSection =
   | VideoSection
   | FormatShowcaseSection
   | DiagramSection
+  | ProcessSection
 
 export type AerosSelectProduct = {
   slug: string
@@ -1092,7 +1110,7 @@ const v5: AerosSelectProduct = {
     subtitle:
       'For the café that wants to serve salad. For the pasta bar that wants to serve dessert. For the biryani house that wants to serve thick shakes. Open the menu up without worrying about leaks and spills in delivery.',
     image: {
-      src: '/products/v5/hero.png',
+      src: '/products/v5/hero.webp',
       alt: 'AeroSeal V5 sealing the full portfolio — soups, ramen, rice, biryani, gravy, and sauce containers',
       // Shot on a beige backdrop, so it fills the frame rather than sitting as
       // a beige rectangle inside a grey card.
@@ -2146,35 +2164,70 @@ const cupDeliverySystem: AerosSelectProduct = {
   slug: 'cup-delivery-system',
   name: 'Cup Delivery System',
   tagline:
-    'Holder plus carrier bag — a fold-flat kraft holder that cradles the cup and a tall bag that keeps it upright, so delivered drinks arrive sealed and spill-free.',
+    'Seal, holder, SOS bag — the complete workflow that gets a drink from your counter to the customer sealed, upright, and untouched.',
   hero: {
     eyebrow: 'Aeros Select · Packaging',
     title: 'Drinks that arrive upright.',
     subtitle:
-      'A delivered drink should not land tipped, leaking, or half-empty. The complete cup delivery system pairs a fold-flat kraft holder that cradles the cup with a tall carrier bag that keeps it upright the whole way — sealed at the counter, opened only by your customer. One cup or two, white or brown, all recycled kraft.',
+      'A delivered drink should not land tipped, leaking, or half-empty. This is the whole workflow — foil-seal the cup on an AeroSeal, cap it with a bagasse lid, seat it in a fold-flat holder, drop it into a tall SOS carrier bag, and fold the top shut at the counter. One cup or two, white or brown kraft.',
     image: {
       src: '/products/cup-delivery-system/hero.webp',
-      alt: 'Clear cold cup standing upright inside a tall Aeros-printed kraft carrier bag',
+      alt: 'Tall Aeros-printed white kraft SOS carrier bag, top folded over and sealed, with a drink inside',
       aspect: 'tall',
     },
   },
   highlights: [
-    { label: 'The system', value: 'Fold-flat holder + carrier bag' },
+    { label: 'The system', value: 'Seal · lid · holder · SOS bag' },
     { label: 'Capacity', value: 'One cup or two' },
     { label: 'Finish', value: 'White or brown recycled kraft' },
-    { label: 'Recyclable', value: 'Fully recyclable kraft' },
+    { label: 'Closure', value: 'Fold-over top, sealed at counter' },
   ],
   sections: [
     {
-      kind: 'variants',
-      heading: 'Two parts, one job.',
+      kind: 'process',
+      heading: 'Counter to customer, in five steps.',
       intro:
-        'The holder grips the base so the cup cannot tip; the bag stands tall around it and seals at the counter. Order them together as the system, or either part on its own.',
+        'Every part of the system does one job in a sequence. This is what a beverage order actually goes through on the way out of your kitchen.',
+      steps: [
+        {
+          name: 'Pour and foil-seal the cup',
+          body: 'Pour the drink, then seal the rim with a foil membrane on an AeroSeal machine. The seal is what makes a delivered beverage genuinely spill-proof — not a lid pressed on and hoped for.',
+          image: '/products/cup-delivery-system/step-seal-machine.webp',
+          href: '/products/aeros-select/cup-sealer',
+          hrefLabel: 'See the AeroSeal Cup Sealer',
+        },
+        {
+          name: 'Cap it with a bagasse lid',
+          body: 'A moulded sugarcane-fibre lid goes on over the seal. The foil holds the liquid; the lid protects the seal, gives the cup a drinking spout, and keeps the whole unit compostable.',
+          image: '/products/cup-delivery-system/step-sealed.webp',
+        },
+        {
+          name: 'Seat it in the fold-flat holder',
+          body: 'The corrugated kraft holder grips the base so the cup stays level and cannot rock. It ships and stores dead flat, then folds up in a second at the counter.',
+          image: '/products/cup-delivery-system/step-holder.webp',
+        },
+        {
+          name: 'Drop it into the SOS carrier bag',
+          body: 'The cup and holder go into a tall SOS bag — a flat-bottomed, gusseted sack with no handles — sized so the cup stands upright the whole way. White or brown kraft.',
+          image: '/products/cup-delivery-system/step-inbag.webp',
+        },
+        {
+          name: 'Fold the top and hand it over',
+          body: 'Fold the top of the bag over at the counter and the order is sealed shut. It reaches the customer exactly as it left the pass — opened by them, not on the ride.',
+          image: '/products/cup-delivery-system/step-folded.webp',
+        },
+      ],
+    },
+    {
+      kind: 'variants',
+      heading: 'What you actually order.',
+      intro:
+        'The holder and the bag are the two parts we stock for this system. Take them together, or either on its own if you already run the other.',
       items: [
         {
           name: 'Fold-flat cup holder',
           tags: ['Single or double', 'Corrugated E-flute kraft', 'Ships flat'],
-          body: 'A corrugated kraft holder that cradles the cup base so it stays upright and level. It ships and stores dead flat, then folds up at the counter — no bulky pre-formed trays taking over the back room. Single-cup and double-cup versions.',
+          body: 'A corrugated kraft holder that cradles the cup base so it stays upright and level. It ships and stores dead flat — no bulky pre-formed trays taking over the back room. Single-cup and double-cup versions.',
           images: [
             '/products/cup-delivery-system/single-holder.webp',
             '/products/cup-delivery-system/double-holder.webp',
@@ -2186,9 +2239,9 @@ const cupDeliverySystem: AerosSelectProduct = {
           ],
         },
         {
-          name: 'Upright carrier bag',
-          tags: ['Single or double', 'White or brown kraft', 'THIS SIDE UP'],
-          body: 'A tall SOS kraft bag sized to keep the cup standing the whole ride. Printed with a coffee-icon pattern and a "THIS SIDE UP — DO NOT TILT" cue, with a fold-over top that seals at the counter so the order is only opened by the customer.',
+          name: 'SOS carrier bag',
+          tags: ['Single or double', 'White or brown kraft', 'No handles'],
+          body: 'A tall SOS sack — flat bottom, side gussets, no handles — sized to keep the cup standing the whole ride. Printed with a coffee-icon pattern, with a fold-over top that seals at the counter.',
           images: ['/products/cup-delivery-system/carrier-bags.webp'],
           specs: [
             { label: 'Single carrier', value: 'SOS · 130 × 90 × 310 mm · white or brown kraft · 500 / case' },
@@ -2203,20 +2256,20 @@ const cupDeliverySystem: AerosSelectProduct = {
       heading: 'Details that travel well.',
       items: [
         {
+          name: 'Sealed, not just lidded',
+          body: 'A foil seal across the rim is the difference between a drink that survives the ride and one that does not. The bagasse lid then protects that seal and gives the customer a spout.',
+        },
+        {
           name: 'Holds every cup upright',
-          body: 'The holder grips the base and the bag stands tall around it, so the cup cannot tip in transit. "THIS SIDE UP — DO NOT TILT" is printed on the bag as a cue to the rider.',
+          body: 'The holder grips the base and the SOS bag stands tall around it, so the cup cannot tip between the counter and the door.',
         },
         {
           name: 'Fold-flat holders',
-          body: 'The holders ship and store dead flat and fold up in a second at the counter — the grip of a moulded carrier without the storage footprint of one.',
+          body: 'The grip of a moulded carrier without the storage footprint — holders ship dead flat and fold up in a second at the counter.',
         },
         {
-          name: 'Sealed-at-counter tamper flap',
-          body: 'The fold-over top seals the bag at the counter, so the order reaches the customer exactly as it left the pass — opened by them, not on the way.',
-        },
-        {
-          name: 'One cup or two',
-          body: 'Single and double across both the holder and the bag, so a solo coffee and a two-drink order both travel in the format built for them.',
+          name: 'Sealed at the counter',
+          body: 'The bag has no handles by design; the top folds over into a closure instead. The order is opened by your customer, not on the way.',
         },
         {
           name: 'Recycled kraft, recyclable',
@@ -2226,7 +2279,7 @@ const cupDeliverySystem: AerosSelectProduct = {
     },
     {
       kind: 'comparison',
-      eyebrow: '/ white or brown',
+      eyebrow: '/ single or double',
       rowHeader: '',
       heading: 'Single or double, white or brown.',
       intro:
@@ -2246,11 +2299,11 @@ const cupDeliverySystem: AerosSelectProduct = {
       items: [
         {
           name: 'Cafés that deliver',
-          body: 'Cold brew, iced lattes, and shakes that need to arrive upright and unspilled — the holder and bag do together what a loose cup in a bag never could.',
+          body: 'Cold brew, iced lattes, and shakes that need to arrive upright and unspilled — the seal, holder, and bag do together what a loose cup in a bag never could.',
         },
         {
           name: 'Cloud kitchens & QSR',
-          body: 'The sealed fold-over top is a tamper cue on every beverage order, and the fold-flat holder keeps the back-room footprint small.',
+          body: 'The folded top is a tamper cue on every beverage order, and the fold-flat holder keeps the back-room footprint small.',
         },
         {
           name: 'Two-drink orders',
@@ -2266,14 +2319,15 @@ const cupDeliverySystem: AerosSelectProduct = {
       kind: 'specs',
       heading: 'Specifications.',
       items: [
-        { label: 'System', value: 'Fold-flat cup holder + upright SOS carrier bag' },
+        { label: 'System', value: 'Foil seal + bagasse lid + fold-flat holder + SOS carrier bag' },
+        { label: 'Bag format', value: 'SOS (self-opening sack) — flat bottom, side gussets, no handles' },
         { label: 'Single holder', value: 'Corrugated E-flute brown kraft · 800 / case' },
         { label: 'Double holder', value: 'Corrugated E-flute brown kraft · 210 × 95 × 60 mm (L × W × H)' },
-        { label: 'Single carrier bag', value: 'SOS 130 × 90 × 310 mm (W × G × H) · white 80 gsm or brown 80 gsm · 500 / case' },
+        { label: 'Single carrier bag', value: 'SOS 130 × 90 × 310 mm (W × G × H) · white or brown kraft · 500 / case' },
         { label: 'Double carrier bag', value: 'SOS 230 × 125 × 335 mm (W × G × H) · white 100 gsm or brown 80 gsm · 500 / case' },
         { label: 'Finishes', value: 'White bleached kraft · natural brown kraft' },
         { label: 'Closure', value: 'Fold-over top, sealed at counter — tamper-evident' },
-        { label: 'Print', value: 'Coffee-icon kraft · "THIS SIDE UP — DO NOT TILT" · custom print on request' },
+        { label: 'Sealing', value: 'Foil seal applied on an AeroSeal cup sealer — sold separately' },
         { label: 'Material', value: 'Recycled kraft — fully recyclable' },
       ],
     },
@@ -2281,6 +2335,14 @@ const cupDeliverySystem: AerosSelectProduct = {
       kind: 'faq',
       heading: 'FAQ.',
       items: [
+        {
+          q: 'Do I need the sealing machine for this to work?',
+          a: 'The foil seal is what makes a delivered drink genuinely spill-proof, and that needs an AeroSeal cup sealer — we sell those separately under Aeros Select. You can run the holder and bag without it, but you lose the seal that stops leaks.',
+        },
+        {
+          q: 'Why does the bag have no handles?',
+          a: 'It is an SOS sack — a flat-bottomed, gusseted paper bag designed to stand up on its own and be folded shut at the top. The fold is the closure and the tamper cue; handles would get in the way of both.',
+        },
         {
           q: 'Do I need both the holder and the bag?',
           a: 'They are designed to work together — the holder grips the base and the bag keeps the whole thing upright and sealed — but you can order either part on its own if you already run the other.',
@@ -2294,12 +2356,8 @@ const cupDeliverySystem: AerosSelectProduct = {
           a: 'Both. Every carrier ships in a white bleached-kraft and a natural brown-kraft finish — the white on slightly heavier 100 gsm paper on the double. Pick the colour that suits your brand.',
         },
         {
-          q: 'Why fold-flat holders?',
-          a: 'A moulded carrier gives you grip but eats storage; a fold-flat holder gives the same grip and ships dead flat, so it stores in a fraction of the space and folds up in a second at the counter.',
-        },
-        {
-          q: 'How does the tamper seal work?',
-          a: 'The bag has a fold-over top that is sealed at the counter after the drink goes in, so the order is only opened by your customer — a visible tamper cue on every beverage delivery.',
+          q: 'Which lid goes on top?',
+          a: 'A moulded sugarcane-fibre (bagasse) lid over the foil seal. It protects the seal in transit, gives the customer a spout, and keeps the cup-and-lid pair compostable.',
         },
         {
           q: 'What is the case pack?',

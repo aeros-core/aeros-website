@@ -8,6 +8,11 @@ import {
   getAerosSelectProductBySlug,
   type AerosSelectSection,
 } from '@/lib/aeros-select'
+import {
+  productJsonLd,
+  faqJsonLd,
+  breadcrumbJsonLd,
+} from '@/lib/seo'
 
 export function generateStaticParams() {
   return aerosSelectProducts.map((p) => ({ slug: p.slug }))
@@ -30,6 +35,7 @@ export async function generateMetadata({
   return {
     title,
     description,
+    alternates: { canonical: `/products/aeros-select/${slug}` },
     openGraph: { title, description, type: 'article' },
   }
 }
@@ -45,8 +51,35 @@ export default async function AerosSelectDetailPage({
 
   const { hero, highlights, sections, orderUrl, orderCtaLabel } = product
 
+  // These pages already carry a real FAQ section, so the FAQ schema describes
+  // content that is genuinely on the page rather than markup-only claims.
+  const faqSection = sections.find((s) => s.kind === 'faq')
+  const structuredData: Array<Record<string, unknown>> = [
+    productJsonLd({
+      name: product.name,
+      description: product.tagline,
+      path: `/products/aeros-select/${product.slug}`,
+      image: hero.image?.src,
+    }),
+    breadcrumbJsonLd([
+      { name: 'Products', path: '/products' },
+      { name: 'Aeros Select', path: '/products/aeros-select' },
+      { name: product.name, path: `/products/aeros-select/${product.slug}` },
+    ]),
+  ]
+  if (faqSection && faqSection.kind === 'faq' && faqSection.items.length > 0) {
+    structuredData.push(faqJsonLd(faqSection.items))
+  }
+
   return (
     <main className="min-h-screen bg-white">
+      {structuredData.map((data, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+        />
+      ))}
       <Navbar />
 
       {/* Hero */}
@@ -117,12 +150,14 @@ export default async function AerosSelectDetailPage({
               </div>
             ) : (
               // Background-free — sits on the page itself, no card, no edge.
-              <div className="mt-16 mx-auto max-w-2xl">
+              // The fixed height reserves the space before the image loads,
+              // so a cutout hero cannot shift the page as it arrives.
+              <div className="mt-16 mx-auto max-w-2xl h-[34rem] flex items-center justify-center">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={hero.image.src}
                   alt={hero.image.alt}
-                  className="w-full h-auto max-h-[34rem] object-contain mx-auto"
+                  className="max-w-full max-h-full object-contain"
                 />
               </div>
             ))}
@@ -219,6 +254,7 @@ function SectionRenderer({
           <FormatShowcaseContent section={section} />
         )}
         {section.kind === 'diagram' && <DiagramContent section={section} />}
+        {section.kind === 'process' && <ProcessContent section={section} />}
       </div>
     </section>
   )
@@ -708,6 +744,70 @@ function FormatShowcaseContent({
           </div>
         </div>
       </div>
+    </>
+  )
+}
+
+function ProcessContent({
+  section,
+}: {
+  section: Extract<AerosSelectSection, { kind: 'process' }>
+}) {
+  return (
+    <>
+      <SectionHeader
+        eyebrow="/ how it works"
+        heading={section.heading}
+        intro={section.intro}
+      />
+      <ol className="flex flex-col gap-4">
+        {section.steps.map((step, i) => (
+          <li
+            key={step.name}
+            className="bg-white rounded-3xl border border-border-default p-6 md:p-8"
+          >
+            <div className="grid md:grid-cols-[minmax(0,7rem)_minmax(0,1fr)] gap-6 md:gap-10 items-center">
+              <div
+                className={`aspect-square rounded-2xl overflow-hidden flex items-center justify-center ${
+                  step.imageFit === 'bleed' ? '' : 'p-1'
+                }`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={step.image}
+                  alt={step.name}
+                  loading="lazy"
+                  className={
+                    step.imageFit === 'bleed'
+                      ? 'w-full h-full object-cover'
+                      : 'w-full h-full object-contain'
+                  }
+                />
+              </div>
+              <div>
+                <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-2">
+                  Step {String(i + 1).padStart(2, '0')}
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold text-fg-primary mb-3 tracking-tight">
+                  {step.name}
+                </h3>
+                <p className="text-fg-muted text-[15px] leading-relaxed">
+                  {step.body}
+                </p>
+                {step.href && (
+                  <Link
+                    href={step.href}
+                    className="mt-4 text-sm text-fg-primary font-medium inline-flex items-center gap-1 hover:gap-2 transition-all"
+                  >
+                    {step.hrefLabel ?? 'See full details'}{' '}
+                    <span aria-hidden>→</span>
+                  </Link>
+                )}
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
     </>
   )
 }
