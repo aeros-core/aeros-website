@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { company } from '@/lib/company'
 
 const links = [
   { label: 'Products', href: '/products' },
@@ -40,7 +41,7 @@ export default function Navbar() {
             Sign in
           </a>
           <a
-            href="#"
+            href={company.marketplace}
             className="text-sm font-medium px-4 py-2 rounded-full bg-ink-900 text-white hover:bg-ink-800 transition-colors"
           >
             Get started
@@ -72,7 +73,7 @@ export default function Navbar() {
             ))}
             <a href="https://app.aeros-x.com" className="block py-2 text-sm text-fg-muted">Sign in</a>
             <a
-              href="#"
+              href={company.marketplace}
               className="block mt-2 text-center text-sm font-medium px-4 py-2.5 rounded-full bg-ink-900 text-white"
             >
               Get started

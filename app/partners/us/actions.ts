@@ -2,6 +2,10 @@
 
 import { Client } from '@notionhq/client'
 
+import { scheduleMetaLead } from '@/lib/meta/capi'
+import { PARTNER_LEAD_PARAMS } from '@/lib/tracking/config'
+import type { LeadTrackingInput } from '@/lib/tracking/types'
+
 export type PartnerApplicationInput = {
   businessName: string
   dba?: string
@@ -90,7 +94,9 @@ function normalizeUrl(value: string | undefined) {
 }
 
 export async function submitPartnerApplication(
-  input: PartnerApplicationInput
+  input: PartnerApplicationInput,
+  /** Present only when the browser allows Meta tracking; see scheduleMetaLead. */
+  tracking?: LeadTrackingInput
 ): Promise<PartnerApplicationResult> {
   const required: (keyof PartnerApplicationInput)[] = [
     'businessName',
@@ -194,6 +200,16 @@ export async function submitPartnerApplication(
         'Operating State': richText(input.operatingState),
         Notes: richText(input.notes),
       },
+    })
+
+    // Server twin of the browser's Lead (same event id; Meta deduplicates). Never throws, and
+    // sends nothing until META_PIXEL_ID and META_CAPI_ACCESS_TOKEN are set. Only the contact
+    // email and phone go to Meta, hashed — never the EIN or the rest of the application.
+    await scheduleMetaLead({
+      email: input.contactEmail,
+      phone: input.contactPhone,
+      tracking,
+      customData: PARTNER_LEAD_PARAMS,
     })
 
     return { ok: true }

@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { SITE_URL, SITE_NAME, organizationJsonLd } from '@/lib/seo'
 import { Plus_Jakarta_Sans, IBM_Plex_Mono } from 'next/font/google'
+import ConsentBanner from '@/components/analytics/ConsentBanner'
+import MetaPixel from '@/components/analytics/MetaPixel'
 import '@aeros/react/styles.css'
 import './globals.css'
 
@@ -73,7 +76,12 @@ export default function RootLayout({
             __html: JSON.stringify(organizationJsonLd()),
           }}
         />
+        <ConsentBanner />
         {children}
+        {/* Reads the search params, so it needs a Suspense boundary to keep pages static. */}
+        <Suspense fallback={null}>
+          <MetaPixel />
+        </Suspense>
       </body>
     </html>
   )

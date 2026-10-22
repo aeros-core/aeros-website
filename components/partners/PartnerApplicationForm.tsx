@@ -16,6 +16,8 @@ import {
   Textarea,
 } from '@aeros/react'
 import { US_STATES } from '@/lib/us-states'
+import { PARTNER_LEAD_PARAMS } from '@/lib/tracking/config'
+import { getLeadTrackingContext, trackEvent } from '@/lib/tracking/pixel'
 import {
   submitPartnerApplication,
   type PartnerApplicationInput,
@@ -196,8 +198,12 @@ export default function PartnerApplicationForm() {
     }
 
     startTransition(async () => {
-      const result = await submitPartnerApplication(payload)
+      // Null unless Meta tracking is allowed here. When set, the server mirrors the browser Lead
+      // through the Conversions API with the same event id, so Meta counts the lead once.
+      const tracking = getLeadTrackingContext()
+      const result = await submitPartnerApplication(payload, tracking ?? undefined)
       if (result.ok) {
+        if (tracking) trackEvent('Lead', PARTNER_LEAD_PARAMS, tracking.eventId)
         setSuccess(true)
         window.scrollTo({ top: 0, behavior: 'smooth' })
       } else {

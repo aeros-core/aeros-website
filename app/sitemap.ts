@@ -26,6 +26,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/partners/us', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/nra', priority: 0.4, changeFrequency: 'yearly' },
     { path: '/support', priority: 0.4, changeFrequency: 'yearly' },
+    { path: '/contact', priority: 0.5, changeFrequency: 'yearly' },
+    { path: '/terms', priority: 0.2, changeFrequency: 'yearly' },
+    { path: '/refund-policy', priority: 0.2, changeFrequency: 'yearly' },
+    { path: '/shipping-policy', priority: 0.2, changeFrequency: 'yearly' },
+    { path: '/cookie-policy', priority: 0.2, changeFrequency: 'yearly' },
     { path: '/privacy', priority: 0.2, changeFrequency: 'yearly' },
   ]
 

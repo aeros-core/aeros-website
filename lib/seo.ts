@@ -1,4 +1,4 @@
-import { LEGAL_ENTITY, PHONE_TEL } from './hospitality'
+import { company } from './company'
 
 /**
  * Canonical origin for the public site. Every absolute URL in metadata,
@@ -15,26 +15,28 @@ export function absoluteUrl(path = '/'): string {
 }
 
 /**
- * Organization schema for the root layout. The postal address and phone
- * mirror what is already published on /hospitality — lib/hospitality.ts is
- * the source of truth for those, so keep the two in step.
+ * Organization schema for the root layout. Reads from lib/company.ts, the
+ * single source of truth for the registered entity — payment-gateway
+ * reviews match the legal name on the site against the merchant record,
+ * so it must never be retyped here.
  */
 export function organizationJsonLd() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: SITE_NAME,
-    legalName: LEGAL_ENTITY,
+    legalName: company.legalName,
     url: SITE_URL,
     description:
       'B2B packaging supplier and marketplace for Indian food service — paper cups, bagasse tableware, compostable bags, PET cold cups, and cup sealing machines.',
-    telephone: PHONE_TEL,
+    telephone: company.phoneHref,
+    email: company.email,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '76/612, Motilal Nagar No. 1, Goregaon (W)',
-      addressLocality: 'Mumbai',
-      addressRegion: 'Maharashtra',
-      postalCode: '400104',
+      streetAddress: `${company.address.line1}, ${company.address.line2}`,
+      addressLocality: company.address.city,
+      addressRegion: company.address.state,
+      postalCode: company.address.postalCode,
       addressCountry: 'IN',
     },
     areaServed: { '@type': 'Country', name: 'India' },
