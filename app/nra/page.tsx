@@ -159,7 +159,7 @@ export default function NraShowPage() {
           <div className="max-w-md sm:max-w-lg mx-auto">
             <div className="rounded-3xl overflow-hidden border border-border-default bg-bg-subtle">
               <Image
-                src="/nra/nra-2026.jpg"
+                src="/nra/nra-2026.webp"
                 alt="Aeros booth at the NRA Show — Factory to your doorstep banner with display tables and stools"
                 width={1800}
                 height={2400}

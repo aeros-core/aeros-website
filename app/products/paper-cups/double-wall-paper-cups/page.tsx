@@ -165,7 +165,7 @@ export default function DoubleWallPaperCupsPage() {
 
           <div className="mt-14">
             <Image
-              src="/products/double-wall-paper-cups/hero.jpg"
+              src="/products/double-wall-paper-cups/hero.webp"
               alt="Double wall paper cups in 8, 10, 12 and 16 oz"
               width={2000}
               height={1200}
@@ -373,7 +373,7 @@ export default function DoubleWallPaperCupsPage() {
           </div>
           <div className="rounded-xl border border-border-default overflow-hidden">
             <Image
-              src="/products/double-wall-paper-cups/printed.jpg"
+              src="/products/double-wall-paper-cups/printed.webp"
               alt="Custom printed double wall cups with cafe brand artwork"
               width={2000}
               height={1280}

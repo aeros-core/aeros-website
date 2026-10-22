@@ -77,7 +77,7 @@ export const CATEGORIES: SupplyCategory[] = [
     body:
       'Paper containers and tubs with matching lids, plus cutlery pouches — food-grade and migration-tested, so a hot dish reaches the room the way the kitchen sent it.',
     tags: ['Containers & tubs', 'Lids', 'Cutlery pouches'],
-    image: '/products/hospitality/in-room-dining.jpg',
+    image: '/products/hospitality/in-room-dining.webp',
     alt: 'Kraft paper food containers and tubs with lids beside a paper cutlery pouch',
   },
   {
@@ -86,7 +86,7 @@ export const CATEGORIES: SupplyCategory[] = [
     body:
       'Paper cups and lids for the lobby café, the banquet floor, and every outlet in the property — printed to the brand book so the cup in one city matches the cup in another.',
     tags: ['Paper cups', 'Lids', 'Printed to brand'],
-    image: '/products/double-wall-paper-cups/printed.jpg',
+    image: '/products/double-wall-paper-cups/printed.webp',
     alt: 'Double wall paper cups custom printed with brand artwork',
   },
   {
@@ -95,7 +95,7 @@ export const CATEGORIES: SupplyCategory[] = [
     body:
       'Toothbrush pouches, tissues, and key card holders. Low-value items a guest handles directly, which is exactly why the print and finish have to be right.',
     tags: ['Toothbrush pouches', 'Tissues', 'Key card holders'],
-    image: '/products/hospitality/guest-room-bath.jpg',
+    image: '/products/hospitality/guest-room-bath.webp',
     alt: 'Paper toothbrush pouch, key card holder sleeve, and folded facial tissues',
   },
   {
@@ -104,7 +104,7 @@ export const CATEGORIES: SupplyCategory[] = [
     body:
       'Kitchen rolls and tissue held on standing supply, on the same stock and lead-time commitment as everything else on the account.',
     tags: ['Kitchen rolls', 'Tissue', 'Standing supply'],
-    image: '/products/hospitality/kitchen-boh.jpg',
+    image: '/products/hospitality/kitchen-boh.webp',
     alt: 'Commercial kitchen paper towel rolls beside folded kitchen tissue',
   },
   {
@@ -113,7 +113,7 @@ export const CATEGORIES: SupplyCategory[] = [
     body:
       'Kraft carry bags for everyday outlet use and premium white bags for retail, boutique, and gifting. The last thing a guest is handed, so the paper weight and the finish carry the property name.',
     tags: ['Kraft carry bags', 'Premium white', 'Retail & gifting'],
-    image: '/products/hospitality/paper-bags.jpg',
+    image: '/products/hospitality/paper-bags.webp',
     alt: 'Kraft and white paper carry bags with twisted paper handles, two sizes each',
   },
   {
@@ -122,7 +122,7 @@ export const CATEGORIES: SupplyCategory[] = [
     body:
       'Bagasse trays, clamshells, and plates for banquets, weddings, and outdoor catering — compostable sugarcane fibre that holds a hot buffet line. Plastic options where the brief calls for it.',
     tags: ['Bagasse trays', 'Clamshells', 'Plates'],
-    image: '/products/hospitality/banquet-catering.jpg',
+    image: '/products/hospitality/banquet-catering.webp',
     alt: 'Sugarcane bagasse compartment trays, clamshell boxes, and round plates',
   },
   {
@@ -131,7 +131,7 @@ export const CATEGORIES: SupplyCategory[] = [
     body:
       'Kraft paper laundry bags for the guest wardrobe — a quiet, high-turnover line that housekeeping never wants to run short of, and one more place the property name can sit.',
     tags: ['Kraft laundry bags', 'Housekeeping', 'Printed to brand'],
-    image: '/products/hospitality/laundry-bags.jpg',
+    image: '/products/hospitality/laundry-bags.webp',
     alt: 'Kraft paper hotel laundry bags printed LAUNDRY, standing open, closed, and folded flat',
   },
   {
@@ -140,7 +140,7 @@ export const CATEGORIES: SupplyCategory[] = [
     body:
       'Garbage bags for the guest room and every housekeeping floor, colour-coded by department so waste segregation is right at the point of use. Room liners at 19 × 21 inches, housekeeping at 30 × 40 and 30 × 50.',
     tags: ['Room 19×21"', 'Housekeeping 30×40 / 30×50"', 'Colour-coded'],
-    image: '/products/hospitality/bin-liners.jpg',
+    image: '/products/hospitality/bin-liners.webp',
     alt: 'Rolls of hotel bin liner garbage bags in green, blue, black, red, and yellow for waste segregation',
   },
 ]
@@ -157,7 +157,7 @@ export const CATEGORIES: SupplyCategory[] = [
  */
 export const BRAND_PROOF = [
   {
-    src: '/products/double-wall-paper-cups/hero.jpg',
+    src: '/products/double-wall-paper-cups/hero.webp',
     alt: 'Plain white double wall paper cups in four sizes',
     width: 2000,
     height: 1200,
@@ -166,7 +166,7 @@ export const BRAND_PROOF = [
       'Held ready across almost every item, which is what makes a low MOQ possible.',
   },
   {
-    src: '/products/double-wall-paper-cups/printed.jpg',
+    src: '/products/double-wall-paper-cups/printed.webp',
     alt: 'Double wall paper cups custom printed with brand artwork',
     width: 2000,
     height: 1280,
