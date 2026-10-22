@@ -8,6 +8,7 @@ import {
   CATEGORY_GROUPS,
   type CategoryGroup,
   getCategoriesByGroup,
+  syncFoodPackagingWithApp,
 } from '@/lib/categories'
 import { aerosSelectProducts } from '@/lib/aeros-select'
 import { company } from '@/lib/company'
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
 const groupOrder: CategoryGroup[] = ['food-packaging', 'cleaning-hygiene']
 
 export default async function ProductsPage() {
-  const { collections } = await fetchStorefront()
+  const { categories: appCategories, collections } = await fetchStorefront()
 
   return (
     <main className="min-h-screen bg-white">
@@ -101,7 +102,10 @@ export default async function ProductsPage() {
 
           <div className="space-y-16">
             {groupOrder.map((group) => {
-              const items = getCategoriesByGroup(group)
+              const items =
+                group === 'food-packaging'
+                  ? syncFoodPackagingWithApp(appCategories)
+                  : getCategoriesByGroup(group)
               const meta = CATEGORY_GROUPS[group]
               return (
                 <div key={group}>

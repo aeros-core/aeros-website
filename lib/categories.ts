@@ -83,6 +83,9 @@ export type Category = {
   blurb: string
   /** On sale in the Aeros app today. */
   available: boolean
+  /** The category's id in the Aeros app, which ties this entry to the
+   * app's live storefront grid. */
+  appCategoryId?: number
   /** A full spec page on this site, rendered at /products/[slug]. */
   detail?: CategoryDetail
   /** A spec page that lives elsewhere on this site, e.g. an Aeros Select
@@ -273,6 +276,7 @@ export const categories: Category[] = [
   {
     slug: 'sample-kits',
     group: 'food-packaging',
+    appCategoryId: 93,
     name: 'Sample kits',
     blurb: 'Try before you buy — curated kits across cups, bowls, tubs, containers, and bags. MOQ of one.',
     available: true,
@@ -282,6 +286,7 @@ export const categories: Category[] = [
   {
     slug: 'paper-cups',
     group: 'food-packaging',
+    appCategoryId: 6,
     name: 'Paper cups',
     blurb: 'Single-wall, double-wall, ripple, cold, and compostable.',
     available: true,
@@ -290,6 +295,7 @@ export const categories: Category[] = [
   {
     slug: 'cold-cups',
     group: 'food-packaging',
+    appCategoryId: 31,
     name: 'Cold cups (PP & PET)',
     blurb: 'Clear PP and PET cups with matching lids, flat and U-bottom.',
     available: true,
@@ -297,6 +303,7 @@ export const categories: Category[] = [
   {
     slug: 'paper-bags',
     group: 'food-packaging',
+    appCategoryId: 3,
     name: 'Paper bags',
     blurb: 'SOS, twisted-handle, and flat-handle kraft bags, plain or printed.',
     available: true,
@@ -304,6 +311,7 @@ export const categories: Category[] = [
   {
     slug: 'salad-bowls',
     group: 'food-packaging',
+    appCategoryId: 15,
     name: 'Salad bowls',
     blurb: 'Paper bowls with lids for salads, poke, and meal prep.',
     available: true,
@@ -311,6 +319,7 @@ export const categories: Category[] = [
   {
     slug: 'paper-tubs',
     group: 'food-packaging',
+    appCategoryId: 10,
     name: 'Paper tubs',
     blurb: 'Tubs for soups, gravies, desserts, and ice cream, 250 to 1000 ml.',
     available: true,
@@ -318,6 +327,7 @@ export const categories: Category[] = [
   {
     slug: 'plastic-containers',
     group: 'food-packaging',
+    appCategoryId: 30,
     name: 'Plastic containers',
     blurb: 'Round and rectangular thin-wall containers with lids for delivery.',
     available: true,
@@ -325,6 +335,7 @@ export const categories: Category[] = [
   {
     slug: 'anti-leak-containers',
     group: 'food-packaging',
+    appCategoryId: 11,
     name: 'Anti-leak containers',
     blurb: 'Locking-lid containers that keep gravies in the box on the ride.',
     available: true,
@@ -333,6 +344,7 @@ export const categories: Category[] = [
   {
     slug: 'bagasse',
     group: 'food-packaging',
+    appCategoryId: 21,
     name: 'Bagasse & plant-based',
     blurb: 'Compostable sugarcane-fibre plates, bowls, clamshells, and containers.',
     available: true,
@@ -340,6 +352,7 @@ export const categories: Category[] = [
   {
     slug: 'straws',
     group: 'food-packaging',
+    appCategoryId: 42,
     name: 'Straws',
     blurb: 'Paper straws for cold drinks, shakes, and bubble tea.',
     available: true,
@@ -347,6 +360,7 @@ export const categories: Category[] = [
   {
     slug: 'wrap-papers',
     group: 'food-packaging',
+    appCategoryId: 34,
     name: 'Wrap papers',
     blurb: 'Greaseproof and printed wraps for burgers, rolls, and deli.',
     available: true,
@@ -354,6 +368,7 @@ export const categories: Category[] = [
   {
     slug: 'boat-trays',
     group: 'food-packaging',
+    appCategoryId: 46,
     name: 'Boat trays',
     blurb: 'Kraft boat trays for fries, chaat, and street food.',
     available: true,
@@ -405,3 +420,25 @@ export function getCategoriesByGroup(group: CategoryGroup): Category[] {
   return categories.filter((c) => c.group === group)
 }
 
+
+/**
+ * The food packaging grid in the app's own order. Categories this file
+ * knows keep their blurbs and spec-page links; one the app adds later
+ * still gets a card, linking to the app. With no live data (API down),
+ * falls back to the list above.
+ */
+export function syncFoodPackagingWithApp(
+  appCategories: Array<{ id: number; name: string }>,
+): Category[] {
+  if (appCategories.length === 0) return getCategoriesByGroup('food-packaging')
+  return appCategories.map(
+    (app) =>
+      categories.find((c) => c.appCategoryId === app.id) ?? {
+        slug: `app-${app.id}`,
+        group: 'food-packaging',
+        name: app.name,
+        blurb: 'New on the Aeros app — open it for sizes and prices.',
+        available: true,
+      },
+  )
+}
