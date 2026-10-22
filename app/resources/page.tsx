@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Navbar from '@/components/landing/Navbar'
 import Footer from '@/components/landing/Footer'
+import { company } from '@/lib/company'
 import {
   RESOURCE_CATEGORIES,
   type ResourceCategoryId,
@@ -203,7 +204,7 @@ export default function ResourcesPage() {
               Browse the catalog
             </Link>
             <a
-              href="mailto:hello@aeros.io?subject=Food%20Service%20Resources"
+              href={`mailto:${company.email}?subject=Food%20Service%20Resources`}
               className="px-8 py-4 rounded-full border border-border-default text-fg-primary text-sm font-medium hover:bg-bg-subtle transition-colors"
             >
               Suggest a guide
