@@ -1,17 +1,19 @@
-export const APP_MARKETPLACE_URL =
-  'https://app.aeros-x.com/#/market-place-catalog-screen'
+/** The Aeros app's storefront. The app keeps the selected category in memory
+ * rather than the URL, so this is as deep as an outside link can go — a cold
+ * load of its catalogue route renders an empty page. */
+export const APP_MARKETPLACE_URL = 'https://app.aeros-x.com/market'
 
-export type CategoryGroup = 'paper-disposables' | 'cleaning-hygiene'
+export type CategoryGroup = 'food-packaging' | 'cleaning-hygiene'
 
 export const CATEGORY_GROUPS: Record<
   CategoryGroup,
   { label: string; eyebrow: string; description: string }
 > = {
-  'paper-disposables': {
-    label: 'Paper & disposables',
-    eyebrow: '/ paper & disposables',
+  'food-packaging': {
+    label: 'Food packaging',
+    eyebrow: '/ food packaging',
     description:
-      'Everything single-use — cups, lids, plates, napkins, takeout containers.',
+      'Everything that carries food and drink to the customer — the same range that is live on the Aeros app.',
   },
   'cleaning-hygiene': {
     label: 'Cleaning & hygiene',
@@ -79,13 +81,19 @@ export type Category = {
   group: CategoryGroup
   name: string
   blurb: string
+  /** On sale in the Aeros app today. */
   available: boolean
+  /** A full spec page on this site, rendered at /products/[slug]. */
   detail?: CategoryDetail
+  /** A spec page that lives elsewhere on this site, e.g. an Aeros Select
+   * product. Used when there is no `detail`; otherwise a live category
+   * links out to the app. */
+  href?: string
 }
 
 const paperCupsDetail: CategoryDetail = {
   hero: {
-    eyebrow: 'Paper & disposables',
+    eyebrow: 'Food packaging',
     title: 'Paper cups.',
     subtitle:
       'Everything you need to spec, source, and order paper cups — types, sizing, coatings, and custom printing — in one place.',
@@ -258,56 +266,96 @@ const paperCupsDetail: CategoryDetail = {
 }
 
 export const categories: Category[] = [
+  // Food packaging — mirrors the "Shop by Category" row on the Aeros app,
+  // in the same order. Keep the two in step when the app changes.
+  {
+    slug: 'sample-kits',
+    group: 'food-packaging',
+    name: 'Sample kits',
+    blurb: 'Try before you buy — curated kits across cups, bowls, tubs, containers, and bags. MOQ of one.',
+    available: true,
+  },
   {
     slug: 'paper-cups',
-    group: 'paper-disposables',
+    group: 'food-packaging',
     name: 'Paper cups',
     blurb: 'Single-wall, double-wall, ripple, cold, and compostable.',
     available: true,
     detail: paperCupsDetail,
   },
   {
-    slug: 'lids',
-    group: 'paper-disposables',
-    name: 'Lids',
-    blurb: 'Sip, slot, and dome lids in PP and PLA.',
-    available: false,
+    slug: 'cold-cups',
+    group: 'food-packaging',
+    name: 'Cold cups (PP & PET)',
+    blurb: 'Clear PP and PET cups with matching lids, flat and U-bottom.',
+    available: true,
   },
   {
-    slug: 'paper-bowls',
-    group: 'paper-disposables',
-    name: 'Paper bowls',
-    blurb: 'Soup, salad, and noodle bowls with matching lids.',
-    available: false,
+    slug: 'paper-bags',
+    group: 'food-packaging',
+    name: 'Paper bags',
+    blurb: 'SOS, twisted-handle, and flat-handle kraft bags, plain or printed.',
+    available: true,
   },
   {
-    slug: 'takeout-containers',
-    group: 'paper-disposables',
-    name: 'Takeout containers',
-    blurb: 'Bagasse, kraft, and aluminium — vented and leakproof.',
-    available: false,
+    slug: 'salad-bowls',
+    group: 'food-packaging',
+    name: 'Salad bowls',
+    blurb: 'Paper bowls with lids for salads, poke, and meal prep.',
+    available: true,
   },
   {
-    slug: 'napkins',
-    group: 'paper-disposables',
-    name: 'Napkins',
-    blurb: 'Dispenser, beverage, and dinner napkins by ply.',
-    available: false,
+    slug: 'paper-tubs',
+    group: 'food-packaging',
+    name: 'Paper tubs',
+    blurb: 'Tubs for soups, gravies, desserts, and ice cream, 250 to 1000 ml.',
+    available: true,
   },
   {
-    slug: 'paper-straws',
-    group: 'paper-disposables',
-    name: 'Paper straws',
-    blurb: 'Standard, jumbo, and bendable — wrapped or unwrapped.',
-    available: false,
+    slug: 'plastic-containers',
+    group: 'food-packaging',
+    name: 'Plastic containers',
+    blurb: 'Round and rectangular thin-wall containers with lids for delivery.',
+    available: true,
   },
   {
-    slug: 'paper-plates',
-    group: 'paper-disposables',
-    name: 'Paper plates',
-    blurb: 'Compartment, round, and rectangle plates by gsm.',
-    available: false,
+    slug: 'anti-leak-containers',
+    group: 'food-packaging',
+    name: 'Anti-leak containers',
+    blurb: 'Locking-lid containers that keep gravies in the box on the ride.',
+    available: true,
+    href: '/products/aeros-select/bagasse-containers',
   },
+  {
+    slug: 'bagasse',
+    group: 'food-packaging',
+    name: 'Bagasse & plant-based',
+    blurb: 'Compostable sugarcane-fibre plates, bowls, clamshells, and containers.',
+    available: true,
+  },
+  {
+    slug: 'straws',
+    group: 'food-packaging',
+    name: 'Straws',
+    blurb: 'Paper straws for cold drinks, shakes, and bubble tea.',
+    available: true,
+  },
+  {
+    slug: 'wrap-papers',
+    group: 'food-packaging',
+    name: 'Wrap papers',
+    blurb: 'Greaseproof and printed wraps for burgers, rolls, and deli.',
+    available: true,
+  },
+  {
+    slug: 'boat-trays',
+    group: 'food-packaging',
+    name: 'Boat trays',
+    blurb: 'Kraft boat trays for fries, chaat, and street food.',
+    available: true,
+  },
+
+  // Cleaning & hygiene — not in the app's Food Packaging range yet.
   {
     slug: 'sanitizers',
     group: 'cleaning-hygiene',

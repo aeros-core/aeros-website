@@ -10,20 +10,21 @@ import {
   getCategoriesByGroup,
 } from '@/lib/categories'
 import { aerosSelectProducts } from '@/lib/aeros-select'
+import { company } from '@/lib/company'
 
 export const metadata: Metadata = {
   title: 'Products & Categories — Aeros',
   description:
-    'Browse the Aeros marketplace catalog — paper cups, lids, takeout containers, sanitizers, gloves, and more. Sourcing guides for every category.',
+    'Food packaging live on the Aeros app — paper cups, PP and PET cold cups, paper bags, salad bowls, paper tubs, containers, bagasse, straws, wraps, boat trays and sample kits.',
   openGraph: {
     title: 'Products & Categories — Aeros',
     description:
-      'Browse the Aeros marketplace catalog and learn how to spec every product.',
+      'Every food packaging category live on the Aeros app, and how to spec each one.',
     type: 'website',
   },
 }
 
-const groupOrder: CategoryGroup[] = ['paper-disposables', 'cleaning-hygiene']
+const groupOrder: CategoryGroup[] = ['food-packaging', 'cleaning-hygiene']
 
 export default function ProductsPage() {
   return (
@@ -47,8 +48,8 @@ export default function ProductsPage() {
           </h1>
 
           <p className="mt-10 text-lg md:text-xl text-fg-muted max-w-xl mx-auto leading-relaxed">
-            One catalog for the back-of-house — paper, packaging, cleaning, and
-            consumables. Spec it here, order it on the marketplace.
+            The full food packaging range, live on the Aeros app. Spec it
+            here, order it there.
           </p>
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -66,7 +67,7 @@ export default function ProductsPage() {
               Aeros Select
             </Link>
             <a
-              href="mailto:hello@aeros.io?subject=Marketplace%20catalog"
+              href={`mailto:${company.salesEmail}?subject=Marketplace%20catalog`}
               className="px-7 py-3.5 rounded-full border border-border-default text-fg-primary text-sm font-medium hover:bg-bg-subtle transition-colors"
             >
               Talk to sales
@@ -86,9 +87,9 @@ export default function ProductsPage() {
               Products &amp; categories.
             </h2>
             <p className="mt-5 text-fg-muted text-lg">
-              The full catalog, grouped the way operators actually shop it.
-              Click any live category for sizing, coatings, and printing
-              guides.
+              Every category below is on sale in the Aeros app today. Paper
+              cups and anti-leak containers have full spec pages here; the
+              rest open straight in the app.
             </p>
           </div>
 
