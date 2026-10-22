@@ -3,14 +3,16 @@ import { categories } from '@/lib/categories'
 import { guides } from '@/lib/resources'
 import { aerosSelectProducts } from '@/lib/aeros-select'
 import { absoluteUrl } from '@/lib/seo'
+import { fetchStorefront } from '@/lib/marketplace'
 
 /**
  * The dynamic entries below reuse the same predicates as each route's
  * generateStaticParams. A sitemap that lists a page the router will not
  * build is a sitemap full of 404s, so these filters must stay in step.
  */
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
+  const { collections } = await fetchStorefront()
 
   const staticRoutes: Array<{
     path: string
@@ -20,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/', priority: 1, changeFrequency: 'weekly' },
     { path: '/products', priority: 0.9, changeFrequency: 'weekly' },
     { path: '/products/aeros-select', priority: 0.9, changeFrequency: 'weekly' },
+    { path: '/products/sample-kits', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/hospitality', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/resources', priority: 0.7, changeFrequency: 'weekly' },
     { path: '/clients', priority: 0.6, changeFrequency: 'monthly' },
@@ -50,6 +53,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter((g) => g.published && g.sections)
     .map((g) => ({ path: `/resources/${g.slug}`, priority: 0.6 }))
 
+  // Shop by Business pages (matches generateStaticParams: the app's collections).
+  const businessRoutes = collections.map((c) => ({
+    path: `/products/business/${c.slug}`,
+    priority: 0.7,
+  }))
+
   // Standalone page that lives outside the [slug] routes.
   const standaloneRoutes = [
     { path: '/products/paper-cups/double-wall-paper-cups', priority: 0.8 },
@@ -66,6 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...categoryRoutes,
       ...selectRoutes,
       ...guideRoutes,
+      ...businessRoutes,
       ...standaloneRoutes,
     ].map((r) => ({
       url: absoluteUrl(r.path),

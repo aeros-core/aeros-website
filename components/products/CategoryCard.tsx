@@ -37,7 +37,7 @@ export default function CategoryCard({ category }: { category: Category }) {
 
       {state === 'internal' && (
         <span className="text-sm text-fg-primary font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-          Specs &amp; sizes <span aria-hidden>→</span>
+          {category.cta ?? 'Specs & sizes'} <span aria-hidden>→</span>
         </span>
       )}
       {state === 'app' && (

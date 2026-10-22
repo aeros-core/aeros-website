@@ -89,6 +89,8 @@ export type Category = {
    * product. Used when there is no `detail`; otherwise a live category
    * links out to the app. */
   href?: string
+  /** Link label for `href`, when "Specs & sizes" doesn't describe it. */
+  cta?: string
 }
 
 const paperCupsDetail: CategoryDetail = {
@@ -274,6 +276,8 @@ export const categories: Category[] = [
     name: 'Sample kits',
     blurb: 'Try before you buy — curated kits across cups, bowls, tubs, containers, and bags. MOQ of one.',
     available: true,
+    href: '/products/sample-kits',
+    cta: 'See every kit',
   },
   {
     slug: 'paper-cups',

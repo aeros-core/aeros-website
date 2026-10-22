@@ -11,6 +11,10 @@ import {
 } from '@/lib/categories'
 import { aerosSelectProducts } from '@/lib/aeros-select'
 import { company } from '@/lib/company'
+import { fetchStorefront } from '@/lib/marketplace'
+
+// Matches MARKETPLACE_REVALIDATE — segment config must be a literal.
+export const revalidate = 3600
 
 export const metadata: Metadata = {
   title: 'Products & Categories — Aeros',
@@ -26,7 +30,9 @@ export const metadata: Metadata = {
 
 const groupOrder: CategoryGroup[] = ['food-packaging', 'cleaning-hygiene']
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const { collections } = await fetchStorefront()
+
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
@@ -88,8 +94,8 @@ export default function ProductsPage() {
             </h2>
             <p className="mt-5 text-fg-muted text-lg">
               Every category below is on sale in the Aeros app today. Paper
-              cups and anti-leak containers have full spec pages here; the
-              rest open straight in the app.
+              cups, anti-leak containers and sample kits have full pages
+              here; the rest open straight in the app.
             </p>
           </div>
 
@@ -127,6 +133,66 @@ export default function ProductsPage() {
           </div>
         </div>
       </section>
+
+      {/* Shop by business — the app's curated collections, live */}
+      {collections.length > 0 && (
+        <section
+          id="shop-by-business"
+          className="py-32 px-6 bg-white border-b border-border-default scroll-mt-20"
+        >
+          <div className="max-w-6xl mx-auto">
+            <div className="max-w-2xl mb-16">
+              <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60 mb-4">
+                / shop by business
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-fg-primary leading-tight">
+                Packed for how you serve.
+              </h2>
+              <p className="mt-5 text-fg-muted text-lg">
+                Ready-made lists for each kind of food business — the same
+                collections you&apos;ll find in the Aeros app.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {collections.map((c) => (
+                <Link
+                  key={c.slug}
+                  href={`/products/business/${c.slug}`}
+                  className="group bg-white rounded-3xl border border-border-default overflow-hidden flex flex-col h-full hover:bg-bg-subtle transition-colors"
+                >
+                  {c.coverImage && (
+                    <div className="aspect-[4/3] bg-bg-subtle border-b border-border-default overflow-hidden">
+                      {/* eslint-disable-next-line @next/next/no-img-element -- remote app CDN */}
+                      <img
+                        src={c.coverImage}
+                        alt={`Packaging for ${c.name}`}
+                        loading="lazy"
+                        decoding="async"
+                        width={800}
+                        height={600}
+                        className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                      />
+                    </div>
+                  )}
+                  <div className="p-6 flex flex-col flex-1">
+                    <h3 className="text-xl font-bold text-fg-primary mb-2">
+                      {c.name}
+                    </h3>
+                    <p className="text-fg-muted text-sm mb-6 flex-1">
+                      {c.description}
+                    </p>
+                    <span className="text-sm text-fg-primary font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                      {c.itemCount > 0 ? `See all ${c.itemCount}` : 'See the list'}{' '}
+                      <span aria-hidden>→</span>
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Aeros Select */}
       <section className="py-32 px-6 bg-white">
