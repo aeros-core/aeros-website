@@ -33,9 +33,9 @@ export function appProductUrl(id: number): string {
 export type MarketItem = {
   id: number
   name: string
-  /** Name before the first " – ", e.g. "Paper Tub Sample Kit 115 mm". */
+  /** Name before the first " – " or " — ", e.g. "Paper Tub Sample Kit 115 mm". */
   title: string
-  /** Name after the first " – ", e.g. "250 to 1000 ml, White & Kraft…". */
+  /** Name after that dash, e.g. "250 to 1000 ml, White & Kraft…". */
   subtitle: string | null
   sku: string
   brand: string
@@ -104,7 +104,10 @@ function parseItem(raw: any): MarketItem | null {
   if (raw.status !== undefined && raw.status !== 1) return null
 
   const name = raw.name.trim()
-  const dash = name.indexOf(' – ')
+  // Sellers separate the product from its variants with an en or em dash.
+  const split = name.match(/\s[–—]\s/)
+  const dash = split?.index ?? -1
+  const rest = split ? name.slice(dash + split[0].length) : null
   const minor = Number.parseInt(raw.price_minor, 10)
   const images = Array.isArray(raw.catalogImage)
     ? [...raw.catalogImage]
@@ -117,7 +120,7 @@ function parseItem(raw: any): MarketItem | null {
     id: raw.id,
     name,
     title: dash > 0 ? name.slice(0, dash) : name,
-    subtitle: dash > 0 ? name.slice(dash + 3) : null,
+    subtitle: dash > 0 ? rest : null,
     sku: typeof raw.sku === 'string' ? raw.sku : '',
     brand: typeof raw.brand === 'string' ? raw.brand : '',
     price:

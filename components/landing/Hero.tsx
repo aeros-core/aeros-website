@@ -1,3 +1,5 @@
+import { appProductUrl, fetchStorefront, formatPrice } from '@/lib/marketplace'
+
 const benefits = [
   { value: 'Wholesale', label: 'factory-direct pricing' },
   { value: 'Next-day', label: 'delivery in major cities' },
@@ -6,16 +8,49 @@ const benefits = [
 
 const categories = ['Cups & Lids', 'Containers', 'Bags & Wraps', 'Gloves', 'Labels']
 
-const products = [
-  { name: '12 oz Paper Cups', unit: '1,000 / case', price: '$38' },
-  { name: 'Kraft Take-Out Box', unit: '450 / case', price: '$54' },
-  { name: 'Vented Dome Lids', unit: '1,000 / case', price: '$29' },
-  { name: 'Nitrile Gloves', unit: '1,000 / case', price: '$61' },
-  { name: 'Paper Straws', unit: '3,000 / case', price: '$22' },
-  { name: '8 oz Deli Cups', unit: '500 / case', price: '$31' },
+type HeroProduct = {
+  key: string
+  name: string
+  unit: string
+  price: string
+  /** Unit the price is for, e.g. "pc". */
+  per: string
+  image?: string
+  href: string
+}
+
+/** Shown only when the app's API can't be reached — the same bestsellers,
+ * at the app's prices when this was written. */
+const fallbackProducts: HeroProduct[] = [
+  { key: 'dw-cup', name: 'Paper Cup - Double Wall', unit: 'MOQ 500 pcs', price: '₹3.60', per: 'pc', href: appProductUrl(577) },
+  { key: 'pp-cup', name: 'PP Flat Bottom Cold Cup with Lid', unit: 'MOQ 500 pcs', price: '₹5.50', per: 'pc', href: appProductUrl(619) },
+  { key: 'bowl', name: 'Salad Bowl', unit: 'MOQ 800 pcs', price: '₹3.40', per: 'pc', href: appProductUrl(620) },
+  { key: 'sos', name: 'SOS Paper Bags', unit: 'MOQ 3,000 pcs', price: '₹0.45', per: 'pc', href: appProductUrl(667) },
+  { key: 'pth', name: 'Twisted Handle Paper Bags', unit: 'MOQ 1,000 pcs', price: '₹2.95', per: 'pc', href: appProductUrl(678) },
+  { key: 'rc', name: 'Round Thin Wall Containers with Lid', unit: 'MOQ 500 pcs', price: '₹1.95', per: 'pc', href: appProductUrl(682) },
 ]
 
-export default function Hero() {
+/** The app's Bestsellers rail, live, priced per piece in rupees. */
+async function getHeroProducts(): Promise<HeroProduct[]> {
+  const { rails } = await fetchStorefront()
+  const items = (rails.find((r) => r.id === 'fp-rail-bestsellers') ?? rails[0])
+    ?.items.filter((i) => i.price !== null)
+    .slice(0, 6)
+  if (!items || items.length < 6) return fallbackProducts
+  return items.map((i) => ({
+    key: String(i.id),
+    name: i.title,
+    unit: `MOQ ${i.moq.toLocaleString('en-IN')} ${i.unit}`,
+    price: formatPrice(i.price as number),
+    per: i.unit === 'pcs' ? 'pc' : i.unit,
+    image: i.images[0],
+    href: i.url,
+  }))
+}
+
+export default async function Hero() {
+  const products = await getHeroProducts()
+
   return (
     <section className="relative pt-40 pb-32 px-6 bg-white overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-60 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
@@ -111,15 +146,32 @@ export default function Hero() {
                   Search 1,200+ packaging SKUs
                 </div>
                 <div className="hidden sm:block text-[11px] font-mono text-fg-muted/60 whitespace-nowrap">
-                  Ship to · New York, NY
+                  Ship to · Mumbai, MH
                 </div>
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {products.map((p) => (
-                  <div key={p.name} className="border border-border-default rounded-2xl p-3">
-                    <div className="aspect-[4/3] rounded-xl bg-bg-subtle border border-border-default mb-3" />
-                    <div className="text-fg-primary text-xs font-medium leading-tight">
+                  <a
+                    key={p.key}
+                    href={p.href}
+                    className="group border border-border-default rounded-2xl p-3 hover:bg-bg-subtle transition-colors"
+                  >
+                    <div className="aspect-[4/3] rounded-xl bg-bg-subtle border border-border-default mb-3 overflow-hidden">
+                      {p.image && (
+                        // eslint-disable-next-line @next/next/no-img-element -- remote app CDN
+                        <img
+                          src={p.image}
+                          alt={p.name}
+                          loading="lazy"
+                          decoding="async"
+                          width={400}
+                          height={300}
+                          className="w-full h-full object-cover"
+                        />
+                      )}
+                    </div>
+                    <div className="text-fg-primary text-xs font-medium leading-tight line-clamp-2">
                       {p.name}
                     </div>
                     <div className="mt-0.5 text-[10px] text-fg-muted/60 font-mono">
@@ -128,12 +180,15 @@ export default function Hero() {
                     <div className="mt-2 flex items-center justify-between">
                       <span className="text-fg-primary font-bold text-sm">
                         {p.price}
+                        <span className="text-[10px] font-normal text-fg-muted/60">
+                          {' '}/ {p.per}
+                        </span>
                       </span>
                       <span className="text-[10px] font-medium px-2.5 py-1 rounded-full bg-ink-900 text-white">
                         Add
                       </span>
                     </div>
-                  </div>
+                  </a>
                 ))}
               </div>
             </div>

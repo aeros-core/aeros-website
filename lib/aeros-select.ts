@@ -516,7 +516,7 @@ const cupSealer: AerosSelectProduct = {
         },
         {
           name: 'V2 — Analog Timer',
-          tags: ['Manual', 'Analog timer', 'External buzzer'],
+          tags: ['Manual', 'Analog timer', 'External buzzer', '₹18,300 + GST'],
           body: 'Adds an analog timer and an external end-of-cycle buzzer to the V1 base. Operators stop guessing seal time — the buzzer tells them when the seal is done.',
           images: [
             'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v2-1-eLK74jeQZIkqPCfS2dwYDuuGMaUB0L.webp',
@@ -533,8 +533,8 @@ const cupSealer: AerosSelectProduct = {
         },
         {
           name: 'V3 — Digital Control',
-          tags: ['Manual', 'Digital PID', 'Polycarbonate cover', 'From $799'],
-          body: 'Digital PID temperature controller with ±1 °C accuracy, analog timer, external buzzer, and a polycarbonate heater cover for safety. The most-ordered version. Intro $699 — first 15 days, ends at the NRA show.',
+          tags: ['Manual', 'Digital PID', 'Polycarbonate cover', '₹21,000 + GST'],
+          body: 'Digital PID temperature controller with ±1 °C accuracy, analog timer, external buzzer, and a polycarbonate heater cover for safety. The most-ordered version.',
           images: [
             'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v3-1-PaQPxLE5fcbGasUrdis7yi9RB49M2P.png',
             'https://fdu0vqxj8cqurkpm.public.blob.vercel-storage.com/aeroseal-cup-sealer-v3-2-ZJNF1YU088SU3DyJtqnVF1Cl3h578l.png',
@@ -604,7 +604,7 @@ const cupSealer: AerosSelectProduct = {
         },
         {
           label: 'Pricing',
-          values: ['Quote', 'Quote', '$799 (intro $699)', 'Quote'],
+          values: ['Quote', '₹18,300', '₹21,000', 'Quote'],
         },
       ],
     },
@@ -697,7 +697,7 @@ const cupSealer: AerosSelectProduct = {
         },
         {
           q: 'What is the price?',
-          a: 'AeroSeal V3 is $799, with an introductory $699 for the first 15 days, ending at the NRA show. V1 / V2 / V4 are quoted on request — talk to us.',
+          a: 'AeroSeal V2 is ₹18,300 and V3 is ₹21,000, both excluding GST, on the Aeros app. V1 and V4 are quoted on request — talk to us.',
         },
         {
           q: 'What is the MOQ for printed foils?',
@@ -1349,25 +1349,25 @@ const meshDeliveryBags: AerosSelectProduct = {
       items: [
         {
           name: 'THB-001 — Standard',
-          tags: ['220 × 150 × 250 mm', '+35 mm flap', 'From Rs 20/pc'],
+          tags: ['220 × 150 × 250 mm', '+35 mm flap', 'From ₹20/pc'],
           body: 'The single-order size — a meal for one or two, a coffee run, a dessert box. The size most cloud kitchens and cafés start on.',
           images: ['/products/mesh-delivery-bags/hero.webp'],
           specs: [
             { label: 'Dimensions', value: '220 × 150 × 250 mm' },
             { label: 'Flap', value: '+35 mm' },
-            { label: 'Price from', value: 'Rs 20 / pc' },
+            { label: 'Price from', value: '₹20 / pc' },
             { label: 'MOQ', value: '10,000 pcs' },
           ],
         },
         {
           name: 'THB-002 — Large',
-          tags: ['260 × 170 × 345 mm', '+35 mm flap', 'From Rs 26/pc'],
+          tags: ['260 × 170 × 345 mm', '+35 mm flap', 'From ₹26/pc'],
           body: 'The family-order size — multiple mains, 1 L tubs, a full grocery or party pickup. Taller body for upright containers that must not tip.',
           images: ['/products/mesh-delivery-bags/silver-lining.webp'],
           specs: [
             { label: 'Dimensions', value: '260 × 170 × 345 mm' },
             { label: 'Flap', value: '+35 mm' },
-            { label: 'Price from', value: 'Rs 26 / pc' },
+            { label: 'Price from', value: '₹26 / pc' },
             { label: 'MOQ', value: '10,000 pcs' },
           ],
         },
@@ -1455,7 +1455,7 @@ const meshDeliveryBags: AerosSelectProduct = {
         { label: 'Lining', value: 'Silver thermal lining' },
         { label: 'Handles', value: 'Loop handles, reinforced X-box stitching' },
         { label: 'Printing', value: 'Full-colour, all-over custom print · any body colour' },
-        { label: 'Pricing from', value: 'THB-001 — Rs 20 / pc · THB-002 — Rs 26 / pc' },
+        { label: 'Pricing from', value: 'THB-001 — ₹20 / pc · THB-002 — ₹26 / pc' },
         { label: 'MOQ', value: '10,000 pcs per design' },
         { label: 'Production lead time', value: '25 – 30 days from artwork approval' },
         { label: 'Delivery', value: 'Pan-India' },
