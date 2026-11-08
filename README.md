@@ -17,7 +17,7 @@ The Aeros marketing site (aeros-x.com). Next.js 16 + `@aeros/react` design syste
 ## First-time setup
 
 ```bash
-git clone --recurse-submodules https://github.com/aeros-main/aeros-website.git
+git clone --recurse-submodules https://github.com/aeros-core/aeros-website.git
 cd aeros-website
 pnpm install
 ```
