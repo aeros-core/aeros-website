@@ -1,16 +1,17 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import { SITE_URL, SITE_NAME, organizationJsonLd } from '@/lib/seo'
-import { Plus_Jakarta_Sans, IBM_Plex_Mono } from 'next/font/google'
+import { Inter, IBM_Plex_Mono } from 'next/font/google'
 import ConsentBanner from '@/components/analytics/ConsentBanner'
 import MetaPixel from '@/components/analytics/MetaPixel'
 import '@aeros/react/styles.css'
 import './globals.css'
 
-const jakarta = Plus_Jakarta_Sans({
+// Brand type: Inter for everything set in sans, a monospace face for data
+// and captions. globals.css points the design-system font tokens at these.
+const inter = Inter({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
-  variable: '--font-jakarta',
+  variable: '--font-inter',
   display: 'swap',
 })
 
@@ -68,7 +69,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${mono.variable}`} data-theme="light">
+    <html lang="en" className={`${inter.variable} ${mono.variable}`} data-theme="light">
       <body className="bg-bg-canvas text-fg-primary font-sans antialiased overflow-x-hidden">
         <script
           type="application/ld+json"

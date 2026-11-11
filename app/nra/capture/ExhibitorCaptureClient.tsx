@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { company } from '@/lib/company'
 import { SITE_URL } from '@/lib/seo'
+import Logo from '@/components/brand/Logo'
 
 type Lead = {
   id: string
@@ -605,10 +606,10 @@ export default function ExhibitorCaptureClient() {
           <button
             type="button"
             onClick={handleWordmarkTap}
-            className="aeros-logo text-fg-primary text-2xl font-bold tracking-tight select-none"
+            className="text-fg-primary select-none"
             aria-label="Aeros"
           >
-            Aeros
+            <Logo className="h-7" />
           </button>
           <div className="flex-1 min-w-0">
             <div className="text-[10px] font-mono uppercase tracking-widest text-fg-muted/60">

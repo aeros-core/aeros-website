@@ -1,18 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <defs>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wdth,wght@125,300&amp;display=swap');
-    </style>
-  </defs>
-  <rect width="100" height="100" fill="white"/>
-  <text
-    x="50"
-    y="62"
-    font-family="'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif"
-    font-size="26"
-    font-weight="300"
-    font-stretch="expanded"
-    fill="black"
-    text-anchor="middle"
-  >Aeros</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img"><title>Aeros app icon</title><rect width="512" height="512" rx="115" fill="#0B0B0C"/><g transform="translate(112.6 121.8) scale(1.0811)"><path fill="#F5F5F2" d="M132.6 0L143.1 18.2L130.8 39.4L120.3 21.2ZM107.3 43.7L117.8 61.9L103.8 86.2L93.3 68ZM80.3 90.5L90.8 108.7L21 229.7L-0 229.7ZM134.3 43.7L144.8 61.9L130.8 86.2L120.3 68ZM107.3 90.5L117.8 108.7L48 229.7L27 229.7ZM159.6 46.8L170.1 65L157.8 86.2L147.3 68ZM134.3 90.5L144.8 108.7L130.8 132.9L120.3 114.7ZM107.3 137.3L117.8 155.5L75 229.7L54 229.7ZM161.3 90.5L171.8 108.7L157.8 132.9L147.3 114.7ZM134.3 137.3L144.8 155.5L102 229.7L81 229.7ZM144.3 20.4L158.3 44.6L147.8 62.8L133.8 38.5ZM171.3 67.1L265.2 229.7L244.2 229.7L160.8 85.3ZM119.1 23.4L131.3 44.6L120.8 62.8L108.6 41.6ZM144.3 67.1L158.3 91.4L147.8 109.6L133.8 85.3ZM171.3 113.9L238.2 229.7L217.2 229.7L160.8 132.1ZM117.3 67.1L131.3 91.4L120.8 109.6L106.8 85.3ZM144.3 113.9L211.2 229.7L190.2 229.7L133.8 132.1ZM92.1 70.1L104.3 91.4L93.8 109.6L81.6 88.3ZM117.3 113.9L131.3 138.1L120.8 156.3L106.8 132.1ZM144.3 160.6L184.2 229.7L163.2 229.7L133.8 178.8Z"/></g></svg>

@@ -27,6 +27,7 @@ export function organizationJsonLd() {
     name: SITE_NAME,
     legalName: company.legalName,
     url: SITE_URL,
+    logo: absoluteUrl('/brand/aeros-logo-ink.svg'),
     description:
       'B2B packaging supplier and marketplace for Indian food service — paper cups, bagasse tableware, compostable bags, PET cold cups, and cup sealing machines.',
     telephone: company.phoneHref,

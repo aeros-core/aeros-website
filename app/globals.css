@@ -6,6 +6,53 @@
  */
 @import "tailwindcss";
 
+/*
+ * Brand kit (Nov 2026) — the woven A identity.
+ * Monochrome: Ink and Paper replace the design system's black and grey, and
+ * its Royal Blue accent is retired here, on the website only; the design
+ * system itself is unchanged. Delete this block and the two below it to go
+ * back to the design-system defaults.
+ */
+@theme {
+  --color-ink-50: #F5F5F2;   /* Paper */
+  --color-ink-800: #1D1D20;
+  --color-ink-900: #0B0B0C;  /* Ink */
+
+  /* No blue on the site: the `royal` accent scale resolves to Ink and Paper,
+   * so every existing accent class renders monochrome. */
+  --color-royal-50: #F5F5F2;
+  --color-royal-100: #E5E5E5;
+  --color-royal-200: #C2C2C2;
+  --color-royal-400: #737373;
+  --color-royal-600: #0B0B0C;
+  --color-royal-700: #0B0B0C;
+  --color-royal-800: #0B0B0C;
+  --color-royal-900: #0B0B0C;
+  --color-info: #0B0B0C;
+  --color-info-bg: #F5F5F2;
+  --color-info-text: #0B0B0C;
+}
+
+:root[data-theme="light"] {
+  --aeros-fg-primary: #0B0B0C;
+  --aeros-fg-brand: #0B0B0C;
+  --aeros-bg-inverse: #0B0B0C;
+  --aeros-bg-subtle: #F5F5F2;
+  --aeros-border-focus: #0B0B0C;
+  --aeros-brand-primary: #0B0B0C;
+  --aeros-brand-primary-muted: #F5F5F2;
+  --aeros-accent: #0B0B0C;
+  --aeros-accent-muted: #F5F5F2;
+
+  /* Inter, loaded in app/layout.tsx. */
+  --aeros-font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* The wordmark is outlined from plain Inter, so body text uses Inter's
+ * default letterforms rather than the design system's alternates. */
+html, body { font-feature-settings: normal; }
+
 html { scroll-behavior: smooth; }
 body { overflow-x: hidden; }
 
@@ -14,7 +61,7 @@ body { overflow-x: hidden; }
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #C2C2C2; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #0a0a0a; }
+::-webkit-scrollbar-thumb:hover { background: #0B0B0C; }
 
 /* Subtle black hairline grid — for hero + technical sections */
 .bg-grid {
