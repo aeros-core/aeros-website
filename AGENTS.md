@@ -14,8 +14,8 @@ The `vendor/aeros-design-system` submodule is wired into `pnpm-workspace.yaml`, 
 
 UI components and tokens come from `@aeros/react` (in the submodule). Always prefer DS alias classes (`bg-bg-surface`, `text-fg-primary`, `border-border-default`, `text-fg-muted`, etc.) over raw Tailwind colors or hex values. Reach for `@aeros/react` components (`Button`, `Card`, `Input`, …) before reinventing.
 
-The wordmark "Aeros" must always use the `aeros-logo` class — it pulls in Nunito Sans (Expanded, wdth axis 125).
+The logo is the woven A with the outlined "Aeros" wordmark. Always render it with `components/brand/Logo.tsx` (or the files in `public/brand/`) — never retype the wordmark in a font. It is monochrome: Ink on light grounds, Paper on dark grounds. The old `aeros-logo` (Nunito Sans) class is retired on this site.
 
 # Brand palette
 
-Black and white first. The single accent is Royal Blue `#2347D9`, used **only** in the `blue` variants of `Badge`, `Tag`, and `Alert`. Don't add blue anywhere else without explicit approval.
+Brand kit, Nov 2026: monochrome — Ink `#0B0B0C` and Paper `#F5F5F2`, no accent colour. `app/globals.css` maps the design system's `ink` scale and alias tokens onto these for the website, and resolves the `royal` accent scale to Ink and Paper so nothing renders blue. Use DS alias classes rather than hex values, and don't add blue (Cobalt or Royal Blue) anywhere without explicit approval. Type is Inter, with IBM Plex Mono for data and captions.

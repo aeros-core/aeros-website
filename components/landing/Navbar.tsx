@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { company } from '@/lib/company'
+import Logo from '@/components/brand/Logo'
 
 const links = [
   { label: 'Products', href: '/products' },
@@ -17,8 +18,8 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur border-b border-border-default">
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" className="aeros-logo text-lg text-fg-primary">
-          Aeros<span className="text-royal-600">.</span>
+        <a href="/" aria-label="Aeros home" className="text-fg-primary">
+          <Logo className="h-6" />
         </a>
 
         <div className="hidden md:flex items-center gap-8">
