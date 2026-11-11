@@ -28,6 +28,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/clients', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/partners/us', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/nra', priority: 0.4, changeFrequency: 'yearly' },
+    { path: '/aeros-mail', priority: 0.5, changeFrequency: 'monthly' },
+    { path: '/aeros-mail/privacy', priority: 0.2, changeFrequency: 'yearly' },
     { path: '/support', priority: 0.4, changeFrequency: 'yearly' },
     { path: '/contact', priority: 0.5, changeFrequency: 'yearly' },
     { path: '/terms', priority: 0.2, changeFrequency: 'yearly' },

@@ -7,6 +7,7 @@ const columns = [
     links: [
       { label: 'Products', href: '/products' },
       { label: 'Resources', href: '/resources' },
+      { label: 'Aeros Mail', href: '/aeros-mail' },
       { label: 'Marketplace', href: '/#marketplace' },
     ],
   },
