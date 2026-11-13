@@ -67,6 +67,38 @@ export function productJsonLd({
   }
 }
 
+/** SoftwareApplication schema for a product that runs in the browser. */
+export function softwareApplicationJsonLd({
+  name,
+  description,
+  path,
+  appUrl,
+  category,
+  image,
+}: {
+  name: string
+  description: string
+  path: string
+  /** Where the app itself is served, if not on this site. */
+  appUrl?: string
+  /** A schema.org applicationCategory, e.g. `DesignApplication`. */
+  category: string
+  image?: string
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name,
+    description,
+    url: absoluteUrl(path),
+    ...(appUrl ? { installUrl: appUrl } : {}),
+    applicationCategory: category,
+    operatingSystem: 'Web browser',
+    ...(image ? { image: absoluteUrl(image) } : {}),
+    publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+  }
+}
+
 /**
  * FAQPage schema. Product pages already carry a real FAQ section, so this
  * is the cheapest route to rich results — but only emit it when questions

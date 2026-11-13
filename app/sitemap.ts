@@ -22,6 +22,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/', priority: 1, changeFrequency: 'weekly' },
     { path: '/products', priority: 0.9, changeFrequency: 'weekly' },
     { path: '/products/aeros-select', priority: 0.9, changeFrequency: 'weekly' },
+    { path: '/design-studio', priority: 0.9, changeFrequency: 'monthly' },
     { path: '/products/sample-kits', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/hospitality', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/resources', priority: 0.7, changeFrequency: 'weekly' },
