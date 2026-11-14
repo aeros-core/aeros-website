@@ -68,6 +68,10 @@ const sections = [
         body: 'Aeros Mail\'s use and transfer of information received from Google APIs adheres to the Google API Services User Data Policy, including the Limited Use requirements. Gmail data is used only to provide the mail features you see in the app. It is never used for advertising, never sold, and is transferred to a third party (Anthropic) only when you turn on cloud AI and only to provide the feature you asked for. No human at Aeros reads your Gmail data.',
       },
       {
+        heading: 'No AI training',
+        body: 'Aeros Mail does not use Google Workspace API data, including Gmail data, to develop, improve or train generalized or non-personalized AI or machine-learning models. Anthropic\'s commercial API terms do not permit Anthropic to train its models on content sent through the API.',
+      },
+      {
         heading: 'Permissions requested',
         body: 'Gmail: read, compose, send and manage your messages and labels (gmail.modify), plus your basic profile and email address to identify the account. Microsoft: read and write your mail (Mail.ReadWrite), send mail as you (Mail.Send), and your basic profile (User.Read), plus offline access so the app can keep syncing.',
       },
@@ -131,7 +135,7 @@ export default function AerosMailPrivacy() {
             Aeros Mail is a mail app for iPhone, iPad and Mac. Your mail lives on your device and with your mail provider, not with us.
           </p>
           <div className="flex flex-wrap gap-6 text-xs text-fg-muted/60 font-mono">
-            <span>Last updated: November 8, 2026</span>
+            <span>Last updated: November 11, 2026</span>
             <span>Effective: November 8, 2026</span>
           </div>
         </div>
