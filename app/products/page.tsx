@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/landing/Navbar'
 import Footer from '@/components/landing/Footer'
@@ -249,6 +250,42 @@ export default async function ProductsPage() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Design Studio */}
+      <section className="px-6 pb-32 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <Link
+            href="/design-studio"
+            className="group grid md:grid-cols-12 gap-8 items-center rounded-3xl bg-ink-900 text-white p-8 md:p-12 overflow-hidden"
+          >
+            <div className="md:col-span-5">
+              <div className="text-[10px] font-mono uppercase tracking-widest text-white/50 mb-4">
+                / software · private beta
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold leading-tight">
+                Design your own cups and cartons.
+              </h2>
+              <p className="mt-4 text-white/60">
+                Aeros Design Studio puts your artwork on real cup dies and carton
+                templates, with a full CAD modeller underneath. In your browser.
+              </p>
+              <span className="mt-8 text-sm font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                Meet Design Studio <span aria-hidden>→</span>
+              </span>
+            </div>
+            <div className="md:col-span-7">
+              <Image
+                src="/products/design-studio/cup-studio.webp"
+                alt="Cup studio in Aeros Design Studio, with a black printed double-wall cup"
+                width={2400}
+                height={1500}
+                sizes="(min-width: 768px) 640px, 100vw"
+                className="w-full h-auto rounded-xl border border-white/10"
+              />
+            </div>
+          </Link>
         </div>
       </section>
 
